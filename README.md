@@ -6,13 +6,13 @@ This application is the final project for General Assembly React Course.
 
 ## Minimum Requirements
 
-- [] Utilize both nested components and state.
-- [] Use React Router and include a nav bar.
+- [ ] Utilize both nested components and state.
+- [ ] Use React Router and include a nav bar.
 - [x] Use ES6 syntax; don't forget about functional components.
 
 ### Further Directions
-- [] Add styling
-- [] Add React animations
+- [ ] Add styling
+- [ ] Add React animations
 - [x] Incorporate Flow or use Typescript
 
 ### Deliverables
