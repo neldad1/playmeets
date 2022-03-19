@@ -1,10 +1,15 @@
-import { HeaderDiv, HeaderImg } from './Header.styled';
+// import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { HeaderCont, FullLogo } from './Header.styled';
 
-const Header = () => {
+const Header: React.FC = ({ children }) => {
   return (
-    <HeaderDiv>
-      <HeaderImg src={require('../../playmeets.png')} alt="Playmeets" />
-    </HeaderDiv>
+    <HeaderCont>
+      <Link to="/">
+        <FullLogo src={require('../../playmeets.png')} alt="Playmeets" />
+      </Link>
+      {children}
+    </HeaderCont>
   );
 };
 export default Header;
