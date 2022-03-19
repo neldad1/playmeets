@@ -1,11 +1,14 @@
 import { useState, SyntheticEvent } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, Select } from 'antd';
 import { displayError } from '../../Common/AlertMessage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth, setDocument } from '../../Firebase';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 import { AuthFlexColumn } from '../Content/Content.styled';
+import { AuStates } from '../../Common/DataObjects';
+
+const { Option } = Select;
 
 const AGE_GROUP: string[] = ['0-3', '4-6', '7-9', '10-12'];
 
@@ -29,6 +32,7 @@ const FinishSignUp = () => {
       city,
       state,
       ageGroup,
+      attended: 0,
     };
     try {
       setDocument('users', user.uid, data);
@@ -52,13 +56,13 @@ const FinishSignUp = () => {
           />
         </Form.Item>
         <Form.Item label="State" required>
-          <Input
-            placeholder="Enter the state where you're from."
-            value={state}
-            onChange={(e: SyntheticEvent) =>
-              setState((e.target as HTMLInputElement).value)
-            }
-          />
+          <Select onChange={(val: string) => setState(val)}>
+            {AuStates.map((state: string, index: number) => (
+              <Option key={index} value={state}>
+                {state}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item label="City" required>
           <Input

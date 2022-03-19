@@ -15,4 +15,9 @@ const FullLogo = styled.img`
   margin-left: 2em;
 `;
 
-export { HeaderCont, FullLogo };
+const Bell = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+export { HeaderCont, FullLogo, Bell };

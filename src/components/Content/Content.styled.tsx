@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-const MainContent = styled.div`
-  width: 100%;
-  height: 85%;
-`;
-
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,4 +30,4 @@ const Label = styled.label`
   margin-right: 1em;
 `;
 
-export { MainContent, FlexColumn, AuthFlexColumn, AuthFlexRow, Logo, Label };
+export { FlexColumn, AuthFlexColumn, AuthFlexRow, Logo, Label };

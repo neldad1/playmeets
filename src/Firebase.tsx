@@ -38,6 +38,7 @@ const signInWithGoogle = async () => {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
+      photoUrl: user.photoURL,
     });
   } catch (err: unknown) {
     displayError((err as Error).message);

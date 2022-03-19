@@ -9,7 +9,7 @@ const AppCont = styled.div`
 
 const MainCont = styled.div`
   width: 100%;
-  height: 95%;
+  height: 85%;
 `;
 
 export { AppCont, MainCont };
