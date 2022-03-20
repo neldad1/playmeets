@@ -13,6 +13,10 @@ import {
   addDoc,
   doc,
   setDoc,
+  query,
+  where,
+  getDocs,
+  getDoc,
 } from 'firebase/firestore';
 import { displayError } from './Common/AlertMessage';
 
@@ -81,8 +85,24 @@ const addDocument = async (path: string, data: Object) => {
 };
 
 const setDocument = async (path: string, pathId: string, data: Object) => {
-  const docRef = doc(db, path, pathId);
-  await setDoc(docRef, data, { merge: true });
+  try {
+    const docRef = doc(db, path, pathId);
+    await setDoc(docRef, data, { merge: true });
+  } catch (err: unknown) {
+    displayError((err as Error).message);
+  }
+};
+
+const getDocument = async (path: string, value: any) => {
+  const docRef = doc(db, path, value);
+  const docSnap = await getDoc(docRef);
+  return docSnap.exists() ? docSnap.data() : undefined;
+};
+
+const getDocuments = async (path: string, field: string, value: any) => {
+  const q = query(collection(db, path), where(field, '==', value));
+  const docs = await getDocs(q);
+  return docs;
 };
 
 export {
@@ -94,4 +114,6 @@ export {
   logout,
   addDocument,
   setDocument,
+  getDocument,
+  getDocuments,
 };

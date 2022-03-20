@@ -1,11 +1,6 @@
 import { useState, useEffect, SyntheticEvent } from 'react';
 import { Button, Form, Input } from 'antd';
-import {
-  AuthFlexColumn,
-  AuthFlexRow,
-  Label,
-  Logo,
-} from '../Content/Content.styled';
+import { FlexColumn, FlexRow, Label, Logo } from '../Content/Content.styled';
 import {
   auth,
   registerWithEmailAndPassword,
@@ -35,15 +30,15 @@ const SignUp = () => {
   }, [navigate]);
 
   return (
-    <AuthFlexColumn>
+    <FlexColumn>
       <Link to="/">
         <Logo src="/logo512.svg" alt="Playmeets" />
       </Link>
 
-      <AuthFlexRow>
+      <FlexRow>
         <Label>Already a member?</Label>
         <Link to="/login">Log In</Link>
-      </AuthFlexRow>
+      </FlexRow>
 
       <Form layout="vertical">
         <Form.Item label="Full Name" required>
@@ -88,7 +83,7 @@ const SignUp = () => {
       >
         Continue with Google
       </Button>
-    </AuthFlexColumn>
+    </FlexColumn>
   );
 };
 

@@ -14,7 +14,7 @@ const AppHeader = ({ children, path = '/' }: AppHeaderProps) => {
   return (
     <HeaderCont>
       <Link to={path}>
-        <FullLogo src={require('../../playmeets.png')} alt="Playmeets" />
+        <FullLogo src={require('../../assets/playmeets.png')} alt="Playmeets" />
       </Link>
       {children}
     </HeaderCont>

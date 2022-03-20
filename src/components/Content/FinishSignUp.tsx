@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth, setDocument } from '../../Firebase';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-import { AuthFlexColumn } from '../Content/Content.styled';
+import { FlexColumn } from '../Content/Content.styled';
 import { AuStates } from '../../Common/DataObjects';
 
 const { Option } = Select;
@@ -43,7 +43,7 @@ const FinishSignUp = () => {
   };
 
   return (
-    <AuthFlexColumn>
+    <FlexColumn>
       <Form layout="vertical">
         <Form.Item label={user?.email} />
         <Form.Item label="Display Name" required>
@@ -80,7 +80,7 @@ const FinishSignUp = () => {
           </Button>
         </Form.Item>
       </Form>
-    </AuthFlexColumn>
+    </FlexColumn>
   );
 };
 
