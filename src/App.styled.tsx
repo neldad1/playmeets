@@ -9,7 +9,7 @@ const AppCont = styled.div`
 const MainCont = styled.div`
   width: inherit;
   min-height: 85vh;
-  margin: 0 1em;
+  padding: 0 1em;
 `;
 
 export { AppCont, MainCont };

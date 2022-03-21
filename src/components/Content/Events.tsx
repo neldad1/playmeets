@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getDocuments } from '../../Firebase';
-import { AppEvent, fromFirestore } from '../../Common/EventConverter';
+import { getDocuments } from '../../common/Firebase';
+import { AppEvent, fromFirestore } from '../../common/EventConverter';
 import { FlexRow } from './Content.styled';
-import EventItem from './EventItem';
+import EventCard from './EventCard';
 
 const Events = () => {
   const [events, setEvents] = useState<AppEvent[]>([]);
@@ -51,7 +51,7 @@ const Events = () => {
     <FlexRow>
       {[...events, ...events, ...events, ...events, ...events, ...events].map(
         (appEvt, index) => (
-          <EventItem key={index} data={appEvt} />
+          <EventCard key={index} data={appEvt} />
         )
       )}
     </FlexRow>

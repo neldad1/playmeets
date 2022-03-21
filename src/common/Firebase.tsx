@@ -18,7 +18,7 @@ import {
   getDocs,
   getDoc,
 } from 'firebase/firestore';
-import { displayError } from './Common/AlertMessage';
+import { displayError } from './AlertMessage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -78,8 +78,12 @@ const logout = () => {
 /** FIRESTORE function starts here */
 const addDocument = async (path: string, data: Object) => {
   try {
-    await addDoc(collection(db, path), data);
+    const res = await addDoc(collection(db, path), data);
+    if (res) {
+      setDocument(path, res.id, { id: res.id });
+    }
   } catch (err: unknown) {
+    console.log(err);
     displayError((err as Error).message);
   }
 };

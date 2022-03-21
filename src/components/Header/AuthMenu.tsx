@@ -1,6 +1,6 @@
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import { logout } from '../../Firebase';
+import { logout } from '../../common/Firebase';
 import Avatar from '../User/Avatar';
 import NotifIcon from './NotifIcon';
 
@@ -10,7 +10,7 @@ const AuthMenu = () => {
   return (
     <Menu className="menu" mode="horizontal">
       <Menu.Item key="createevent">
-        <Link to="/createevent">Create An Event</Link>
+        <Link to="/create-event">Create An Event</Link>
       </Menu.Item>
       <Menu.Item key="notification" icon={<NotifIcon />}>
         <Link to="/notification" />

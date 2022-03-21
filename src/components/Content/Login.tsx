@@ -5,7 +5,7 @@ import {
   auth,
   logInWithEmailAndPassword,
   signInWithGoogle,
-} from '../../Firebase';
+} from '../../common/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
 

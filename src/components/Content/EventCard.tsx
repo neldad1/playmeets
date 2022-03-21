@@ -2,8 +2,8 @@ import { HeartOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Card, Tooltip, Avatar } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import { useEffect, useState } from 'react';
-import { AppEvent } from '../../Common/EventConverter';
-import { getDocument } from '../../Firebase';
+import { AppEvent } from '../../common/EventConverter';
+import { getDocument } from '../../common/Firebase';
 //import Avatar from '../User/Avatar';
 import { EventPhoto } from './Content.styled';
 
@@ -11,7 +11,7 @@ interface EventItemProps {
   data: AppEvent;
 }
 
-const EventItem = (event: EventItemProps) => {
+const EventCard = (event: EventItemProps) => {
   const [userName, setUserName] = useState();
   const [userPhotoUrl, setUserPhotoUrl] = useState();
 
@@ -63,4 +63,4 @@ const EventItem = (event: EventItemProps) => {
   );
 };
 
-export default EventItem;
+export default EventCard;

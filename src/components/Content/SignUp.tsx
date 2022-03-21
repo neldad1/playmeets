@@ -5,10 +5,10 @@ import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from '../../Firebase';
+} from '../../common/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
-import { displayError } from '../../Common/AlertMessage';
+import { displayError } from '../../common/AlertMessage';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ const SignUp = () => {
 
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged(
-      (user) => Boolean(user) && navigate('/finishsignup')
+      (user) => Boolean(user) && navigate('/finish-signup')
     );
     return subscriber; // unsubscribe on unmount
   }, [navigate]);

@@ -14,6 +14,13 @@ const FlexColumn = styled.div`
   margin: 5% auto;
   justify-content: space-evenly;
   border: 1px solid;
+  gap: 1em;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+    padding: 1em;
+  }
 `;
 
 const Logo = styled.img`
@@ -33,4 +40,9 @@ const EventPhoto = styled.img`
   width: 300px;
 `;
 
-export { FlexColumn, FlexRow, Logo, Label, EventBlock, EventPhoto };
+const FileUpload = styled.input`
+  outline: none;
+  text-decoration: none;
+`;
+
+export { FlexColumn, FlexRow, Logo, Label, EventBlock, EventPhoto, FileUpload };
