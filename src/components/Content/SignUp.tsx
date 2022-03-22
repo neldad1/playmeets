@@ -5,10 +5,10 @@ import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from '../../common/Firebase';
+} from '../../commons/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
-import { displayError } from '../../common/AlertMessage';
+import { displayError } from '../../commons/AlertMessage';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../common/Firebase';
+import { auth } from '../../commons/Firebase';
 import { AvatarIcon } from './User.styled';
 
 const Avatar = () => {

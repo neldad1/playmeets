@@ -2,9 +2,9 @@ import { Button, DatePicker, Form, Input, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { AuStates } from '../../common/DataObjects';
-import { EventData, Location, toFirestoreEvt } from '../../common/FSConverter';
-import { addDocument, auth } from '../../common/Firebase';
+import { AuStates } from '../../commons/DataObjects';
+import { EventData, Location, toFirestoreEvt } from '../../commons/FSConverter';
+import { addDocument, auth } from '../../commons/Firebase';
 import UploadPhoto from './UploadPhoto';
 import { useNavigate } from 'react-router-dom';
 

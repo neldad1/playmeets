@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getDocuments } from '../../common/Firebase';
-import { AppEvent, EventData } from '../../common/FSConverter';
+import { getDocuments } from '../../commons/Firebase';
+import { AppEvent, EventData } from '../../commons/FSConverter';
 import { FlexRow } from './Content.styled';
 import EventCard from './EventCard';
 

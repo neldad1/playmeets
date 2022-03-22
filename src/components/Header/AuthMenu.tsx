@@ -1,6 +1,6 @@
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import { logout } from '../../common/Firebase';
+import { logout } from '../../commons/Firebase';
 import Avatar from '../User/Avatar';
 import NotifIcon from './NotifIcon';
 

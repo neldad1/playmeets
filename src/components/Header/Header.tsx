@@ -1,6 +1,6 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useLocation } from 'react-router-dom';
-import { auth } from '../../common/Firebase';
+import { auth } from '../../commons/Firebase';
 import AuthMenu from './AuthMenu';
 import { HeaderCont, FullLogo } from './Header.styled';
 import PublicMenu from './PublicMenu';

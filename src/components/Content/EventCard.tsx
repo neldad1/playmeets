@@ -2,8 +2,8 @@ import { HeartOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Card, Tooltip, Avatar } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import { useEffect, useState } from 'react';
-import { EventData } from '../../common/FSConverter';
-import { getDocument } from '../../common/Firebase';
+import { EventData } from '../../commons/FSConverter';
+import { getDocument } from '../../commons/Firebase';
 import { EventPhoto } from './Content.styled';
 
 const UPLOAD_STR = 'upload';
