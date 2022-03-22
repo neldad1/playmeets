@@ -1,25 +1,28 @@
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, DatePicker, Form, Input, Select, Upload } from 'antd';
+import { Button, DatePicker, Form, Input, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import { UploadFile } from 'antd/lib/upload/interface';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AuStates } from '../../common/DataObjects';
-import { AppEvent, Location, toFirestore } from '../../common/EventConverter';
+import { EventData, Location, toFirestoreEvt } from '../../common/FSConverter';
 import { addDocument, auth } from '../../common/Firebase';
 import UploadPhoto from './UploadPhoto';
+import { useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 
 const CreateEvent = () => {
   const [user] = useAuthState(auth);
-  const [appEvent, setAppEvent] = useState<AppEvent>({} as AppEvent);
+  const [eventData, setEventData] = useState<EventData>({} as EventData);
   const [location, setLocation] = useState<Location>({} as Location);
-  const [imgUrl, setImgUrl] = useState('');
+  const [imgUrl, setImgUrl] = useState(
+    'https://res.cloudinary.com/playmeets/image/upload/v1647919105/playmeets/pm-event-defaultPhoto_ez2rxu.png'
+  );
+
+  const navigate = useNavigate();
 
   const setAppEvtValue = (attr: Object) => {
-    setAppEvent({
-      ...appEvent,
+    setEventData({
+      ...eventData,
       ...attr,
     });
   };
@@ -33,9 +36,12 @@ const CreateEvent = () => {
   };
 
   const onButtonClick = () => {
-    const obj = toFirestore(appEvent);
-    console.log(obj);
-    addDocument('events', obj);
+    console.log('Input: ', eventData);
+    const data = toFirestoreEvt(eventData);
+    console.log(data);
+    addDocument('events', data).then((res) => {
+      if (res) navigate('/events');
+    });
   };
 
   useEffect(() => {
@@ -61,9 +67,9 @@ const CreateEvent = () => {
       <Form.Item label="Date and Time" required>
         <DatePicker showTime onChange={onDatePickerChange} />
       </Form.Item>
-      <Form.Item label="Event Venue" required>
+      <Form.Item label="Venue" required>
         <Input
-          placeholder="Enter the event venue"
+          placeholder="Where will the event take place?"
           onChange={({ target }: SyntheticEvent) =>
             setLocValue({ name: (target as HTMLInputElement).value })
           }
@@ -71,7 +77,7 @@ const CreateEvent = () => {
       </Form.Item>
       <Form.Item label="Street number and name" required>
         <Input
-          placeholder="Enter the street number and name"
+          placeholder="Enter the venue's street number and name"
           onChange={({ target }: SyntheticEvent) =>
             setLocValue({ street: (target as HTMLInputElement).value })
           }
@@ -104,6 +110,7 @@ const CreateEvent = () => {
       </Form.Item>
       <Form.Item label="Zipcode" required>
         <Input
+          type="number"
           placeholder="Enter the zipcode"
           onChange={({ target }: SyntheticEvent) =>
             setLocValue({ zipcode: (target as HTMLInputElement).value })

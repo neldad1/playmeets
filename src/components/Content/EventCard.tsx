@@ -2,13 +2,15 @@ import { HeartOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Card, Tooltip, Avatar } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import { useEffect, useState } from 'react';
-import { AppEvent } from '../../common/EventConverter';
+import { EventData } from '../../common/FSConverter';
 import { getDocument } from '../../common/Firebase';
-//import Avatar from '../User/Avatar';
 import { EventPhoto } from './Content.styled';
 
+const UPLOAD_STR = 'upload';
+const IMG_TRANSFORM = '/c_fill,h_150,w_300';
+
 interface EventItemProps {
-  data: AppEvent;
+  data: EventData;
 }
 
 const EventCard = (event: EventItemProps) => {
@@ -30,7 +32,6 @@ const EventCard = (event: EventItemProps) => {
     if (!userName) getUser();
   }, []);
 
-  console.log(data.timestamp);
   const ts: any = data.timestamp;
   const date = new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
@@ -41,10 +42,20 @@ const EventCard = (event: EventItemProps) => {
     timeZone: 'UTC',
   }).format(ts * 1000);
 
+  const getPhotoUrlWithTransform = () => {
+    const photoUrl = data.photo;
+    const uploadIndex = photoUrl.indexOf(UPLOAD_STR);
+    const newPhotoUrl =
+      photoUrl.slice(0, uploadIndex + UPLOAD_STR.length) +
+      IMG_TRANSFORM +
+      photoUrl.slice(uploadIndex + UPLOAD_STR.length);
+    return newPhotoUrl;
+  };
+
   return (
     <Card
       style={{ width: 300 }}
-      cover={<EventPhoto alt={data.title} src={data.photo} />}
+      cover={<EventPhoto alt={data.title} src={getPhotoUrlWithTransform()} />}
       actions={[
         <Tooltip title="Add to Fave" color="blue">
           <HeartOutlined key="fave" />

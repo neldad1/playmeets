@@ -78,10 +78,7 @@ const logout = () => {
 /** FIRESTORE function starts here */
 const addDocument = async (path: string, data: Object) => {
   try {
-    const res = await addDoc(collection(db, path), data);
-    if (res) {
-      setDocument(path, res.id, { id: res.id });
-    }
+    return await addDoc(collection(db, path), data);
   } catch (err: unknown) {
     console.log(err);
     displayError((err as Error).message);
@@ -105,8 +102,7 @@ const getDocument = async (path: string, value: any) => {
 
 const getDocuments = async (path: string, field: string, value: any) => {
   const q = query(collection(db, path), where(field, '==', value));
-  const docs = await getDocs(q);
-  return docs;
+  return await getDocs(q);
 };
 
 export {

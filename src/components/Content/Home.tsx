@@ -1,5 +1,12 @@
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../common/Firebase';
+import Events from './Events';
+import Landing from './Landing';
+
 const Home = () => {
-  return <>HOME</>;
+  const [user] = useAuthState(auth);
+
+  return user ? <Events /> : <Landing />;
 };
 
 export default Home;
