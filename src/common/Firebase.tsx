@@ -1,3 +1,4 @@
+import { displayError } from './AlertMessage';
 import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
@@ -18,7 +19,6 @@ import {
   getDocs,
   getDoc,
 } from 'firebase/firestore';
-import { displayError } from './AlertMessage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
