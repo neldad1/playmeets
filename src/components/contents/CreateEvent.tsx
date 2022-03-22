@@ -1,10 +1,10 @@
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { AuStates } from '../../commons/DataObjects';
-import { EventData, Location, toFirestoreEvt } from '../../commons/FSConverter';
-import { addDocument, auth } from '../../commons/Firebase';
+import { AuStates } from '../../common/DataObjects';
+import { EventData, Location, toFirestoreEvt } from '../../common/FSConverter';
+import { addDocument, auth } from '../../common/Firebase';
 import UploadPhoto from './UploadPhoto';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,11 +36,9 @@ const CreateEvent = () => {
   };
 
   const onButtonClick = () => {
-    console.log('Input: ', eventData);
     const data = toFirestoreEvt(eventData);
-    console.log(data);
-    addDocument('events', data).then((res) => {
-      if (res) navigate('/events');
+    addDocument('events', data).then((result) => {
+      if (result) navigate('/events');
     });
   };
 
@@ -59,8 +57,8 @@ const CreateEvent = () => {
       <Form.Item label="Title" required>
         <Input
           placeholder="Enter the title"
-          onChange={({ target }: SyntheticEvent) =>
-            setAppEvtValue({ title: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setAppEvtValue({ title: target.value })
           }
         />
       </Form.Item>
@@ -70,32 +68,32 @@ const CreateEvent = () => {
       <Form.Item label="Venue" required>
         <Input
           placeholder="Where will the event take place?"
-          onChange={({ target }: SyntheticEvent) =>
-            setLocValue({ name: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setLocValue({ name: target.value })
           }
         />
       </Form.Item>
       <Form.Item label="Street number and name" required>
         <Input
           placeholder="Enter the venue's street number and name"
-          onChange={({ target }: SyntheticEvent) =>
-            setLocValue({ street: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setLocValue({ street: target.value })
           }
         />
       </Form.Item>
       <Form.Item label="Suburb" required>
         <Input
           placeholder="Enter the suburb"
-          onChange={({ target }: SyntheticEvent) =>
-            setLocValue({ suburb: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setLocValue({ suburb: target.value })
           }
         />
       </Form.Item>
       <Form.Item label="City" required>
         <Input
           placeholder="Enter the city near the venue"
-          onChange={({ target }: SyntheticEvent) =>
-            setLocValue({ city: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setLocValue({ city: target.value })
           }
         />
       </Form.Item>
@@ -112,8 +110,8 @@ const CreateEvent = () => {
         <Input
           type="number"
           placeholder="Enter the zipcode"
-          onChange={({ target }: SyntheticEvent) =>
-            setLocValue({ zipcode: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setLocValue({ zipcode: target.value })
           }
         />
       </Form.Item>
@@ -121,16 +119,16 @@ const CreateEvent = () => {
         <Input
           type="number"
           placeholder="Enter the maximum attendees."
-          onChange={({ target }: SyntheticEvent) =>
-            setAppEvtValue({ slots: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+            setAppEvtValue({ slots: target.value })
           }
         />
       </Form.Item>
       <Form.Item label="Details" required>
         <TextArea
           placeholder="Additional information"
-          onChange={({ target }: SyntheticEvent) =>
-            setAppEvtValue({ details: (target as HTMLInputElement).value })
+          onChange={({ target }: ChangeEvent<HTMLTextAreaElement>) =>
+            setAppEvtValue({ details: target.value })
           }
         />
       </Form.Item>

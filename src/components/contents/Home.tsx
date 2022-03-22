@@ -1,5 +1,5 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../commons/Firebase';
+import { auth } from '../../common/Firebase';
 import Events from './Events';
 import Landing from './Landing';
 

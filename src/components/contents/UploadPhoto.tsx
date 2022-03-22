@@ -1,6 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { SyntheticEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { FileUpload, FlexRow } from './Content.styled';
 
 interface UploadPhotoProps {
@@ -10,7 +10,7 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
   const [file, setFile] = useState<File>();
   const [uploadStatus, setUploadStatus] = useState('Start Upload');
 
-  const onInputFileChange = (event: SyntheticEvent) => {
+  const onInputFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     console.log((event.target as HTMLInputElement).files);
     setFile((event.target as HTMLInputElement).files?.[0]);
   };

@@ -6,6 +6,7 @@ export interface Location {
   suburb: string;
   zipcode: number;
 }
+
 export interface Comment {
   id: string;
   data: {
@@ -19,7 +20,7 @@ export interface Comment {
 export interface EventData {
   title: string;
   createdBy: string;
-  timestamp: string;
+  timestamp: number;
   photo: string;
   slots: number;
   location: Location;
@@ -27,31 +28,11 @@ export interface EventData {
   attendees: [string];
   details: string;
 }
+
 export interface AppEvent {
   id: string;
   data: EventData;
 }
-
-// const fromFirestoreEvt = (data: EventData): EventData => {
-//   return {
-//     title: data.title,
-//     createdBy: data.createdBy,
-//     timestamp: data.timestamp,
-//     photo: data.photo,
-//     slots: data.slots,
-//     location: {
-//       name: data.location.name,
-//       street: data.location.street,
-//       suburb: data.location.suburb,
-//       city: data.location.city,
-//       state: data.location.state,
-//       zipcode: data.location.zipcode,
-//     },
-//     comments: data.comments,
-//     attendees: data.attendees,
-//     details: data.details,
-//   };
-// };
 
 const toFirestoreEvt = (data: EventData): EventData => {
   return {

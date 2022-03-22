@@ -1,12 +1,14 @@
 import { Menu } from 'antd';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
-import { logout } from '../../commons/Firebase';
-import Avatar from '../User/Avatar';
+import { auth, logout } from '../../common/Firebase';
+import Avatar from '../users/Avatar';
 import NotifIcon from './NotifIcon';
 
 const { SubMenu } = Menu;
 
 const AuthMenu = () => {
+  const [user] = useAuthState(auth);
   return (
     <Menu className="menu" mode="horizontal">
       <Menu.Item key="createevent">
@@ -15,7 +17,10 @@ const AuthMenu = () => {
       <Menu.Item key="notification" icon={<NotifIcon />}>
         <Link to="/notification" />
       </Menu.Item>
-      <SubMenu key="subMenu" icon={<Avatar />}>
+      <SubMenu
+        key="subMenu"
+        icon={<Avatar imageSrc={user?.photoURL as string} />}
+      >
         <Menu.Item key="yourevents">
           <Link to="/yourevents"> Your Events</Link>
         </Menu.Item>

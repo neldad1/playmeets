@@ -1,14 +1,14 @@
-import { useState, useEffect, SyntheticEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { Button, Form, Input } from 'antd';
-import { FlexColumn, FlexRow, Label, Logo } from '../Content/Content.styled';
+import { FlexColumn, FlexRow, Label, Logo } from './Content.styled';
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from '../../commons/Firebase';
+} from '../../common/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
-import { displayError } from '../../commons/AlertMessage';
+import { displayError } from '../../common/AlertMessage';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -45,8 +45,8 @@ const SignUp = () => {
           <Input
             placeholder="Enter your full name"
             value={name}
-            onChange={(e: SyntheticEvent) =>
-              setName((e.target as HTMLInputElement).value)
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
             }
           />
         </Form.Item>
@@ -54,8 +54,8 @@ const SignUp = () => {
           <Input
             placeholder="Enter your email"
             value={email}
-            onChange={(e: SyntheticEvent) =>
-              setEmail((e.target as HTMLInputElement).value)
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
             }
           />
         </Form.Item>
@@ -63,8 +63,8 @@ const SignUp = () => {
           <Input.Password
             placeholder="Enter your password"
             value={password}
-            onChange={(e: SyntheticEvent) =>
-              setPassword((e.target as HTMLInputElement).value)
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
             }
           />
         </Form.Item>

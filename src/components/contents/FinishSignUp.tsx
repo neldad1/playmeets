@@ -1,12 +1,12 @@
-import { useState, SyntheticEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { Form, Input, Button, Checkbox, Select } from 'antd';
-import { displayError } from '../../commons/AlertMessage';
+import { displayError } from '../../common/AlertMessage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth, setDocument } from '../../commons/Firebase';
+import { auth, setDocument } from '../../common/Firebase';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-import { FlexColumn } from '../Content/Content.styled';
-import { AuStates } from '../../commons/DataObjects';
+import { FlexColumn } from './Content.styled';
+import { AuStates } from '../../common/DataObjects';
 
 const { Option } = Select;
 
@@ -50,8 +50,8 @@ const FinishSignUp = () => {
           <Input
             placeholder="Preferred name to display."
             value={displayName}
-            onChange={(e: SyntheticEvent) =>
-              setDisplayName((e.target as HTMLInputElement).value)
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setDisplayName(e.target.value)
             }
           />
         </Form.Item>
@@ -68,8 +68,8 @@ const FinishSignUp = () => {
           <Input
             placeholder="Enter the city."
             value={city}
-            onChange={(e: SyntheticEvent) =>
-              setCity((e.target as HTMLInputElement).value)
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setCity(e.target.value)
             }
           />
         </Form.Item>
