@@ -100,7 +100,7 @@ const getDocument = async (path: string, value: any) => {
   return docSnap.exists() ? docSnap.data() : undefined;
 };
 
-const getDocuments = async (path: string, field: string, value: any) => {
+const getDocuments = async (path: string, field: string, value: string) => {
   const q = query(collection(db, path), where(field, '==', value));
   return await getDocs(q);
 };

@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import { auth, logout } from '../../common/Firebase';
-import Avatar from '../users/Avatar';
+import Avatar from '../user/Avatar';
 import NotifIcon from './NotifIcon';
 
 const { SubMenu } = Menu;
@@ -19,7 +19,7 @@ const AuthMenu = () => {
       </Menu.Item>
       <SubMenu
         key="subMenu"
-        icon={<Avatar imageSrc={user?.photoURL as string} />}
+        icon={<Avatar imgSrc={user?.photoURL as string} />}
       >
         <Menu.Item key="yourevents">
           <Link to="/yourevents"> Your Events</Link>

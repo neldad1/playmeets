@@ -11,3 +11,18 @@
   margin-right: 2em;
   color: black;
 }
+
+.antd-icon {
+  font-size: 1.5em;
+}
+
+.antd-icon-action {
+  font-size: 2em;
+  color: midnightblue;
+  cursor: pointer;
+}
+
+.antd-icon-action:hover {
+  color:aliceblue;
+  font-size: 2.5em;
+}

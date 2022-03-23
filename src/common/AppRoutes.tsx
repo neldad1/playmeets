@@ -1,13 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import LogIn from '../components/contents/Login';
-import SignUp from '../components/contents/SignUp';
-import Home from '../components/contents/Home';
-import Profile from '../components/contents/Profile';
-import Privacy from '../components/footers/Privacy';
-import Terms from '../components/footers/Terms';
-import FinishSignUp from '../components/contents/FinishSignUp';
-import Events from '../components/contents/Events';
-import CreateEvent from '../components/contents/CreateEvent';
+import LogIn from '../components/content/Login';
+import SignUp from '../components/content/SignUp';
+import Home from '../components/content/Home';
+import Profile from '../components/content/Profile';
+import Privacy from '../components/footer/Privacy';
+import Terms from '../components/footer/Terms';
+import FinishSignUp from '../components/content/FinishSignUp';
+import Events from '../components/content/Events';
+import CreateEvent from '../components/content/CreateEvent';
+import EventInfo from '../components/content/EventInfo';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/events/:eventId" element={<EventInfo />} />
       <Route path="/create-event" element={<CreateEvent />} />
     </Routes>
   );

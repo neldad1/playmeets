@@ -32,10 +32,6 @@ const Label = styled.label`
   margin-right: 1em;
 `;
 
-const EventBlock = styled.div`
-  margin: 0 1em;
-`;
-
 const EventPhoto = styled.img`
   width: 300px;
 `;
@@ -45,4 +41,25 @@ const FileUpload = styled.input`
   text-decoration: none;
 `;
 
-export { FlexColumn, FlexRow, Logo, Label, EventBlock, EventPhoto, FileUpload };
+const FlexBlock = styled.div`
+  gap: 1em;
+  display: flex;
+  flex-direction: column;
+`;
+
+const FlexSpaceBetween = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+export {
+  FlexColumn,
+  FlexRow,
+  Logo,
+  Label,
+  EventPhoto,
+  FileUpload,
+  FlexBlock,
+  FlexSpaceBetween,
+};

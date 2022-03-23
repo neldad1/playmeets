@@ -3,10 +3,11 @@ import TextArea from 'antd/lib/input/TextArea';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AuStates } from '../../common/DataObjects';
-import { EventData, Location, toFirestoreEvt } from '../../common/FSConverter';
+import { EventData, Location } from '../../common/Interfaces';
 import { addDocument, auth } from '../../common/Firebase';
 import UploadPhoto from './UploadPhoto';
 import { useNavigate } from 'react-router-dom';
+import { toFirestoreEvt } from '../../common/Helpers';
 
 const { Option } = Select;
 
