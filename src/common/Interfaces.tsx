@@ -6,8 +6,8 @@ interface UserData {
   state: string;
   city: string;
   ageGroup: string[];
-  attended: number;
-  events: string[];
+  attended: string[];
+  favourites: string[];
 }
 
 interface AppUser {

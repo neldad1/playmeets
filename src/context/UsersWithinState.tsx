@@ -29,7 +29,7 @@ const UsersWithinStateProvider: React.FC = ({ children }) => {
     if (isObjectEmpty(currentUser)) return;
 
     const appUsers: AppUser[] = [];
-    getDocuments('users', 'state', currentUser.state).then((userDocs) => {
+    getDocuments('users', 'state', currentUser.data.state).then((userDocs) => {
       userDocs.forEach((userDoc) => {
         const newUser: AppUser = {
           id: userDoc.id,

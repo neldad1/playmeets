@@ -97,7 +97,7 @@ const setDocument = async (path: string, pathId: string, data: Object) => {
 const getDocument = async (path: string, value: any) => {
   const docRef = doc(db, path, value);
   const docSnap = await getDoc(docRef);
-  return docSnap.exists() ? docSnap.data() : undefined;
+  return docSnap.exists() ? docSnap : undefined;
 };
 
 const getDocuments = async (path: string, field: string, value: string) => {

@@ -19,8 +19,8 @@ const EventInfo = () => {
 
   useEffect(() => {
     if (!Boolean(eventData)) {
-      getDocument('events', eventId).then((result) => {
-        if (result) setEventData(result as EventData);
+      getDocument('events', eventId).then((eventDoc) => {
+        if (eventDoc) setEventData(eventDoc.data() as EventData);
       });
     }
   }, [eventData, eventId]);

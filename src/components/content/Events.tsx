@@ -22,7 +22,7 @@ const Events = () => {
 
   useEffect(() => {
     if (!isObjectEmpty(currentUser)) {
-      getEventsInCurrentLocState(currentUser.state);
+      getEventsInCurrentLocState(currentUser.data.state);
     }
   }, [currentUser]);
 
