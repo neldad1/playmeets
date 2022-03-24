@@ -21,7 +21,7 @@ const Banner = ({ timestamp, location, title, userData }: BannerProps) => {
       <FlexBlock>
         <EvtTitle>{title}</EvtTitle>
         <FlexRow>
-          <Avatar userData={userData} />
+          <Avatar imgSrc={userData?.photoUrl} />
           <FlexBlock>
             <Label>created by</Label>
             <Label>{hostName}</Label>

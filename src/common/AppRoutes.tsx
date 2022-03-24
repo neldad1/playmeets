@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import LogIn from '../components/content/Login';
 import SignUp from '../components/content/SignUp';
 import Home from '../components/content/Home';
@@ -9,6 +9,18 @@ import FinishSignUp from '../components/content/FinishSignUp';
 import Events from '../components/content/Events';
 import CreateEvent from '../components/content/CreateEvent';
 import EventInfo from '../components/content/EventInfo';
+import CurrentUserProvider from '../context/CurrentUser';
+import UsersWithinStateProvider from '../context/UsersWithinState';
+
+const PrivateRoute = () => {
+  return (
+    <CurrentUserProvider>
+      <UsersWithinStateProvider>
+        <Outlet />
+      </UsersWithinStateProvider>
+    </CurrentUserProvider>
+  );
+};
 
 const AppRoutes = () => {
   return (
@@ -17,12 +29,20 @@ const AppRoutes = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/finish-signup" element={<FinishSignUp />} />
       <Route path="/login" element={<LogIn />} />
-      <Route path="/profile" element={<Profile />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
-      <Route path="/events" element={<Events />} />
-      <Route path="/events/:eventId" element={<EventInfo />} />
-      <Route path="/create-event" element={<CreateEvent />} />
+      <Route path="/profile" element={<PrivateRoute />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+      <Route path="/events" element={<PrivateRoute />}>
+        <Route path="/events" element={<Events />} />
+      </Route>
+      <Route path="/events/:eventId" element={<PrivateRoute />}>
+        <Route path="/events/:eventId" element={<EventInfo />} />
+      </Route>
+      <Route path="/create-event" element={<PrivateRoute />}>
+        <Route path="/create-event" element={<CreateEvent />} />
+      </Route>
     </Routes>
   );
 };

@@ -1,20 +1,20 @@
-import { AppUser } from '../../common/Interfaces';
+import { useContext } from 'react';
+import { UsersWithinStateContext } from '../../context/UsersWithinState';
 import { FlexBlock, FlexRow } from '../content/Content.styled';
 import Avatar from '../user/Avatar';
 import { Subtitle } from './EventDetails.styled';
 
 interface AttendeesProps {
-  users: AppUser[];
   attendees: string[];
 }
-const Attendees = ({ users, attendees }: AttendeesProps) => {
-  let avatars;
-  if (attendees) {
-    avatars = attendees.map((attendee) => {
-      const user = users.find((user) => user.id === attendee);
-      if (user) return <Avatar key={user.id} userData={user.data} />;
-    });
-  }
+const Attendees = ({ attendees }: AttendeesProps) => {
+  const { getAppUserById } = useContext(UsersWithinStateContext);
+
+  const avatars = attendees.map((attendee) => {
+    const user = getAppUserById(attendee);
+    return <Avatar key={user?.id} imgSrc={user?.data.photoUrl} />;
+  });
+
   return (
     <FlexBlock>
       <Subtitle>Attendees</Subtitle>

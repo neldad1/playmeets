@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { getDocuments } from '../../common/Firebase';
-import { AppUser, CommentData, EvtComment } from '../../common/Interfaces';
+import { CommentData, EvtComment } from '../../common/Interfaces';
 import { FlexBlock } from '../content/Content.styled';
 import CommentItem from './CommentItem';
 import { Subtitle } from './EventDetails.styled';
 
 interface CommentsProps {
   eid: string;
-  appUsers: AppUser[];
 }
-const Comments = ({ eid, appUsers }: CommentsProps) => {
+const Comments = ({ eid }: CommentsProps) => {
   const [commentList, setCommentList] = useState<EvtComment[]>([]);
 
   useEffect(() => {
@@ -25,11 +24,7 @@ const Comments = ({ eid, appUsers }: CommentsProps) => {
   }, []);
 
   const commentElements = commentList.map((comment) => (
-    <CommentItem
-      key={comment.id}
-      commentData={comment.data}
-      appUsers={appUsers}
-    />
+    <CommentItem key={comment.id} commentData={comment.data} />
   ));
 
   return (

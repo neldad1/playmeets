@@ -57,10 +57,26 @@ const replaceSpaceWithCharacter = (
 ): string => {
   return inputStr.replace(/\s+/g, charReplacement);
 };
+
+const isObjectEmpty = (obj: Object) => !Object.keys(obj).length;
+
+const UPLOAD_STR = 'upload';
+const IMG_TRANSFORM = '/c_fill,h_150,w_300';
+const getEvtPhotoUrlWithTransform = (photoUrl: string) => {
+  const uploadIndex = photoUrl.indexOf(UPLOAD_STR);
+  const newPhotoUrl =
+    photoUrl.slice(0, uploadIndex + UPLOAD_STR.length) +
+    IMG_TRANSFORM +
+    photoUrl.slice(uploadIndex + UPLOAD_STR.length);
+  return newPhotoUrl;
+};
+
 export {
   toFormattedDateTimeString,
   toDaysAgo,
   toFirestoreEvt,
   getUserData,
   replaceSpaceWithCharacter,
+  isObjectEmpty,
+  getEvtPhotoUrlWithTransform,
 };
