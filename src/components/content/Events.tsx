@@ -9,6 +9,7 @@ import {
 } from '../../common/Interfaces';
 import { FlexRow } from './Content.styled';
 import EventCard from './EventCard';
+//import { CurrentUserContext } from '../../App';
 
 const Events = () => {
   const [events, setEvents] = useState<AppEvent[]>([]);
@@ -17,12 +18,15 @@ const Events = () => {
     AppUser[]
   >([]);
 
+  // const currentUserContext = useContext(CurrentUserContext);
+
   const getCurrentUserLocState = () => {
     getDocument('users', currentUser?.uid).then((result) => {
       if (result) {
         getAllUsers(result.state);
       }
     });
+    // getAllUsers((currentUserContext as UserData).state);
   };
 
   const getEventsInCurrentLocState = async (state: string) => {

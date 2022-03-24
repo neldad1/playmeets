@@ -8,6 +8,7 @@ import Banner from '../eventdetails/Banner';
 import Attendees from '../eventdetails/Attendees';
 import Comments from '../eventdetails/Comments';
 import Details from '../eventdetails/Details';
+import LocationMap from '../eventdetails/LocationMap';
 
 const EventInfo = () => {
   const { eventId } = useParams();
@@ -41,6 +42,7 @@ const EventInfo = () => {
           <Attendees users={users} attendees={eventData.attendees} />
           <Comments eid={eventId as string} appUsers={users} />
         </FlexBlock>
+        <LocationMap location={eventData.location} />
       </FlexSpaceBetween>
     </FlexBlock>
   );

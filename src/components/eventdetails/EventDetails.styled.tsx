@@ -25,4 +25,17 @@ const CommentTime = styled.label`
   font-size: 0.75em;
 `;
 
-export { Subtitle, InfoDisplay, BannerContainer, EvtTitle, CommentTime };
+const MapFrame = styled.iframe`
+  border: none;
+  width: 50em;
+  height: 30.5em;
+`;
+
+export {
+  Subtitle,
+  InfoDisplay,
+  BannerContainer,
+  EvtTitle,
+  CommentTime,
+  MapFrame,
+};

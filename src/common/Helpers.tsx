@@ -51,4 +51,16 @@ const getUserData = (users: AppUser[], uid: string): UserData | undefined => {
   return user?.data;
 };
 
-export { toFormattedDateTimeString, toDaysAgo, toFirestoreEvt, getUserData };
+const replaceSpaceWithCharacter = (
+  inputStr: string,
+  charReplacement: string
+): string => {
+  return inputStr.replace(/\s+/g, charReplacement);
+};
+export {
+  toFormattedDateTimeString,
+  toDaysAgo,
+  toFirestoreEvt,
+  getUserData,
+  replaceSpaceWithCharacter,
+};
