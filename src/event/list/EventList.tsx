@@ -7,7 +7,6 @@ interface EventListProps {
 }
 
 const EventList = ({ list }: EventListProps) => {
-  console.log(list);
   return (
     <FlexRow>
       {list.map((appEvt) => (

@@ -12,7 +12,6 @@ const Events = () => {
   const currentUser = useContext(CurrentUserContext);
 
   const getEventsInCurrentLocState = async (state: string) => {
-    console.log(state);
     const appEvents: AppEvent[] = [];
     const eventDocs = await getDocuments('events', 'location.state', state);
     eventDocs.forEach((eventDoc) => {
@@ -22,7 +21,6 @@ const Events = () => {
   };
 
   useEffect(() => {
-    console.log(currentUser);
     if (!isObjectEmpty(currentUser)) {
       getEventsInCurrentLocState(currentUser.data.state);
     }

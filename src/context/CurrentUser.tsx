@@ -1,5 +1,6 @@
 import { UserInfo } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth, getDocument } from '../common/Firebase';
 import { AppUser, UserData } from '../common/Interfaces';
 
@@ -7,6 +8,8 @@ export const CurrentUserContext = createContext<AppUser>({} as AppUser);
 
 const CurrentUserProvider: React.FC = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<AppUser>({} as AppUser);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged(
@@ -19,6 +22,8 @@ const CurrentUserProvider: React.FC = ({ children }) => {
                 data: docUser.data() as UserData,
               });
           });
+        } else {
+          navigate('/');
         }
       }
     );
