@@ -1,5 +1,4 @@
 import { Routes, Route, Outlet } from 'react-router-dom';
-import CurrentUserProvider from '../context/CurrentUser';
 import UsersWithinStateProvider from '../context/UsersWithinState';
 import EventInfo from '../event/info/EventInfo';
 import CreateEvent from '../pages/CreateEvent';
@@ -14,11 +13,9 @@ import Terms from '../pages/Terms';
 
 const PrivateRoute = () => {
   return (
-    <CurrentUserProvider>
-      <UsersWithinStateProvider>
-        <Outlet />
-      </UsersWithinStateProvider>
-    </CurrentUserProvider>
+    <UsersWithinStateProvider>
+      <Outlet />
+    </UsersWithinStateProvider>
   );
 };
 

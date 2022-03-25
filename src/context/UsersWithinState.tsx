@@ -41,16 +41,13 @@ const UsersWithinStateProvider: React.FC = ({ children }) => {
     });
   }, [currentUser]);
 
-  const getAppUserById = useCallback(
-    (userId: string) => {
-      return allUsers.find((user) => user.id === userId);
-    },
-    [allUsers]
-  );
+  const getAppUserById = (userId: string) => {
+    return allUsers.find((user) => user.id === userId);
+  };
 
   return (
     <UsersWithinStateContext.Provider value={{ allUsers, getAppUserById }}>
-      {children}
+      {Boolean(allUsers.length) && children}
     </UsersWithinStateContext.Provider>
   );
 };

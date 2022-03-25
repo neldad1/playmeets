@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import { useContext, useEffect, useState } from 'react';
-import { AppEvent, UserData } from '../../common/Interfaces';
+import { AppEvent, AppUser } from '../../common/Interfaces';
 import { Link } from 'react-router-dom';
 import {
   getEvtPhotoUrlWithTransform,
@@ -13,13 +13,14 @@ import Avatar from '../../components/Avatar';
 import { EventPhoto } from './Card.styled';
 import Favourite from '../../components/Favourite';
 import RequestToJoin from '../../components/RequestToJoin';
+import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 interface EventCardProps {
   appEvt: AppEvent;
 }
 
 const EventCard = ({ appEvt }: EventCardProps) => {
-  const [userHost, setUserHost] = useState<UserData>();
+  const [userHost, setUserHost] = useState<AppUser>();
 
   const { data } = appEvt;
 
@@ -27,8 +28,10 @@ const EventCard = ({ appEvt }: EventCardProps) => {
   const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
-    setUserHost(getAppUserById(data.createdBy)?.data);
+    setUserHost(getAppUserById(data.createdBy));
   }, []);
+
+  if (!userHost) return <></>;
 
   return (
     <Link to={`/events/${appEvt.id}`}>
@@ -42,11 +45,16 @@ const EventCard = ({ appEvt }: EventCardProps) => {
         }
         actions={[
           <Favourite currentUser={currentUser} eid={appEvt.id} />,
-          <RequestToJoin />,
+          <RequestToJoin
+            to={userHost}
+            from={currentUser.id}
+            eid={appEvt.id}
+            eventTitle={appEvt.data.title}
+          />,
         ]}
       >
         <Meta
-          avatar={<Avatar imgSrc={userHost?.photoUrl} />}
+          avatar={<Avatar imgSrc={userHost.data.photoUrl} />}
           title={data.title}
           description={toFormattedDateTimeString(data.timestamp, true)}
         />
