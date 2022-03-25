@@ -1,3 +1,8 @@
+interface UserEvent {
+  eid: string;
+  status: string;
+}
+
 interface UserData {
   name: string;
   displayName: string;
@@ -6,7 +11,7 @@ interface UserData {
   state: string;
   city: string;
   ageGroup: string[];
-  attended: string[];
+  events: UserEvent[];
   favourites: string[];
   notifications: string[];
 }
@@ -67,6 +72,7 @@ interface AppNotification {
 }
 
 export type {
+  UserEvent,
   UserData,
   AppUser,
   Location,

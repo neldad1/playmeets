@@ -1,3 +1,4 @@
+import { MenuFoldOutlined } from '@ant-design/icons';
 import { Badge, Menu } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -26,7 +27,11 @@ const AuthMenu = () => {
   }, [currentUser]);
 
   return (
-    <Menu className="menu" mode="horizontal">
+    <Menu
+      className="menu"
+      mode="horizontal"
+      overflowedIndicator={<MenuFoldOutlined className="antd-icon-action" />}
+    >
       <Menu.Item key="createevent">
         <Link to="/create-event">Create An Event</Link>
       </Menu.Item>

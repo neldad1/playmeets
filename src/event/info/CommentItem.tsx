@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { toDaysAgo } from '../../common/Helpers';
 import { CommentData } from '../../common/Interfaces';
 import Avatar from '../../components/Avatar';
-import { FlexRow, FlexBlock } from '../../components/Components.styled';
+import { FlexRowLeft, FlexBlock } from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
 import { CommentTime, InfoDisplay } from './EventDetails.styled';
 
@@ -15,13 +15,13 @@ const CommentItem = ({ commentData }: CommentItemProps) => {
 
   const user = getAppUserById(commentData.user_id);
   return (
-    <FlexRow>
+    <FlexRowLeft>
       <Avatar imgSrc={user?.data.photoUrl} />
       <FlexBlock>
         <InfoDisplay>{commentData.comment}</InfoDisplay>
         <CommentTime>{toDaysAgo(commentData.timestamp)}</CommentTime>
       </FlexBlock>
-    </FlexRow>
+    </FlexRowLeft>
   );
 };
 

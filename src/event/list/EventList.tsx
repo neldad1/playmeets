@@ -1,5 +1,5 @@
 import { AppEvent } from '../../common/Interfaces';
-import { FlexRow } from '../../components/Components.styled';
+import { FlexRowCenter } from '../../components/Components.styled';
 import EventCard from '../card/EventCard';
 
 interface EventListProps {
@@ -8,11 +8,11 @@ interface EventListProps {
 
 const EventList = ({ list }: EventListProps) => {
   return (
-    <FlexRow>
+    <FlexRowCenter>
       {list.map((appEvt) => (
         <EventCard key={appEvt.id} appEvt={appEvt} />
       ))}
-    </FlexRow>
+    </FlexRowCenter>
   );
 };
 

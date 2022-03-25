@@ -8,7 +8,7 @@ import {
 } from '../common/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
-import { FlexRow, Label } from '../components/Components.styled';
+import { FlexRowLeft, Label } from '../components/Components.styled';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -28,10 +28,10 @@ const LogIn = () => {
         <Logo src="/logo512.svg" alt="Playmeets" />
       </Link>
 
-      <FlexRow>
+      <FlexRowLeft>
         <Label>Not a member yet?</Label>
         <Link to="/signup">Sign Up</Link>
-      </FlexRow>
+      </FlexRowLeft>
 
       <Form layout="vertical">
         <Form.Item label="Email" required>

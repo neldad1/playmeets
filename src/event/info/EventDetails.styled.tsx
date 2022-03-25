@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+const FlexSpaceBetween = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 3em;
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
+`;
+
 const Subtitle = styled.h3`
   font-size: 1.25em;
 `;
@@ -27,8 +36,12 @@ const CommentTime = styled.label`
 
 const MapFrame = styled.iframe`
   border: none;
-  width: 50em;
-  height: 30.5em;
+  width: 45vw;
+  height: 30vh;
+  @media only screen and (max-width: 768px) {
+    width: 95vw;
+    height: 30vh;
+  }
 `;
 
 export {
@@ -38,4 +51,5 @@ export {
   EvtTitle,
   CommentTime,
   MapFrame,
+  FlexSpaceBetween,
 };

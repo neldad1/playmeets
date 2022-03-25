@@ -1,17 +1,19 @@
-import { HeartOutlined, UserAddOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
-import { FlexRow } from '../../components/Components.styled';
+import { AppUser } from '../../common/Interfaces';
+import { FlexRowCenter } from '../../components/Components.styled';
+import Favourite from '../../components/Favourite';
+import EventStatus from '../../components/EventStatus';
 
-const CallInAction = () => {
+interface CallInActionProps {
+  host: AppUser;
+  eid: string;
+  eventTitle: string;
+}
+const CallInAction = ({ host, eid, eventTitle }: CallInActionProps) => {
   return (
-    <FlexRow>
-      <Tooltip title="Add event to fave." placement="bottom">
-        <HeartOutlined className="antd-icon-action" />
-      </Tooltip>
-      <Tooltip title="Request to join." placement="bottom">
-        <UserAddOutlined className="antd-icon-action" />
-      </Tooltip>
-    </FlexRow>
+    <FlexRowCenter>
+      <Favourite eid={eid} />
+      <EventStatus host={host} eid={eid} eventTitle={eventTitle} />
+    </FlexRowCenter>
   );
 };
 

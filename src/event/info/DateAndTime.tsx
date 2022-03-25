@@ -1,6 +1,6 @@
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { toFormattedDateTimeString } from '../../common/Helpers';
-import { FlexRow } from '../../components/Components.styled';
+import { FlexRowLeft } from '../../components/Components.styled';
 import { InfoDisplay } from './EventDetails.styled';
 
 interface DateAndTimeProps {
@@ -9,10 +9,10 @@ interface DateAndTimeProps {
 
 const DateAndTime = ({ timestamp }: DateAndTimeProps) => {
   return (
-    <FlexRow>
+    <FlexRowLeft>
       <ClockCircleOutlined className="antd-icon" />
       <InfoDisplay>{toFormattedDateTimeString(timestamp, false)}</InfoDisplay>
-    </FlexRow>
+    </FlexRowLeft>
   );
 };
 

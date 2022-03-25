@@ -1,38 +1,43 @@
-import { Location, UserData } from '../../common/Interfaces';
+import { AppUser, Location } from '../../common/Interfaces';
 import Avatar from '../../components/Avatar';
-import { FlexBlock, FlexRow, Label } from '../../components/Components.styled';
-import Address from './Address';
+import {
+  FlexBlock,
+  FlexRowLeft,
+  Label,
+} from '../../components/Components.styled';
 import CallInAction from './CallInAction';
-import DateAndTime from './DateAndTime';
 import { BannerContainer, EvtTitle } from './EventDetails.styled';
 
 interface BannerProps {
   timestamp: number;
   location: Location;
-  title: string;
-  userData?: UserData;
+  eid: string;
+  eventTitle: string;
+  host: AppUser;
 }
 
-const Banner = ({ timestamp, location, title, userData }: BannerProps) => {
+const Banner = ({
+  timestamp,
+  location,
+  eid,
+  eventTitle,
+  host,
+}: BannerProps) => {
   let hostName = 'unknown';
-  if (userData) hostName = userData.displayName;
+  if (host) hostName = host.data.displayName;
   return (
     <BannerContainer>
       <FlexBlock>
-        <EvtTitle>{title}</EvtTitle>
-        <FlexRow>
-          <Avatar imgSrc={userData?.photoUrl} />
+        <EvtTitle>{eventTitle}</EvtTitle>
+        <FlexRowLeft>
+          <Avatar imgSrc={host.data.photoUrl} />
           <FlexBlock>
             <Label>created by</Label>
             <Label>{hostName}</Label>
           </FlexBlock>
-        </FlexRow>
+        </FlexRowLeft>
       </FlexBlock>
-      <FlexBlock>
-        <DateAndTime timestamp={timestamp} />
-        <Address location={location} />
-        <CallInAction />
-      </FlexBlock>
+      <CallInAction host={host} eid={eid} eventTitle={eventTitle} />
     </BannerContainer>
   );
 };

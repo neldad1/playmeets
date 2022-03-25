@@ -1,7 +1,7 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { ChangeEvent, useState } from 'react';
-import { FlexRow, FileUpload } from './Components.styled';
+import { FileUpload, FlexRowLeft } from './Components.styled';
 
 interface UploadPhotoProps {
   setImgUrl(url: string): void;
@@ -33,7 +33,7 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
   };
 
   return (
-    <FlexRow>
+    <FlexRowLeft>
       <FileUpload
         type="file"
         onChange={onInputFileChange}
@@ -48,7 +48,7 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
       >
         {uploadStatus}
       </Button>
-    </FlexRow>
+    </FlexRowLeft>
   );
 };
 

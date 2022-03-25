@@ -9,7 +9,7 @@ const FlexColumn = styled.div`
   justify-content: space-evenly;
   border: 1px solid;
   gap: 1em;
-
+  padding: 1em;
   @media only screen and (max-width: 768px) {
     width: 100%;
     margin: 0;

@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
 import { displayError } from '../common/AlertMessage';
-import { FlexRow, Label } from '../components/Components.styled';
+import { FlexRowLeft, Label } from '../components/Components.styled';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -36,10 +36,10 @@ const SignUp = () => {
         <Logo src="/logo512.svg" alt="Playmeets" />
       </Link>
 
-      <FlexRow>
+      <FlexRowLeft>
         <Label>Already a member?</Label>
         <Link to="/login">Log In</Link>
-      </FlexRow>
+      </FlexRowLeft>
 
       <Form layout="vertical">
         <Form.Item label="Full Name" required>

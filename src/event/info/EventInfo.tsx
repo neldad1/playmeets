@@ -1,51 +1,61 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../../common/Firebase';
-import { EventData } from '../../common/Interfaces';
-import {
-  FlexBlock,
-  FlexSpaceBetween,
-} from '../../components/Components.styled';
+import { AppEvent, EventData } from '../../common/Interfaces';
+import { FlexBlock } from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
+import Address from './Address';
 import Attendees from './Attendees';
 import Banner from './Banner';
 import Comments from './Comments';
+import DateAndTime from './DateAndTime';
 import Details from './Details';
+import { FlexSpaceBetween } from './EventDetails.styled';
 import LocationMap from './LocationMap';
 
 const EventInfo = () => {
   const { eventId } = useParams();
 
-  const [eventData, setEventData] = useState<EventData>();
+  const [appEvent, setAppEvent] = useState<AppEvent>();
 
   const { getAppUserById } = useContext(UsersWithinStateContext);
 
   useEffect(() => {
-    if (!Boolean(eventData)) {
+    if (!Boolean(appEvent)) {
       getDocument('events', eventId).then((eventDoc) => {
-        if (eventDoc) setEventData(eventDoc.data() as EventData);
+        if (eventDoc)
+          setAppEvent({ id: eventDoc.id, data: eventDoc.data() as EventData });
       });
     }
-  }, [eventData, eventId]);
+  }, [appEvent, eventId]);
 
-  if (!eventData) return <>NO EVENT INFO</>;
+  if (!appEvent) return <>NO EVENT INFO</>;
 
-  const host = getAppUserById(eventData.createdBy)?.data;
+  const { data } = appEvent;
+
+  const host = getAppUserById(data.createdBy);
+  if (!host) return <>NO EVENT INFO</>;
+
   return (
     <FlexBlock>
       <Banner
-        timestamp={eventData.timestamp}
-        location={eventData.location}
-        title={eventData.title}
-        userData={host}
+        timestamp={data.timestamp}
+        location={data.location}
+        eventTitle={data.title}
+        host={host}
+        eid={appEvent.id}
       />
       <FlexSpaceBetween>
         <FlexBlock>
-          <Details details={eventData.details} />
-          <Attendees attendees={eventData.attendees} />
+          <Details details={data.details} />
+          <Attendees attendees={data.attendees} />
           <Comments eid={eventId as string} />
         </FlexBlock>
-        <LocationMap location={eventData.location} />
+        <FlexBlock>
+          <DateAndTime timestamp={data.timestamp} />
+          <Address location={data.location} />
+          <LocationMap location={data.location} />
+        </FlexBlock>
       </FlexSpaceBetween>
     </FlexBlock>
   );

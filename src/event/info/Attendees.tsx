@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Avatar from '../../components/Avatar';
-import { FlexBlock, FlexRow } from '../../components/Components.styled';
+import { FlexBlock, FlexRowLeft } from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
 import { Subtitle } from './EventDetails.styled';
 
@@ -18,7 +18,7 @@ const Attendees = ({ attendees }: AttendeesProps) => {
   return (
     <FlexBlock>
       <Subtitle>Attendees</Subtitle>
-      <FlexRow>{avatars}</FlexRow>
+      <FlexRowLeft>{avatars}</FlexRowLeft>
     </FlexBlock>
   );
 };

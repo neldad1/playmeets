@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HeaderCont = styled.div`
-  width: 100%;
+  width: inherit;
   height: 10%;
   display: flex;
   justify-content: space-between;

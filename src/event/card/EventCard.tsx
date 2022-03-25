@@ -8,12 +8,10 @@ import {
   toFormattedDateTimeString,
 } from '../../common/Helpers';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
-import { CurrentUserContext } from '../../context/CurrentUser';
 import Avatar from '../../components/Avatar';
 import { EventPhoto } from './Card.styled';
 import Favourite from '../../components/Favourite';
-import RequestToJoin from '../../components/RequestToJoin';
-import { ConsoleSqlOutlined } from '@ant-design/icons';
+import EventStatus from '../../components/EventStatus';
 
 interface EventCardProps {
   appEvt: AppEvent;
@@ -25,7 +23,6 @@ const EventCard = ({ appEvt }: EventCardProps) => {
   const { data } = appEvt;
 
   const { getAppUserById } = useContext(UsersWithinStateContext);
-  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     setUserHost(getAppUserById(data.createdBy));
@@ -44,10 +41,9 @@ const EventCard = ({ appEvt }: EventCardProps) => {
           />
         }
         actions={[
-          <Favourite currentUser={currentUser} eid={appEvt.id} />,
-          <RequestToJoin
-            to={userHost}
-            from={currentUser.id}
+          <Favourite eid={appEvt.id} />,
+          <EventStatus
+            host={userHost}
             eid={appEvt.id}
             eventTitle={appEvt.data.title}
           />,

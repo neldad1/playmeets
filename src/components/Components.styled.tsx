@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 
-const FlexRow = styled.div`
+const FlexRowLeft = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+`;
+
+const FlexRowCenter = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Label = styled.label`
@@ -21,16 +29,10 @@ const FlexBlock = styled.div`
   flex-direction: column;
 `;
 
-const FlexSpaceBetween = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
 const AvatarIcon = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 2em;
 `;
 
-export { FlexRow, Label, FileUpload, FlexBlock, FlexSpaceBetween, AvatarIcon };
+export { FlexRowLeft, FlexRowCenter, Label, FileUpload, FlexBlock, AvatarIcon };
