@@ -1,4 +1,4 @@
-import { FlexBlock } from '../content/Content.styled';
+import { FlexBlock } from '../../components/Components.styled';
 import { InfoDisplay } from './EventDetails.styled';
 
 interface DetailsProps {

@@ -1,16 +1,16 @@
 import { Routes, Route, Outlet } from 'react-router-dom';
-import LogIn from '../components/content/Login';
-import SignUp from '../components/content/SignUp';
-import Home from '../components/content/Home';
-import Profile from '../components/content/Profile';
-import Privacy from '../components/footer/Privacy';
-import Terms from '../components/footer/Terms';
-import FinishSignUp from '../components/content/FinishSignUp';
-import Events from '../components/content/Events';
-import CreateEvent from '../components/content/CreateEvent';
-import EventInfo from '../components/content/EventInfo';
 import CurrentUserProvider from '../context/CurrentUser';
 import UsersWithinStateProvider from '../context/UsersWithinState';
+import EventInfo from '../event/info/EventInfo';
+import CreateEvent from '../pages/CreateEvent';
+import Events from '../pages/Events';
+import FinishSignUp from '../pages/FinishSignUp';
+import Home from '../pages/Home';
+import LogIn from '../pages/Login';
+import Privacy from '../pages/Privacy';
+import Profile from '../pages/Profile';
+import SignUp from '../pages/SignUp';
+import Terms from '../pages/Terms';
 
 const PrivateRoute = () => {
   return (

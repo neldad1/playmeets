@@ -1,22 +1,31 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { Button, Form, Input } from 'antd';
-import { FlexColumn, FlexRow, Label, Logo } from './Content.styled';
+import { FlexColumn, Logo } from './Pages.styled';
 import {
   auth,
-  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
   signInWithGoogle,
-} from '../../common/Firebase';
+} from '../common/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
+import { displayError } from '../common/AlertMessage';
+import { FlexRow, Label } from '../components/Components.styled';
 
-const LogIn = () => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
+  const register = () => {
+    if (!name) displayError('Please enter name');
+    registerWithEmailAndPassword(name, email, password);
+  };
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged(
-      (user) => Boolean(user) && navigate('/events')
+      (user) => Boolean(user) && navigate('/finish-signup')
     );
     return subscriber; // unsubscribe on unmount
   }, [navigate]);
@@ -28,11 +37,20 @@ const LogIn = () => {
       </Link>
 
       <FlexRow>
-        <Label>Not a member yet?</Label>
-        <Link to="/signup">Sign Up</Link>
+        <Label>Already a member?</Label>
+        <Link to="/login">Log In</Link>
       </FlexRow>
 
       <Form layout="vertical">
+        <Form.Item label="Full Name" required>
+          <Input
+            placeholder="Enter your full name"
+            value={name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
+          />
+        </Form.Item>
         <Form.Item label="Email" required>
           <Input
             placeholder="Enter your email"
@@ -52,11 +70,8 @@ const LogIn = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Button
-            type="primary"
-            onClick={() => logInWithEmailAndPassword(email, password)}
-          >
-            Log In
+          <Button type="primary" onClick={register}>
+            Sign Up
           </Button>
         </Form.Item>
       </Form>
@@ -67,10 +82,10 @@ const LogIn = () => {
         onClick={signInWithGoogle}
         icon={<GoogleOutlined />}
       >
-        Login with Google
+        Continue with Google
       </Button>
     </FlexColumn>
   );
 };
 
-export default LogIn;
+export default SignUp;

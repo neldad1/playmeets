@@ -1,6 +1,6 @@
 import { EnvironmentOutlined } from '@ant-design/icons';
 import { Location } from '../../common/Interfaces';
-import { FlexRow } from '../content/Content.styled';
+import { FlexRow } from '../../components/Components.styled';
 import { InfoDisplay } from './EventDetails.styled';
 
 interface AddressProps {

@@ -1,6 +1,6 @@
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { toFormattedDateTimeString } from '../../common/Helpers';
-import { FlexRow } from '../content/Content.styled';
+import { FlexRow } from '../../components/Components.styled';
 import { InfoDisplay } from './EventDetails.styled';
 
 interface DateAndTimeProps {

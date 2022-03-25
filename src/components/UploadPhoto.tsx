@@ -1,7 +1,7 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { ChangeEvent, useState } from 'react';
-import { FileUpload, FlexRow } from './Content.styled';
+import { FlexRow, FileUpload } from './Components.styled';
 
 interface UploadPhotoProps {
   setImgUrl(url: string): void;

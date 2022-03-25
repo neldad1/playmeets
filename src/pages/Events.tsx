@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { getDocuments } from '../../common/Firebase';
-import { isObjectEmpty } from '../../common/Helpers';
-import { AppEvent, EventData } from '../../common/Interfaces';
-import { CurrentUserContext } from '../../context/CurrentUser';
-import { FlexRow } from './Content.styled';
-import EventCard from './EventCard';
+import { getDocuments } from '../common/Firebase';
+import { isObjectEmpty } from '../common/Helpers';
+import { AppEvent, EventData } from '../common/Interfaces';
+import { FlexBlock } from '../components/Components.styled';
+import { CurrentUserContext } from '../context/CurrentUser';
+import EventList from '../event/list/EventList';
 
 const Events = () => {
   const [events, setEvents] = useState<AppEvent[]>([]);
@@ -12,6 +12,7 @@ const Events = () => {
   const currentUser = useContext(CurrentUserContext);
 
   const getEventsInCurrentLocState = async (state: string) => {
+    console.log(state);
     const appEvents: AppEvent[] = [];
     const eventDocs = await getDocuments('events', 'location.state', state);
     eventDocs.forEach((eventDoc) => {
@@ -21,17 +22,16 @@ const Events = () => {
   };
 
   useEffect(() => {
+    console.log(currentUser);
     if (!isObjectEmpty(currentUser)) {
       getEventsInCurrentLocState(currentUser.data.state);
     }
   }, [currentUser]);
 
   return (
-    <FlexRow>
-      {events.map((appEvt) => (
-        <EventCard key={appEvt.id} appEvt={appEvt} />
-      ))}
-    </FlexRow>
+    <FlexBlock>
+      <EventList list={events} />
+    </FlexBlock>
   );
 };
 

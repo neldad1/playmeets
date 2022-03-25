@@ -1,6 +1,6 @@
 import { Location, UserData } from '../../common/Interfaces';
-import { FlexBlock, FlexRow, Label } from '../content/Content.styled';
-import Avatar from '../user/Avatar';
+import Avatar from '../../components/Avatar';
+import { FlexBlock, FlexRow, Label } from '../../components/Components.styled';
 import Address from './Address';
 import CallInAction from './CallInAction';
 import DateAndTime from './DateAndTime';

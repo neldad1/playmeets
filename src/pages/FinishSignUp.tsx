@@ -1,12 +1,12 @@
 import { useState, ChangeEvent } from 'react';
 import { Form, Input, Button, Checkbox, Select } from 'antd';
-import { displayError } from '../../common/AlertMessage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth, setDocument } from '../../common/Firebase';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-import { FlexColumn } from './Content.styled';
-import { AuStates } from '../../common/DataObjects';
+import { FlexColumn } from './Pages.styled';
+import { displayError } from '../common/AlertMessage';
+import { AuStates } from '../common/DataObjects';
+import { auth, setDocument } from '../common/Firebase';
 
 const { Option } = Select;
 

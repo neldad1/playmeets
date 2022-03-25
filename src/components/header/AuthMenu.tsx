@@ -2,8 +2,8 @@ import { Menu } from 'antd';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import { auth, logout } from '../../common/Firebase';
-import Avatar from '../user/Avatar';
-import NotifIcon from './NotifIcon';
+import Avatar from '../Avatar';
+import NotifIcon from './NotificationIcon';
 
 const { SubMenu } = Menu;
 

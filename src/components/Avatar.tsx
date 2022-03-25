@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { AvatarIcon } from './User.styled';
-import defaultAvatar from '../../assets/defaultAvatar.png';
+import defaultAvatar from '../assets/defaultAvatar.png';
+import { AvatarIcon } from './Components.styled';
 
 interface AvatarProps {
   imgSrc?: string;

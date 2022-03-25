@@ -8,6 +8,7 @@ interface UserData {
   ageGroup: string[];
   attended: string[];
   favourites: string[];
+  notifications: string[];
 }
 
 interface AppUser {
@@ -52,6 +53,19 @@ interface AppEvent {
   data: EventData;
 }
 
+interface NotificationData {
+  type: string;
+  to: string;
+  from: string;
+  event_id: string;
+  message: string;
+}
+
+interface AppNotification {
+  id: string;
+  data: NotificationData;
+}
+
 export type {
   UserData,
   AppUser,
@@ -60,4 +74,6 @@ export type {
   EvtComment,
   EventData,
   AppEvent,
+  NotificationData,
+  AppNotification,
 };

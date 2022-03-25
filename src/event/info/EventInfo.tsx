@@ -2,13 +2,16 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../../common/Firebase';
 import { EventData } from '../../common/Interfaces';
-import { FlexBlock, FlexSpaceBetween } from './Content.styled';
-import Banner from '../eventdetails/Banner';
-import Attendees from '../eventdetails/Attendees';
-import Comments from '../eventdetails/Comments';
-import Details from '../eventdetails/Details';
-import LocationMap from '../eventdetails/LocationMap';
+import {
+  FlexBlock,
+  FlexSpaceBetween,
+} from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
+import Attendees from './Attendees';
+import Banner from './Banner';
+import Comments from './Comments';
+import Details from './Details';
+import LocationMap from './LocationMap';
 
 const EventInfo = () => {
   const { eventId } = useParams();

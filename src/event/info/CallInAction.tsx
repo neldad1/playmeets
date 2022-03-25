@@ -1,6 +1,6 @@
 import { HeartOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
-import { FlexRow } from '../content/Content.styled';
+import { FlexRow } from '../../components/Components.styled';
 
 const CallInAction = () => {
   return (

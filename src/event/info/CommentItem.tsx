@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { toDaysAgo } from '../../common/Helpers';
 import { CommentData } from '../../common/Interfaces';
+import Avatar from '../../components/Avatar';
+import { FlexRow, FlexBlock } from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
-import { FlexBlock, FlexRow } from '../content/Content.styled';
-import Avatar from '../user/Avatar';
 import { CommentTime, InfoDisplay } from './EventDetails.styled';
 
 interface CommentItemProps {

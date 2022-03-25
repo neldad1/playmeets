@@ -1,7 +1,7 @@
 import { useContext } from 'react';
+import Avatar from '../../components/Avatar';
+import { FlexBlock, FlexRow } from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
-import { FlexBlock, FlexRow } from '../content/Content.styled';
-import Avatar from '../user/Avatar';
 import { Subtitle } from './EventDetails.styled';
 
 interface AttendeesProps {

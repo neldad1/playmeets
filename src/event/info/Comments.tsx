@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getDocuments } from '../../common/Firebase';
 import { CommentData, EvtComment } from '../../common/Interfaces';
-import { FlexBlock } from '../content/Content.styled';
+import { FlexBlock } from '../../components/Components.styled';
 import CommentItem from './CommentItem';
 import { Subtitle } from './EventDetails.styled';
 

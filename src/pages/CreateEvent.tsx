@@ -2,12 +2,12 @@ import { Button, DatePicker, Form, Input, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { AuStates } from '../../common/DataObjects';
-import { EventData, Location } from '../../common/Interfaces';
-import { addDocument, auth } from '../../common/Firebase';
-import UploadPhoto from './UploadPhoto';
 import { useNavigate } from 'react-router-dom';
-import { toFirestoreEvt } from '../../common/Helpers';
+import { AuStates } from '../common/DataObjects';
+import { auth, addDocument } from '../common/Firebase';
+import { toFirestoreEvt } from '../common/Helpers';
+import { EventData, Location } from '../common/Interfaces';
+import UploadPhoto from '../components/UploadPhoto';
 
 const { Option } = Select;
 
