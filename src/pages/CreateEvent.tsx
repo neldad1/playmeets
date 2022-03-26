@@ -1,15 +1,13 @@
-import { Button, DatePicker, Form, Input, Select } from 'antd';
+import { Button, DatePicker, Form, Input } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { AuStates } from '../common/DataObjects';
 import { auth, addDocument } from '../common/Firebase';
 import { toFirestoreEvt } from '../common/Helpers';
 import { EventData, Location } from '../common/Interfaces';
+import LocationStates from '../components/LocationState';
 import UploadPhoto from '../components/UploadPhoto';
-
-const { Option } = Select;
 
 const CreateEvent = () => {
   const [user] = useAuthState(auth);
@@ -30,6 +28,10 @@ const CreateEvent = () => {
 
   const setLocValue = (attr: Object) => {
     setLocation({ ...location, ...attr });
+  };
+
+  const onLocationStateChange = (locationState: string) => {
+    setLocValue({ state: locationState });
   };
 
   const onDatePickerChange = (value: any, dateString: string) => {
@@ -99,13 +101,10 @@ const CreateEvent = () => {
         />
       </Form.Item>
       <Form.Item label="State" required>
-        <Select onChange={(val: string) => setLocValue({ state: val })}>
-          {AuStates.map((state: string, index: number) => (
-            <Option key={index} value={state}>
-              {state}
-            </Option>
-          ))}
-        </Select>
+        <LocationStates
+          size="middle"
+          onLocationStateChange={onLocationStateChange}
+        />
       </Form.Item>
       <Form.Item label="Zipcode" required>
         <Input

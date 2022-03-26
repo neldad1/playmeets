@@ -71,6 +71,11 @@ const getEvtPhotoUrlWithTransform = (photoUrl: string) => {
   return newPhotoUrl;
 };
 
+const getSubstring = (inputString: string, searchText: string): string => {
+  const searchResultIndex = inputString.indexOf(searchText);
+  return inputString.substring(searchResultIndex, searchText.length);
+};
+
 export {
   toFormattedDateTimeString,
   toDaysAgo,
@@ -79,4 +84,5 @@ export {
   replaceSpaceWithCharacter,
   isObjectEmpty,
   getEvtPhotoUrlWithTransform,
+  getSubstring,
 };

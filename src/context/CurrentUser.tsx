@@ -1,38 +1,46 @@
-import { UserInfo } from 'firebase/auth';
+import { User } from 'firebase/auth';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, getDocument } from '../common/Firebase';
+import { auth, db } from '../common/Firebase';
+import { isObjectEmpty } from '../common/Helpers';
 import { AppUser, UserData } from '../common/Interfaces';
 
 export const CurrentUserContext = createContext<AppUser>({} as AppUser);
 
 const CurrentUserProvider: React.FC = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<AppUser>({} as AppUser);
+  const [authUser, setAuthUser] = useState<User>({} as User);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const subscriber = auth.onAuthStateChanged(
-      (firebaseUser: UserInfo | null) => {
-        if (firebaseUser) {
-          getDocument('users', firebaseUser.uid).then((docUser) => {
-            if (docUser)
-              setCurrentUser({
-                id: docUser.id,
-                data: docUser.data() as UserData,
-              });
-          });
-        } else {
-          navigate('/');
-        }
+    const subscriber = auth.onAuthStateChanged((firebaseUser: User | null) => {
+      if (firebaseUser) {
+        setAuthUser(firebaseUser);
+      } else {
+        navigate('/');
       }
-    );
+    });
     return subscriber;
   }, []);
 
+  useEffect(() => {
+    if (isObjectEmpty(authUser)) return;
+    const unsub = onSnapshot(doc(db, 'users', authUser.uid), (doc) => {
+      if (doc) {
+        setCurrentUser({
+          id: authUser.uid,
+          data: doc.data() as UserData,
+        });
+      }
+    });
+    return unsub;
+  }, [authUser]);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {children}
+      {currentUser && children}
     </CurrentUserContext.Provider>
   );
 };

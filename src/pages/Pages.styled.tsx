@@ -26,11 +26,19 @@ interface LandingProps {
   url: string;
 }
 const LandingContainer = styled.div`
-  width: 100vw;
+  max-width: 100vw;
   height: 85vh;
   background-image: url(${(props: LandingProps) => props.url});
   background-repeat: no-repeat;
   background-size: cover;
 `;
 
-export { FlexColumn, Logo, LandingContainer };
+const FlexRight = styled.div`
+  width: 50%;
+  bottom: 20%;
+  left: 60%;
+  position: absolute;
+  display: flex;
+`;
+
+export { FlexColumn, Logo, LandingContainer, FlexRight };

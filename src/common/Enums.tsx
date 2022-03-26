@@ -3,15 +3,26 @@ enum NotificationType {
   RESPONSE = 'RESP',
 }
 
-enum UserResponse {
-  NO = 0,
-  YES = 1,
+enum UserEventResponse {
+  APPROVED = 'approved',
+  REJECTED = 'rejected',
 }
 
 enum UserEventStatus {
   PENDING = 'Pending',
   JOINED = 'Joined',
   ATTENDED = 'Attended',
+  HOSTING = 'Hosting',
 }
 
-export { NotificationType, UserResponse, UserEventStatus };
+enum NotificationStatus {
+  UNREAD = 0,
+  READ = 1,
+}
+
+export {
+  NotificationType,
+  UserEventResponse,
+  UserEventStatus,
+  NotificationStatus,
+};

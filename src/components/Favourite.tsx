@@ -1,6 +1,6 @@
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import Tooltip from 'antd/lib/tooltip';
-import { SyntheticEvent, useContext, useEffect, useState } from 'react';
+import { SyntheticEvent, useContext } from 'react';
 import { setDocument } from '../common/Firebase';
 import { CurrentUserContext } from '../context/CurrentUser';
 
@@ -8,16 +8,8 @@ interface FavouriteProps {
   eid: string;
 }
 const Favourite = ({ eid }: FavouriteProps) => {
-  const [isFavourite, setIsFavourite] = useState(false);
-
   const currentUser = useContext(CurrentUserContext);
-
-  useEffect(() => {
-    if (currentUser)
-      if (currentUser.data.favourites)
-        if (!Boolean(currentUser.data.favourites.indexOf(eid)))
-          setIsFavourite(true);
-  }, [currentUser]);
+  const isFavourite = currentUser.data?.favourites?.includes(eid);
 
   const onFaveClick = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -25,7 +17,6 @@ const Favourite = ({ eid }: FavouriteProps) => {
       ...currentUser.data,
       favourites: [...(currentUser.data.favourites ?? []), eid],
     });
-    setIsFavourite(true);
   };
 
   const onUnFaveClick = (event: SyntheticEvent) => {
@@ -35,7 +26,6 @@ const Favourite = ({ eid }: FavouriteProps) => {
       ...currentUser.data,
       favourites: faves,
     });
-    setIsFavourite(false);
   };
 
   return (

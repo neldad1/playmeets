@@ -36,10 +36,12 @@ const AuthMenu = () => {
         <Link to="/create-event">Create An Event</Link>
       </Menu.Item>
 
-      <Menu.Item key="notification" icon={<NotificationIcon />}>
-        <Badge count={totalNotifications}>
-          <Link to="/notification" />
-        </Badge>
+      <Menu.Item key="notification">
+        <Link to="/notifications">
+          <Badge count={totalNotifications}>
+            <NotificationIcon />
+          </Badge>
+        </Link>
       </Menu.Item>
 
       <SubMenu

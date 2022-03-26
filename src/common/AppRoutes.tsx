@@ -1,11 +1,13 @@
 import { Routes, Route, Outlet } from 'react-router-dom';
 import UsersWithinStateProvider from '../context/UsersWithinState';
 import EventInfo from '../event/info/EventInfo';
+import NotificationInfo from '../notification/info/NotificationInfo';
 import CreateEvent from '../pages/CreateEvent';
 import Events from '../pages/Events';
 import FinishSignUp from '../pages/FinishSignUp';
 import Home from '../pages/Home';
 import LogIn from '../pages/Login';
+import Notifications from '../pages/Notifications';
 import Privacy from '../pages/Privacy';
 import Profile from '../pages/Profile';
 import SignUp from '../pages/SignUp';
@@ -39,6 +41,15 @@ const AppRoutes = () => {
       </Route>
       <Route path="/create-event" element={<PrivateRoute />}>
         <Route path="/create-event" element={<CreateEvent />} />
+      </Route>
+      <Route path="/notifications" element={<PrivateRoute />}>
+        <Route path="/notifications" element={<Notifications />} />
+      </Route>
+      <Route path="/notifications/:notificationId" element={<PrivateRoute />}>
+        <Route
+          path="/notifications/:notificationId"
+          element={<NotificationInfo />}
+        />
       </Route>
     </Routes>
   );

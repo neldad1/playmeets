@@ -27,3 +27,7 @@
   color:aliceblue;
   font-size: 2.5em;
 }
+
+.antd-select {
+  width: 250px;
+}

@@ -64,6 +64,7 @@ interface NotificationData {
   from: string;
   event_id: string;
   message: string;
+  status: number;
 }
 
 interface AppNotification {

@@ -1,11 +1,15 @@
 import {
   CheckOutlined,
-  PauseOutlined,
+  HourglassFilled,
   UserAddOutlined,
 } from '@ant-design/icons';
 import Tooltip from 'antd/lib/tooltip';
 import { SyntheticEvent, useContext } from 'react';
-import { NotificationType, UserEventStatus } from '../common/Enums';
+import {
+  NotificationStatus,
+  NotificationType,
+  UserEventStatus,
+} from '../common/Enums';
 import { addDocument, setDocument } from '../common/Firebase';
 import { AppUser } from '../common/Interfaces';
 import { CurrentUserContext } from '../context/CurrentUser';
@@ -25,6 +29,7 @@ const EventStatus = ({ host, eid, eventTitle }: EventStatusProps) => {
       to: host.id,
       from: currentUser.id,
       event_id: eid,
+      status: NotificationStatus.UNREAD,
       message: `${currentUser.data.displayName} has requested to join ${eventTitle}`,
     };
     addDocument('notifications', newNotification).then((notifDoc) => {
@@ -64,7 +69,7 @@ const EventStatus = ({ host, eid, eventTitle }: EventStatusProps) => {
       switch (userEvent.status) {
         case UserEventStatus.PENDING:
           element = (
-            <PauseOutlined key="pending" className="antd-icon-action" />
+            <HourglassFilled key="pending" className="antd-icon-action" />
           );
           toolTip = 'Request is pending';
           break;

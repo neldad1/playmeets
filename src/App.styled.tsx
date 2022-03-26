@@ -7,9 +7,8 @@ const AppCont = styled.div`
 `;
 
 const MainCont = styled.div`
-  width: inherit;
+  width: 100vw;
   min-height: 85vh;
-  padding: 0 1em;
 `;
 
 export { AppCont, MainCont };
