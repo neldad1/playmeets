@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const PagesContainer = styled.div`
+  margin: 1em;
+`;
+
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,4 +45,4 @@ const FlexRight = styled.div`
   display: flex;
 `;
 
-export { FlexColumn, Logo, LandingContainer, FlexRight };
+export { PagesContainer, FlexColumn, Logo, LandingContainer, FlexRight };

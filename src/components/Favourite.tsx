@@ -21,7 +21,10 @@ const Favourite = ({ eid }: FavouriteProps) => {
 
   const onUnFaveClick = (event: SyntheticEvent) => {
     event.preventDefault();
-    const faves = currentUser.data.favourites.filter((fave) => fave !== eid);
+    let faves: string[] = [];
+    if (!currentUser.data.favourites) return;
+
+    faves = currentUser.data.favourites.filter((fave) => fave !== eid);
     setDocument('users', currentUser.id, {
       ...currentUser.data,
       favourites: faves,

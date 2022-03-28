@@ -11,7 +11,9 @@ const Events = () => {
 
   const currentUser = useContext(CurrentUserContext);
 
-  const getEventsInCurrentLocState = async (state: string) => {
+  const getEventsInCurrentLocState = async (state: string = '') => {
+    if (!Boolean(state.length)) return;
+
     const appEvents: AppEvent[] = [];
     const eventDocs = await getDocuments('events', 'location.state', state);
     eventDocs.forEach((eventDoc) => {

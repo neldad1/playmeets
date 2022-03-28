@@ -7,6 +7,7 @@ const NotificationRectangle = styled.p`
   font-weight: ${(props: NotificationRectangleProps) =>
     props.status ? `normal` : `bold`};
   font-size: 1em;
+  cursor: pointer;
 `;
 
 export { NotificationRectangle };

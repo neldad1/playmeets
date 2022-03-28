@@ -65,7 +65,7 @@ const LogIn = () => {
       <Button
         type="primary"
         ghost
-        onClick={signInWithGoogle}
+        onClick={() => signInWithGoogle(false)}
         icon={<GoogleOutlined />}
       >
         Login with Google

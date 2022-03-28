@@ -28,7 +28,7 @@ const toFirestoreEvt = (data: EventData): EventData => {
     title: data.title,
     createdBy: data.createdBy,
     timestamp: data.timestamp,
-    photo: data.photo ?? null,
+    photo: data.photo ?? '',
     slots: data.slots,
     location: {
       name: data.location.name,
@@ -38,7 +38,7 @@ const toFirestoreEvt = (data: EventData): EventData => {
       state: data.location.state,
       zipcode: data.location.zipcode,
     },
-    attendees: data.attendees ?? null,
+    attendees: data.attendees ?? [],
     details: data.details,
   };
 };
@@ -73,7 +73,10 @@ const getEvtPhotoUrlWithTransform = (photoUrl: string) => {
 
 const getSubstring = (inputString: string, searchText: string): string => {
   const searchResultIndex = inputString.indexOf(searchText);
-  return inputString.substring(searchResultIndex, searchText.length);
+  return inputString.substring(
+    searchResultIndex + searchText.length,
+    inputString.length
+  );
 };
 
 export {

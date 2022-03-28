@@ -11,12 +11,10 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
   const [uploadStatus, setUploadStatus] = useState('Start Upload');
 
   const onInputFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log((event.target as HTMLInputElement).files);
     setFile((event.target as HTMLInputElement).files?.[0]);
   };
 
   const onUploadButtonClick = () => {
-    console.log(file);
     const formData = new FormData();
     formData.append('file', file as any);
     formData.append('upload_preset', 'pm-preset');

@@ -1,51 +1,59 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useContext, useEffect } from 'react';
 import { Form, Input, Button, Checkbox, Select } from 'antd';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 import { FlexColumn } from './Pages.styled';
 import { displayError } from '../common/AlertMessage';
 import { AuStates } from '../common/DataObjects';
-import { auth, setDocument } from '../common/Firebase';
+import { setDocument } from '../common/Firebase';
+import { CurrentUserContext } from '../context/CurrentUser';
+import { isObjectEmpty } from '../common/Helpers';
 
 const { Option } = Select;
 
 const AGE_GROUP: string[] = ['0-3', '4-6', '7-9', '10-12'];
 
 const FinishSignUp = () => {
-  const [user] = useAuthState(auth);
   const [displayName, setDisplayName] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [ageGroup, setAgeGroup] = useState(AGE_GROUP);
 
+  const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isObjectEmpty(currentUser)) return;
+    if (currentUser.data.state) {
+      if (currentUser.data.state.length > 0) navigate('/events');
+    }
+  }, [currentUser]);
 
   const onCheckboxGrpChange = (checkedValues: CheckboxValueType[]) => {
     setAgeGroup(checkedValues as string[]);
   };
 
   const onFinish = async () => {
-    if (!user) return;
-    let data = {
+    if (!currentUser) return;
+    const userData = {
+      ...currentUser.data,
       displayName,
       city,
       state,
       ageGroup,
-      attended: 0,
     };
     try {
-      setDocument('users', user.uid, data);
-      navigate('/events');
+      setDocument('users', currentUser.id, userData);
     } catch (err) {
       displayError(`An error occurred while adding the user: ${err}`);
     }
   };
 
+  if (isObjectEmpty(currentUser)) return <></>;
   return (
     <FlexColumn>
       <Form layout="vertical">
-        <Form.Item label={user?.email} />
+        <Form.Item label={currentUser.data.email} />
         <Form.Item label="Display Name" required>
           <Input
             placeholder="Preferred name to display."

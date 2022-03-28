@@ -79,7 +79,7 @@ const SignUp = () => {
       <Button
         type="primary"
         ghost
-        onClick={signInWithGoogle}
+        onClick={() => signInWithGoogle(true)}
         icon={<GoogleOutlined />}
       >
         Continue with Google

@@ -1,9 +1,27 @@
 import { useContext, useEffect, useState } from 'react';
+import { NotificationStatus } from '../common/Enums';
 import { getDocuments } from '../common/Firebase';
 import { AppNotification, NotificationData } from '../common/Interfaces';
 import { FlexBlock } from '../components/Components.styled';
 import { CurrentUserContext } from '../context/CurrentUser';
 import Notification from '../notification/Notification';
+
+const NoNotification = () => {
+  return <>No new notification</>;
+};
+
+interface WithNotificationProps {
+  unreadNotifications: AppNotification[];
+}
+const WithNotification = ({ unreadNotifications }: WithNotificationProps) => {
+  return (
+    <>
+      {unreadNotifications.map((notif) => (
+        <Notification key={notif.id} appNotification={notif} />
+      ))}
+    </>
+  );
+};
 
 const Notifications = () => {
   const [appNotifications, setAppNotifications] = useState<AppNotification[]>(
@@ -27,11 +45,19 @@ const Notifications = () => {
     });
   }, [currentUser]);
 
-  const notificationElements = appNotifications.map((notif) => (
-    <Notification key={notif.id} appNotification={notif} />
-  ));
+  const unreadNotifications = appNotifications.filter(
+    (notif) => notif.data.status === NotificationStatus.UNREAD
+  );
 
-  return <FlexBlock>{notificationElements}</FlexBlock>;
+  return (
+    <FlexBlock>
+      {Boolean(unreadNotifications.length) ? (
+        <WithNotification unreadNotifications={unreadNotifications} />
+      ) : (
+        <NoNotification />
+      )}
+    </FlexBlock>
+  );
 };
 
 export default Notifications;

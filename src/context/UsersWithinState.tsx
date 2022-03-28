@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { getDocuments } from '../common/Firebase';
 import { isObjectEmpty } from '../common/Helpers';
 import { AppUser, UserData } from '../common/Interfaces';
@@ -27,7 +21,6 @@ const UsersWithinStateProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (isObjectEmpty(currentUser)) return;
-
     const appUsers: AppUser[] = [];
     getDocuments('users', 'state', currentUser.data.state).then((userDocs) => {
       userDocs.forEach((userDoc) => {

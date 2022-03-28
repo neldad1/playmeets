@@ -7,13 +7,13 @@ interface UserData {
   name: string;
   displayName: string;
   email: string;
-  photoUrl: string;
+  photoUrl?: string;
   state: string;
   city: string;
   ageGroup: string[];
-  events: UserEvent[];
-  favourites: string[];
-  notifications: string[];
+  events?: UserEvent[];
+  favourites?: string[];
+  notifications?: string[];
 }
 
 interface AppUser {
