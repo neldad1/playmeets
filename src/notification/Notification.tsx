@@ -4,6 +4,8 @@ import { NotificationStatus, NotificationType } from '../common/Enums';
 import { setDocument } from '../common/Firebase';
 import { AppNotification } from '../common/Interfaces';
 import { CurrentUserContext } from '../context/CurrentUser';
+import { UsersWithinStateContext } from '../context/UsersWithinState';
+import { PagesContainer } from '../pages/Pages.styled';
 import { NotificationRectangle } from './Notification.styled';
 
 interface RequestNotificationRectProps {
@@ -48,19 +50,23 @@ const Notification = ({ appNotification }: NotificationProps) => {
     });
   };
 
-  return type === NotificationType.REQUEST ? (
-    <RequestNotificationRect
-      nid={appNotification.id}
-      status={status}
-      message={message}
-    />
-  ) : (
-    <NotificationRectangle
-      status={notificationStatus}
-      onClick={onResponseNotificationClick}
-    >
-      {message}
-    </NotificationRectangle>
+  return (
+    <PagesContainer>
+      {type === NotificationType.REQUEST ? (
+        <RequestNotificationRect
+          nid={appNotification.id}
+          status={status}
+          message={message}
+        />
+      ) : (
+        <NotificationRectangle
+          status={notificationStatus}
+          onClick={onResponseNotificationClick}
+        >
+          {message}
+        </NotificationRectangle>
+      )}
+    </PagesContainer>
   );
 };
 

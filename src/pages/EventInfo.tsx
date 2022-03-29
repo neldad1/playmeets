@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDocument } from '../../common/Firebase';
-import { AppEvent, EventData } from '../../common/Interfaces';
-import { FlexBlock } from '../../components/Components.styled';
-import { UsersWithinStateContext } from '../../context/UsersWithinState';
-import Address from './Address';
-import Attendees from './Attendees';
-import Banner from './Banner';
-import Comments from './Comments';
-import DateAndTime from './DateAndTime';
-import Details from './Details';
-import { FlexSpaceBetween } from './EventDetails.styled';
-import LocationMap from './LocationMap';
+import { getDocument } from '../common/Firebase';
+import { AppEvent, EventData } from '../common/Interfaces';
+import { FlexBlock } from '../components/Components.styled';
+import { UsersWithinStateContext } from '../context/UsersWithinState';
+import Address from '../event/info/Address';
+import Attendees from '../event/info/Attendees';
+import Banner from '../event/info/Banner';
+import Comments from '../event/info/Comments';
+import DateAndTime from '../event/info/DateAndTime';
+import Details from '../event/info/Details';
+import { FlexSpaceBetween } from '../event/info/EventDetails.styled';
+import LocationMap from '../event/info/LocationMap';
+import { PagesContainer } from './Pages.styled';
 
 const EventInfo = () => {
   const { eventId } = useParams();
@@ -37,7 +38,7 @@ const EventInfo = () => {
   if (!host) return <>NO EVENT INFO</>;
 
   return (
-    <FlexBlock>
+    <PagesContainer>
       <Banner
         timestamp={data.timestamp}
         location={data.location}
@@ -57,7 +58,7 @@ const EventInfo = () => {
           <LocationMap location={data.location} />
         </FlexBlock>
       </FlexSpaceBetween>
-    </FlexBlock>
+    </PagesContainer>
   );
 };
 export default EventInfo;

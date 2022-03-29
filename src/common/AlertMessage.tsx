@@ -6,4 +6,8 @@ const displayError = (msg: string) => {
   message.error(msg, MSG_DISPLAY_DURATION_IN_SEC);
 };
 
-export { displayError };
+const displayMessage = (msg: string) => {
+  message.success(msg, MSG_DISPLAY_DURATION_IN_SEC);
+};
+
+export { displayError, displayMessage };

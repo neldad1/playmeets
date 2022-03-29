@@ -1,6 +1,6 @@
 import { Routes, Route, Outlet } from 'react-router-dom';
 import UsersWithinStateProvider from '../context/UsersWithinState';
-import EventInfo from '../event/info/EventInfo';
+import EventInfo from '../pages/EventInfo';
 import NotificationInfo from '../notification/info/NotificationInfo';
 import CreateEvent from '../pages/CreateEvent';
 import Events from '../pages/Events';
@@ -12,6 +12,7 @@ import Privacy from '../pages/Privacy';
 import Profile from '../pages/Profile';
 import SignUp from '../pages/SignUp';
 import Terms from '../pages/Terms';
+import CurrentUserEvents from '../pages/CurrentUserEvents';
 
 const PrivateRoute = () => {
   return (
@@ -50,6 +51,9 @@ const AppRoutes = () => {
           path="/notifications/:notificationId"
           element={<NotificationInfo />}
         />
+      </Route>
+      <Route path="/yourevents" element={<PrivateRoute />}>
+        <Route path="/yourevents" element={<CurrentUserEvents />} />
       </Route>
     </Routes>
   );

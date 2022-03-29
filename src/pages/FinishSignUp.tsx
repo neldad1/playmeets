@@ -25,6 +25,7 @@ const FinishSignUp = () => {
   useEffect(() => {
     if (isObjectEmpty(currentUser)) return;
     if (currentUser.data.state) {
+      console.log('User exists. Navigate to Events.');
       if (currentUser.data.state.length > 0) navigate('/events');
     }
   }, [currentUser]);

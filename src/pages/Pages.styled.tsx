@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const PagesContainer = styled.div`
-  margin: 1em;
+  margin: 2em;
 `;
 
 const FlexColumn = styled.div`

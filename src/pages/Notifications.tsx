@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { NotificationStatus } from '../common/Enums';
 import { getDocuments } from '../common/Firebase';
 import { AppNotification, NotificationData } from '../common/Interfaces';
-import { FlexBlock } from '../components/Components.styled';
 import { CurrentUserContext } from '../context/CurrentUser';
 import Notification from '../notification/Notification';
+import { PagesContainer } from './Pages.styled';
 
 const NoNotification = () => {
   return <>No new notification</>;
@@ -50,13 +50,13 @@ const Notifications = () => {
   );
 
   return (
-    <FlexBlock>
+    <PagesContainer>
       {Boolean(unreadNotifications.length) ? (
         <WithNotification unreadNotifications={unreadNotifications} />
       ) : (
         <NoNotification />
       )}
-    </FlexBlock>
+    </PagesContainer>
   );
 };
 

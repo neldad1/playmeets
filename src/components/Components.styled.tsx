@@ -4,6 +4,7 @@ const FlexRowLeft = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+  align-items: center;
 `;
 
 const FlexRowCenter = styled.div`

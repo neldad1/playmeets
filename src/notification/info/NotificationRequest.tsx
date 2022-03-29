@@ -51,7 +51,7 @@ const NotificationRequest = ({
       message: `${currentUser.data.displayName} has ${result} your request to join ${eventTitle}`,
     };
     addDocument('notifications', newNotification).then((notifDoc) => {
-      if (notifDoc) updateFromUser(notifDoc.id);
+      if (notifDoc) updateFromUser(notifDoc.id, result);
     });
   };
 
@@ -64,7 +64,10 @@ const NotificationRequest = ({
     });
   };
 
-  const updateFromUser = (newNotificationId: string) => {
+  const updateFromUser = (
+    newNotificationId: string,
+    result: UserEventResponse
+  ) => {
     if (!fromUser) return;
 
     const { notifications, events } = fromUser.data;
@@ -75,9 +78,14 @@ const NotificationRequest = ({
 
     let userEvents: UserEvent[] = [];
     if (events) userEvents = [...events];
-    const event = userEvents.find((event) => event.eid === eid);
-    if (event) {
-      event.status = UserEventStatus.JOINED;
+    const index = userEvents.findIndex((event) => event.eid === eid);
+
+    if (index > -1) return;
+
+    if (result === UserEventResponse.APPROVED) {
+      userEvents[index].status = UserEventStatus.JOINED;
+    } else {
+      userEvents.splice(index, 1);
     }
     setDocument('users', fromUser.id, {
       ...fromUser.data,
@@ -119,7 +127,7 @@ const NotificationRequest = ({
 
     updateNotification();
     addNotificationResponse(result);
-    updateEvent();
+    if (result === UserEventResponse.APPROVED) updateEvent();
     updateCurrentUser();
   };
 

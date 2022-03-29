@@ -1,6 +1,8 @@
+import { PagesContainer } from './Pages.styled';
+
 const Terms = () => {
   return (
-    <div className="main-content">
+    <PagesContainer>
       <h1>THE CONTENT IS A SAMPLE ONLY</h1>
       <span>
         Terms and Conditions for Company Name Introduction These Website
@@ -69,7 +71,7 @@ const Terms = () => {
         submit to the non-exclusive jurisdiction of the state and federal courts
         located in Country for the resolution of any disputes.
       </span>
-    </div>
+    </PagesContainer>
   );
 };
 

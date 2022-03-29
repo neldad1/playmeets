@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { getDocuments } from '../common/Firebase';
 import { isObjectEmpty } from '../common/Helpers';
 import { AppEvent, EventData } from '../common/Interfaces';
-import { FlexBlock } from '../components/Components.styled';
 import { CurrentUserContext } from '../context/CurrentUser';
 import EventList from '../event/list/EventList';
+import { PagesContainer } from './Pages.styled';
 
 const Events = () => {
   const [events, setEvents] = useState<AppEvent[]>([]);
@@ -29,9 +29,9 @@ const Events = () => {
   }, [currentUser]);
 
   return (
-    <FlexBlock>
+    <PagesContainer>
       <EventList list={events} />
-    </FlexBlock>
+    </PagesContainer>
   );
 };
 

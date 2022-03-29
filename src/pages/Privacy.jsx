@@ -1,6 +1,8 @@
+import { PagesContainer } from './Pages.styled';
+
 const Privacy = () => {
   return (
-    <div className="main-content">
+    <PagesContainer>
       <h1>THE CONTENT IS A SAMPLE ONLY</h1>
       <span>
         Privacy Policy for Company Name At Website Name, accessible at
@@ -113,7 +115,7 @@ const Privacy = () => {
         do our best efforts to promptly remove such information from our
         records.
       </span>
-    </div>
+    </PagesContainer>
   );
 };
 

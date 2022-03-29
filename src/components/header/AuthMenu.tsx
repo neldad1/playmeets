@@ -26,6 +26,10 @@ const AuthMenu = () => {
     }
   }, [currentUser]);
 
+  if (isObjectEmpty(currentUser)) return <></>;
+
+  const imgSrc = currentUser.data.photoUrl ?? '';
+
   return (
     <Menu
       className="menu"
@@ -44,10 +48,7 @@ const AuthMenu = () => {
         </Link>
       </Menu.Item>
 
-      <SubMenu
-        key="subMenu"
-        icon={<Avatar imgSrc={user?.photoURL as string} />}
-      >
+      <SubMenu key="subMenu" icon={<Avatar imgSrc={imgSrc} />}>
         <Menu.Item key="yourevents">
           <Link to="/yourevents"> Your Events</Link>
         </Menu.Item>

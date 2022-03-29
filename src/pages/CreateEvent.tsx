@@ -8,6 +8,7 @@ import { toFirestoreEvt } from '../common/Helpers';
 import { EventData, Location } from '../common/Interfaces';
 import LocationStates from '../components/LocationState';
 import UploadPhoto from '../components/UploadPhoto';
+import { PagesContainer } from './Pages.styled';
 
 const CreateEvent = () => {
   const [user] = useAuthState(auth);
@@ -56,91 +57,93 @@ const CreateEvent = () => {
   }, [imgUrl]);
 
   return (
-    <Form layout="vertical">
-      <Form.Item label="Title" required>
-        <Input
-          placeholder="Enter the title"
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setAppEvtValue({ title: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="Date and Time" required>
-        <DatePicker showTime onChange={onDatePickerChange} />
-      </Form.Item>
-      <Form.Item label="Venue" required>
-        <Input
-          placeholder="Where will the event take place?"
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setLocValue({ name: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="Street number and name" required>
-        <Input
-          placeholder="Enter the venue's street number and name"
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setLocValue({ street: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="Suburb" required>
-        <Input
-          placeholder="Enter the suburb"
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setLocValue({ suburb: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="City" required>
-        <Input
-          placeholder="Enter the city near the venue"
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setLocValue({ city: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="State" required>
-        <LocationStates
-          size="middle"
-          onLocationStateChange={onLocationStateChange}
-        />
-      </Form.Item>
-      <Form.Item label="Zipcode" required>
-        <Input
-          type="number"
-          placeholder="Enter the zipcode"
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setLocValue({ zipcode: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="Maximum Number of Attendees" required>
-        <Input
-          type="number"
-          placeholder="Enter the maximum attendees."
-          onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-            setAppEvtValue({ slots: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item label="Details" required>
-        <TextArea
-          placeholder="Additional information"
-          onChange={({ target }: ChangeEvent<HTMLTextAreaElement>) =>
-            setAppEvtValue({ details: target.value })
-          }
-        />
-      </Form.Item>
-      <Form.Item>
-        <UploadPhoto setImgUrl={setImgUrl} />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" onClick={onButtonClick}>
-          Create Event
-        </Button>
-      </Form.Item>
-    </Form>
+    <PagesContainer>
+      <Form layout="vertical">
+        <Form.Item label="Title" required>
+          <Input
+            placeholder="Enter the title"
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setAppEvtValue({ title: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="Date and Time" required>
+          <DatePicker showTime onChange={onDatePickerChange} />
+        </Form.Item>
+        <Form.Item label="Venue" required>
+          <Input
+            placeholder="Where will the event take place?"
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setLocValue({ name: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="Street number and name" required>
+          <Input
+            placeholder="Enter the venue's street number and name"
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setLocValue({ street: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="Suburb" required>
+          <Input
+            placeholder="Enter the suburb"
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setLocValue({ suburb: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="City" required>
+          <Input
+            placeholder="Enter the city near the venue"
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setLocValue({ city: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="State" required>
+          <LocationStates
+            size="middle"
+            onLocationStateChange={onLocationStateChange}
+          />
+        </Form.Item>
+        <Form.Item label="Zipcode" required>
+          <Input
+            type="number"
+            placeholder="Enter the zipcode"
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setLocValue({ zipcode: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="Maximum Number of Attendees" required>
+          <Input
+            type="number"
+            placeholder="Enter the maximum attendees."
+            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+              setAppEvtValue({ slots: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item label="Details" required>
+          <TextArea
+            placeholder="Additional information"
+            onChange={({ target }: ChangeEvent<HTMLTextAreaElement>) =>
+              setAppEvtValue({ details: target.value })
+            }
+          />
+        </Form.Item>
+        <Form.Item>
+          <UploadPhoto setImgUrl={setImgUrl} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" onClick={onButtonClick}>
+            Create Event
+          </Button>
+        </Form.Item>
+      </Form>
+    </PagesContainer>
   );
 };
 
