@@ -39,7 +39,7 @@ const CreateEvent = () => {
     setAppEvtValue({ timestamp: new Date(dateString).getTime() });
   };
 
-  const onButtonClick = () => {
+  const onCreateEventButtonClick = () => {
     const data = toFirestoreEvt(eventData);
     addDocument('events', data).then((result) => {
       if (result) navigate('/events');
@@ -138,7 +138,7 @@ const CreateEvent = () => {
           <UploadPhoto setImgUrl={setImgUrl} />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" onClick={onButtonClick}>
+          <Button type="primary" onClick={onCreateEventButtonClick}>
             Create Event
           </Button>
         </Form.Item>

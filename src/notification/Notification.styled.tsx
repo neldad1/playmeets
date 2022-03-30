@@ -8,6 +8,16 @@ const NotificationRectangle = styled.p`
     props.status ? `normal` : `bold`};
   font-size: 1em;
   cursor: pointer;
+  margin: 0;
+  line-height: 2.5em;
 `;
 
-export { NotificationRectangle };
+const NotificationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: whitesmoke;
+  padding: 1em;
+`;
+
+export { NotificationRectangle, NotificationContainer };

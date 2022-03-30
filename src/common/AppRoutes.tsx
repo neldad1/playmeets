@@ -1,7 +1,7 @@
 import { Routes, Route, Outlet } from 'react-router-dom';
 import UsersWithinStateProvider from '../context/UsersWithinState';
 import EventInfo from '../pages/EventInfo';
-import NotificationInfo from '../notification/info/NotificationInfo';
+import NotificationInfo from '../pages/NotificationInfo';
 import CreateEvent from '../pages/CreateEvent';
 import Events from '../pages/Events';
 import FinishSignUp from '../pages/FinishSignUp';

@@ -50,7 +50,11 @@ const EventInfo = () => {
         <FlexBlock>
           <Details details={data.details} />
           <Attendees attendees={data.attendees} />
-          <Comments eid={eventId as string} />
+          <Comments
+            eid={eventId as string}
+            eventTitle={data.title}
+            host={data.createdBy}
+          />
         </FlexBlock>
         <FlexBlock>
           <DateAndTime timestamp={data.timestamp} />

@@ -33,7 +33,7 @@ const EventCard = ({ appEvt }: EventCardProps) => {
   return (
     <Link to={`/events/${appEvt.id}`}>
       <Card
-        style={{ width: 300 }}
+        className="antd-card"
         cover={
           <EventPhoto
             alt={data.title}

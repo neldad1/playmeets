@@ -31,8 +31,8 @@ interface Location {
 }
 
 interface CommentData {
-  event_id: string;
-  user_id: string;
+  eid: string;
+  uid: string;
   comment: string;
   timestamp: number;
 }
@@ -62,7 +62,7 @@ interface NotificationData {
   type: string;
   to: string;
   from: string;
-  event_id: string;
+  eid: string;
   message: string;
   status: number;
 }

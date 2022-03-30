@@ -1,13 +1,12 @@
 import { Divider } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDocument } from '../../common/Firebase';
-import { NotificationData } from '../../common/Interfaces';
-import { FlexBlock } from '../../components/Components.styled';
-import { UsersWithinStateContext } from '../../context/UsersWithinState';
-import { PagesContainer } from '../../pages/Pages.styled';
-import ProfileInfo from '../../user/ProfileInfo';
-import NotificationRequest from './NotificationRequest';
+import { getDocument } from '../common/Firebase';
+import { NotificationData } from '../common/Interfaces';
+import { UsersWithinStateContext } from '../context/UsersWithinState';
+import { PagesContainer } from './Pages.styled';
+import ProfileInfo from '../user/ProfileInfo';
+import NotificationRequest from '../notification/info/NotificationRequest';
 
 const NotificationInfo = () => {
   const { notificationId } = useParams();
@@ -34,7 +33,7 @@ const NotificationInfo = () => {
         message={notificationData.message}
         from={notificationData.from}
         nid={notificationId as string}
-        eid={notificationData.event_id}
+        eid={notificationData.eid}
       />
     </PagesContainer>
   );

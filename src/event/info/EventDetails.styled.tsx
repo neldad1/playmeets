@@ -32,6 +32,7 @@ const EvtTitle = styled.h1`
 
 const CommentTime = styled.label`
   font-size: 0.75em;
+  color: grey;
 `;
 
 const MapFrame = styled.iframe`
@@ -44,6 +45,23 @@ const MapFrame = styled.iframe`
   }
 `;
 
+const CommentTextArea = styled.textarea`
+  line-height: 2em;
+  flex: 1;
+`;
+
+const FlexEnd = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+`;
+
+const FlexStart = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+`;
+
 export {
   Subtitle,
   InfoDisplay,
@@ -52,4 +70,7 @@ export {
   CommentTime,
   MapFrame,
   FlexSpaceBetween,
+  CommentTextArea,
+  FlexEnd,
+  FlexStart,
 };

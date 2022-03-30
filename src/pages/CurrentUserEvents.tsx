@@ -6,14 +6,14 @@ import { AppEvent, EventData } from '../common/Interfaces';
 import { isObjectEmpty } from '../common/Helpers';
 import EventCard from '../event/card/EventCard';
 import { getDocuments } from '../common/Firebase';
-import { FlexRowCenter } from '../components/Components.styled';
+import { FlexRowLeft } from '../components/Components.styled';
 const { TabPane } = Tabs;
 
 const CurrentUserEvents = () => {
   const [allEventsWithinState, setAllEventsWithinState] = useState<AppEvent[]>(
     []
   );
-  const [hostingEvents, setHostingEvents] = useState<AppEvent[]>([]);
+  const [createdEvents, setCreatedEvents] = useState<AppEvent[]>([]);
   const [faveEvents, setFaveEvents] = useState<AppEvent[]>([]);
   const [allUserEvents, setAllsUserEvents] = useState<AppEvent[]>([]);
 
@@ -47,7 +47,7 @@ const CurrentUserEvents = () => {
     const hostEvents = allEventsWithinState.filter(
       (evt) => evt.data.createdBy === currentUser.id
     );
-    if (hostEvents) setHostingEvents(hostEvents);
+    if (hostEvents) setCreatedEvents(hostEvents);
   };
 
   const getFaveEvents = () => {
@@ -79,25 +79,25 @@ const CurrentUserEvents = () => {
     <PagesContainer>
       <Tabs defaultActiveKey="1" centered={true}>
         <TabPane tab="All" key="1">
-          <FlexRowCenter>
+          <FlexRowLeft>
             {allUserEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
-          </FlexRowCenter>
+          </FlexRowLeft>
         </TabPane>
-        <TabPane tab="Host" key="2">
-          <FlexRowCenter>
-            {hostingEvents.map((event) => (
+        <TabPane tab="Created" key="2">
+          <FlexRowLeft>
+            {createdEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
-          </FlexRowCenter>
+          </FlexRowLeft>
         </TabPane>
-        <TabPane tab="Fave" key="3">
-          <FlexRowCenter>
+        <TabPane tab="Favourites" key="3">
+          <FlexRowLeft>
             {faveEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
-          </FlexRowCenter>
+          </FlexRowLeft>
         </TabPane>
       </Tabs>
     </PagesContainer>

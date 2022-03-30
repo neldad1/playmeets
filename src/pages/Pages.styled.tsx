@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const PagesContainer = styled.div`
   margin: 2em;
+  gap: 1em;
+  display: flex;
+  flex-direction: column;
 `;
 
 const FlexColumn = styled.div`
