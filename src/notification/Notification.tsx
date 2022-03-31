@@ -1,33 +1,14 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { NotificationStatus, NotificationType } from '../common/Enums';
 import { setDocument } from '../common/Firebase';
 import { AppNotification } from '../common/Interfaces';
+import { FlexBlock } from '../components/Components.styled';
 import { CurrentUserContext } from '../context/CurrentUser';
-import { PagesContainer } from '../pages/Pages.styled';
 import {
   NotificationContainer,
   NotificationRectangle,
 } from './Notification.styled';
-
-interface RequestNotificationRectProps {
-  nid: string;
-  status: number;
-  message: string;
-  link: string;
-}
-const RequestNotificationRect = ({
-  nid,
-  status,
-  message,
-  link = '',
-}: RequestNotificationRectProps) => {
-  return (
-    <Link to={`/notifications/${nid}`}>
-      <NotificationRectangle status={status}>{message}</NotificationRectangle>
-    </Link>
-  );
-};
 
 interface NotificationProps {
   appNotification: AppNotification;
@@ -55,23 +36,19 @@ const Notification = ({ appNotification }: NotificationProps) => {
         });
       })
       .then(() => {
-        let link = '';
         switch (type) {
           case NotificationType.REQUEST:
-            link = `/notifications/${appNotification.id}`;
+            navigate(`/notifications/${appNotification.id}`);
             break;
           case NotificationType.COMMENT:
-            link = `/events/${appNotification.data.eid}`;
+            navigate(`/events/${appNotification.data.eid}`);
             break;
-          default:
-            link = '';
         }
-        if (link !== '') navigate(link);
       });
   };
 
   return (
-    <PagesContainer>
+    <FlexBlock>
       <NotificationContainer>
         <NotificationRectangle
           status={notificationStatus}
@@ -80,7 +57,7 @@ const Notification = ({ appNotification }: NotificationProps) => {
           {message}
         </NotificationRectangle>
       </NotificationContainer>
-    </PagesContainer>
+    </FlexBlock>
   );
 };
 

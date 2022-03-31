@@ -26,7 +26,7 @@ const NotificationInfo = () => {
   const fromUser = getAppUserById(notificationData.from);
 
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       {fromUser && <ProfileInfo appUser={fromUser} />}
       <Divider />
       <NotificationRequest

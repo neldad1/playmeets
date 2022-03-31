@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-const FlexRowLeft = styled.div`
+const FlexRowLeft = styled.div<{ nowrap?: boolean }>`
   display: flex;
   flex-wrap: wrap;
+  flex-wrap: ${({ nowrap }) => nowrap && `nowrap`};
   gap: 1em;
   align-items: center;
 `;
@@ -28,6 +29,7 @@ const FlexBlock = styled.div`
   gap: 1em;
   display: flex;
   flex-direction: column;
+  padding-bottom: 0.75em;
 `;
 
 const AvatarIcon = styled.img`

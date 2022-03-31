@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const PagesContainer = styled.div`
-  margin: 2em;
-  gap: 1em;
+const PagesContainer = styled.div<{ offset?: string }>`
   display: flex;
   flex-direction: column;
+  padding: ${({ offset }) => offset && `${offset}`};
+  gap: ${({ offset }) => offset && `${offset}`};
 `;
 
 const FlexColumn = styled.div`
@@ -14,9 +14,11 @@ const FlexColumn = styled.div`
   width: 50%;
   margin: 5% auto;
   justify-content: space-evenly;
-  border: 1px solid;
+  /* border: 1px solid; */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   gap: 1em;
   padding: 1em;
+  border-radius: 0.25rem;
   @media only screen and (max-width: 768px) {
     width: 100%;
     margin: 0;
@@ -25,19 +27,8 @@ const FlexColumn = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 5em;
-  height: 5em;
-`;
-
-interface LandingProps {
-  url: string;
-}
-const LandingContainer = styled.div`
-  max-width: 100vw;
-  height: 85vh;
-  background-image: url(${(props: LandingProps) => props.url});
-  background-repeat: no-repeat;
-  background-size: cover;
+  width: 4em;
+  height: 4em;
 `;
 
 const FlexRight = styled.div`
@@ -48,4 +39,4 @@ const FlexRight = styled.div`
   display: flex;
 `;
 
-export { PagesContainer, FlexColumn, Logo, LandingContainer, FlexRight };
+export { PagesContainer, FlexColumn, Logo, FlexRight };

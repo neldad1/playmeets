@@ -12,7 +12,7 @@ import Privacy from '../pages/Privacy';
 import Profile from '../pages/Profile';
 import SignUp from '../pages/SignUp';
 import Terms from '../pages/Terms';
-import CurrentUserEvents from '../pages/CurrentUserEvents';
+import CurrentUserEvents from '../user/CurrentUserEvents';
 
 const PrivateRoute = () => {
   return (

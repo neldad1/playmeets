@@ -2,7 +2,7 @@ import { PagesContainer } from './Pages.styled';
 
 const Terms = () => {
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       <h1>THE CONTENT IS A SAMPLE ONLY</h1>
       <span>
         Terms and Conditions for Company Name Introduction These Website

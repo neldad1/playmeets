@@ -11,10 +11,12 @@ const FlexSpaceBetween = styled.div`
 
 const Subtitle = styled.h3`
   font-size: 1.25em;
+  margin: 0;
+  margin-bottom: -0.75rem;
 `;
 
 const InfoDisplay = styled.span`
-  font-size: 1.1em;
+  font-size: 1em;
 `;
 
 const BannerContainer = styled.div`
@@ -33,19 +35,21 @@ const EvtTitle = styled.h1`
 const CommentTime = styled.label`
   font-size: 0.75em;
   color: grey;
+  margin-top: -1rem;
 `;
 
 const MapFrame = styled.iframe`
   border: none;
-  width: 45vw;
+  width: 40vw;
   height: 30vh;
   @media only screen and (max-width: 768px) {
-    width: 95vw;
+    width: 90vw;
     height: 30vh;
   }
 `;
 
 const CommentTextArea = styled.textarea`
+  padding: 1em;
   line-height: 2em;
   flex: 1;
 `;

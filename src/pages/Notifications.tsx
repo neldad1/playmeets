@@ -50,7 +50,7 @@ const Notifications = () => {
   );
 
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       {Boolean(unreadNotifications.length) ? (
         <WithNotification unreadNotifications={unreadNotifications} />
       ) : (

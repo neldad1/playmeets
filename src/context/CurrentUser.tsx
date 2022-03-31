@@ -1,7 +1,7 @@
 import { User } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { auth, db } from '../common/Firebase';
 import { isObjectEmpty } from '../common/Helpers';
 import { AppUser, UserData } from '../common/Interfaces';
@@ -13,13 +13,19 @@ const CurrentUserProvider: React.FC = ({ children }) => {
   const [authUser, setAuthUser] = useState<User>({} as User);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const unAuthPath = ['/', '/login', '/signup', '/finishsignup'];
+  const shouldRedirect = !unAuthPath.includes(pathname);
 
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged((firebaseUser: User | null) => {
       if (firebaseUser) {
         setAuthUser(firebaseUser);
       } else {
-        navigate('/');
+        setAuthUser({} as User);
+        if (shouldRedirect) {
+          navigate('/');
+        }
       }
     });
     return subscriber;

@@ -57,7 +57,7 @@ const CreateEvent = () => {
   }, [imgUrl]);
 
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       <Form layout="vertical">
         <Form.Item label="Title" required>
           <Input

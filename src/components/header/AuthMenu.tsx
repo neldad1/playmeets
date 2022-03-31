@@ -27,6 +27,7 @@ const AuthMenu = () => {
   if (isObjectEmpty(currentUser)) return <></>;
 
   const imgSrc = currentUser.data.photoUrl ?? '';
+  console.log(imgSrc);
 
   return (
     <Menu

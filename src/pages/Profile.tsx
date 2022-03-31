@@ -7,7 +7,7 @@ const Profile = () => {
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       <ProfileInfo appUser={currentUser} />
     </PagesContainer>
   );

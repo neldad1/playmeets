@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
 import { displayError } from '../common/AlertMessage';
-import { FlexRowLeft, Label } from '../components/Components.styled';
+import { FlexBlock, FlexRowLeft, Label } from '../components/Components.styled';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -70,20 +70,21 @@ const SignUp = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" onClick={register}>
-            Sign Up
-          </Button>
+          <FlexBlock>
+            <Button type="primary" onClick={register}>
+              Sign Up
+            </Button>
+            <Button
+              type="primary"
+              danger
+              onClick={() => signInWithGoogle(true)}
+              icon={<GoogleOutlined />}
+            >
+              Continue with Google
+            </Button>
+          </FlexBlock>
         </Form.Item>
       </Form>
-
-      <Button
-        type="primary"
-        ghost
-        onClick={() => signInWithGoogle(true)}
-        icon={<GoogleOutlined />}
-      >
-        Continue with Google
-      </Button>
     </FlexColumn>
   );
 };

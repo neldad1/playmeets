@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { toDaysAgo } from '../../common/Helpers';
 import { CommentData } from '../../common/Interfaces';
 import Avatar from '../../components/Avatar';
-import { FlexRowLeft, FlexBlock } from '../../components/Components.styled';
+import { FlexBlock } from '../../components/Components.styled';
 import { UsersWithinStateContext } from '../../context/UsersWithinState';
 import { CommentTime, FlexStart, InfoDisplay } from './EventDetails.styled';
 

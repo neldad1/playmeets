@@ -72,6 +72,13 @@ interface AppNotification {
   data: NotificationData;
 }
 
+interface StepInfo {
+  id: number;
+  imgSrc: string;
+  title: string;
+  description: string;
+}
+
 export type {
   UserEvent,
   UserData,
@@ -83,4 +90,5 @@ export type {
   AppEvent,
   NotificationData,
   AppNotification,
+  StepInfo,
 };

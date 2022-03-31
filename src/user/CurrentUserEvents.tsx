@@ -1,4 +1,4 @@
-import { PagesContainer } from './Pages.styled';
+import { PagesContainer } from '../pages/Pages.styled';
 import { Tabs } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../context/CurrentUser';
@@ -73,7 +73,7 @@ const CurrentUserEvents = () => {
   };
 
   if (!Boolean(allEventsWithinState.length))
-    return <PagesContainer>No Events</PagesContainer>;
+    return <PagesContainer offset="1em">No Events</PagesContainer>;
 
   return (
     <PagesContainer>

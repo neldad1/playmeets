@@ -39,7 +39,7 @@ const EmptyComment = ({
     addDocument('comments', commentData).then((commentDoc) => {
       if (commentDoc) {
         onAddComment({ id: commentDoc.id, data: commentData });
-        createNewNotification();
+        if (currentUser.id !== to) createNewNotification();
         setComment('');
       }
     });

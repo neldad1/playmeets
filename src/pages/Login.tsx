@@ -8,7 +8,7 @@ import {
 } from '../common/Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
-import { FlexRowLeft, Label } from '../components/Components.styled';
+import { FlexBlock, FlexRowLeft, Label } from '../components/Components.styled';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -53,23 +53,24 @@ const LogIn = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Button
-            type="primary"
-            onClick={() => logInWithEmailAndPassword(email, password)}
-          >
-            Log In
-          </Button>
+          <FlexBlock>
+            <Button
+              type="primary"
+              onClick={() => logInWithEmailAndPassword(email, password)}
+            >
+              Log In
+            </Button>
+            <Button
+              type="primary"
+              danger
+              onClick={() => signInWithGoogle(false)}
+              icon={<GoogleOutlined />}
+            >
+              Login with Google
+            </Button>
+          </FlexBlock>
         </Form.Item>
       </Form>
-
-      <Button
-        type="primary"
-        ghost
-        onClick={() => signInWithGoogle(false)}
-        icon={<GoogleOutlined />}
-      >
-        Login with Google
-      </Button>
     </FlexColumn>
   );
 };

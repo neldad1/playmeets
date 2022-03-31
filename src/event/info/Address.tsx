@@ -10,7 +10,7 @@ const Address = ({ location }: AddressProps) => {
   const { street, suburb, state, zipcode } = location;
   const addr = `${street}, ${suburb}, ${state} ${zipcode}`;
   return (
-    <FlexRowLeft>
+    <FlexRowLeft nowrap>
       <EnvironmentOutlined className="antd-icon" />
       <InfoDisplay>{addr}</InfoDisplay>
     </FlexRowLeft>

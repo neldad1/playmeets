@@ -2,7 +2,7 @@ import { PagesContainer } from './Pages.styled';
 
 const Privacy = () => {
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       <h1>THE CONTENT IS A SAMPLE ONLY</h1>
       <span>
         Privacy Policy for Company Name At Website Name, accessible at

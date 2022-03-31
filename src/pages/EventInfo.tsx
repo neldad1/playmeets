@@ -38,7 +38,7 @@ const EventInfo = () => {
   if (!host) return <>NO EVENT INFO</>;
 
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       <Banner
         timestamp={data.timestamp}
         location={data.location}
