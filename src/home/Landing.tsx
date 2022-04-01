@@ -1,15 +1,32 @@
 import HowItWorks from './HowItWorks';
-import landing from '../assets/landing.svg';
+import BackgroundImg from '../assets/landing.svg';
+import LandingImg from '../assets/carKids.svg';
 import { Button } from 'antd';
-import { LandingContainer, LandingInfo, LandingTitle } from './Home.styled';
+import {
+  ButtonContainer,
+  LandingAuthor,
+  LandingContainer,
+  LandingImage,
+  LandingImageContainer,
+  LandingInfo,
+  LandingTitle,
+} from './Home.styled';
 
 const Landing = () => {
   return (
     <>
-      <LandingContainer url={landing}>
+      <LandingContainer url={BackgroundImg}>
+        <LandingImageContainer>
+          <LandingImage src={LandingImg} />
+        </LandingImageContainer>
         <LandingInfo>
-          <LandingTitle>Your kid will no longer play alone</LandingTitle>
-          <Button type="primary">Sign up for more details</Button>
+          <LandingTitle>
+            "It is a happy talent to know how to play"
+          </LandingTitle>
+          <LandingAuthor>- Ralph Waldo Emerson</LandingAuthor>
+          <ButtonContainer>
+            <Button type="primary">Sign up for more details</Button>
+          </ButtonContainer>
         </LandingInfo>
       </LandingContainer>
       <HowItWorks />

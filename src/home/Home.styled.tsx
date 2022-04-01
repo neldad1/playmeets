@@ -55,31 +55,74 @@ const StepBox = styled.div`
   align-items: flex-start;
 `;
 
-interface LandingProps {
-  url: string;
-}
-const LandingContainer = styled.div`
+const LandingContainer = styled.div<{ url: string }>`
   max-width: 100vw;
   height: 85vh;
-  background-image: url(${(props: LandingProps) => props.url});
+  background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const LandingInfo = styled.div`
-  margin: 20% 5% 0 50%;
-  display: flex;
-  gap: 2em;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex: 1;
+  text-align: left;
+
+  .ant-btn {
+    height: 50px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  /* margin: 20% 5% 0 50%; */
+
+  /* display: flex; */
+  /* gap: 2em; */
+  /* flex-direction: column; */
+  /* justify-content: flex-end; */
 `;
 
 const LandingTitle = styled.h1`
   margin: 0;
+  line-height: 1.15em;
   font-size: 4em;
   color: white;
+`;
+
+const LandingAuthor = styled.span`
+  color: white;
+  margin-top: 0.5em;
+  display: block;
+`;
+
+const ButtonContainer = styled.div`
+  margin-top: 2em;
+  text-align: left;
+`;
+
+const LandingImageContainer = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+const LandingImage = styled.img`
+  width: 30em;
+  /* @media only screen and (max-width: 768px) {
+    width: 300px;
+  } */
 `;
 
 export {
@@ -94,4 +137,8 @@ export {
   LandingInfo,
   LandingContainer,
   LandingTitle,
+  LandingImage,
+  LandingImageContainer,
+  ButtonContainer,
+  LandingAuthor,
 };

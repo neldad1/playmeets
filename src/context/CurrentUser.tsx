@@ -14,7 +14,7 @@ const CurrentUserProvider: React.FC = ({ children }) => {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const unAuthPath = ['/', '/login', '/signup', '/finishsignup'];
+  const unAuthPath = ['/login', '/signup', '/finishsignup'];
   const shouldRedirect = !unAuthPath.includes(pathname);
 
   useEffect(() => {

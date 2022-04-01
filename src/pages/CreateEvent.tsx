@@ -58,7 +58,7 @@ const CreateEvent = () => {
 
   return (
     <PagesContainer offset="1em">
-      <Form layout="vertical">
+      <Form layout="vertical" className="antd-form">
         <Form.Item label="Title" required>
           <Input
             placeholder="Enter the title"
