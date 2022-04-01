@@ -48,7 +48,7 @@ const EventStatus = ({ host, eid, eventTitle }: EventStatusProps) => {
       type: NotificationType.REQUEST,
       to: host.id,
       from: currentUser.id,
-      event_id: eid,
+      eid: eid,
       status: NotificationStatus.UNREAD,
       message: `${currentUser.data.displayName} has requested to join ${eventTitle}`,
     };

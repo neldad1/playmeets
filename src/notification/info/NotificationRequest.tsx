@@ -9,7 +9,7 @@ import {
   UserEventStatus,
 } from '../../common/Enums';
 import { addDocument, getDocument, setDocument } from '../../common/Firebase';
-import { getSubstring } from '../../common/Helpers';
+import { getSubstring, isObjectEmpty } from '../../common/Helpers';
 import {
   EventData,
   NotificationData,
@@ -46,11 +46,12 @@ const NotificationRequest = ({
       type: NotificationType.RESPONSE,
       to: fromUser.id,
       from: currentUser.id,
-      event_id: eid,
+      eid: eid,
       status: NotificationStatus.UNREAD,
       message: `${currentUser.data.displayName} has ${result} your request to join ${eventTitle}`,
     };
     addDocument('notifications', newNotification).then((notifDoc) => {
+      console.log('new notif: ', notifDoc?.id);
       if (notifDoc) updateFromUser(notifDoc.id, result);
     });
   };
@@ -79,14 +80,14 @@ const NotificationRequest = ({
     let userEvents: UserEvent[] = [];
     if (events) userEvents = [...events];
     const index = userEvents.findIndex((event) => event.eid === eid);
-
-    if (index > -1) return;
+    if (index === -1) return;
 
     if (result === UserEventResponse.APPROVED) {
       userEvents[index].status = UserEventStatus.JOINED;
     } else {
       userEvents.splice(index, 1);
     }
+
     setDocument('users', fromUser.id, {
       ...fromUser.data,
       notifications: userNotifications,
@@ -111,15 +112,15 @@ const NotificationRequest = ({
     const { data } = currentUser;
 
     let tempNotifications: string[] = [];
-    if (data.notifications) tempNotifications = [...data.notifications];
-    const index = tempNotifications.findIndex((notif) => notif === nid);
-    if (index >= 0) {
-      tempNotifications.splice(index, 1);
-      setDocument('users', currentUser.id, {
-        ...data,
-        notifications: tempNotifications,
-      }).then(() => navigate('/notifications'));
-    }
+    if (!data.notifications) return;
+
+    console.log(nid);
+    tempNotifications = data.notifications.filter((notif) => notif !== nid);
+    console.log(tempNotifications);
+    setDocument('users', currentUser.id, {
+      ...data,
+      notifications: tempNotifications,
+    }).then(() => navigate('/notifications'));
   };
 
   const createResponse = (result: UserEventResponse) => {

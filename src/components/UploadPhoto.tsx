@@ -1,8 +1,4 @@
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, Upload } from 'antd';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { displayError, displayMessage } from '../common/AlertMessage';
-import { setDocument } from '../common/Firebase';
 import { FileUpload, FlexRowLeft } from './Components.styled';
 
 interface UploadPhotoProps {

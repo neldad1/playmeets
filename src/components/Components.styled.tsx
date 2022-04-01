@@ -18,6 +18,7 @@ const FlexRowCenter = styled.div`
 
 const Label = styled.label`
   margin-right: 1em;
+  font-size: 18px;
 `;
 
 const FileUpload = styled.input`

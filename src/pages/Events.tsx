@@ -15,7 +15,11 @@ const Events = () => {
     if (!Boolean(state.length)) return;
 
     const appEvents: AppEvent[] = [];
-    const eventDocs = await getDocuments('events', 'location.state', state);
+    const eventDocs = await getDocuments(
+      'events',
+      'location.addrObject.state',
+      state
+    );
     eventDocs.forEach((eventDoc) => {
       appEvents.push({ id: eventDoc.id, data: eventDoc.data() as EventData });
     });
@@ -27,6 +31,8 @@ const Events = () => {
       getEventsInCurrentLocState(currentUser.data.state);
     }
   }, [currentUser]);
+
+  console.log(events);
 
   return (
     <PagesContainer>

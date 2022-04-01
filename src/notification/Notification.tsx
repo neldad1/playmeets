@@ -40,6 +40,7 @@ const Notification = ({ appNotification }: NotificationProps) => {
           case NotificationType.REQUEST:
             navigate(`/notifications/${appNotification.id}`);
             break;
+          case NotificationType.RESPONSE:
           case NotificationType.COMMENT:
             navigate(`/events/${appNotification.data.eid}`);
             break;

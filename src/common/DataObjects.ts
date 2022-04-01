@@ -1,6 +1,6 @@
 import { StepInfo } from './Interfaces';
 
-const AuStates = ['ACT', 'NSW', 'NT', 'SA', 'Tas', 'Vic', 'WA'];
+const AuStates = ['ACT', 'NSW', 'NT', 'SA', 'TAS', 'VIC', 'WA'];
 
 const Steps: StepInfo[] = [
   {

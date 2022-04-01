@@ -21,13 +21,20 @@ interface AppUser {
   data: UserData;
 }
 
-interface Location {
-  name: string;
-  city: string;
-  state: string;
+interface VenueAddress {
+  number: string;
+  zipcode: string;
   street: string;
   suburb: string;
-  zipcode: number;
+  city: string;
+  state: string;
+  country: string;
+}
+interface Location {
+  name: string;
+  addrObject: VenueAddress;
+  fullAddr: string;
+  place_id: string;
 }
 
 interface CommentData {
@@ -84,6 +91,7 @@ export type {
   UserData,
   AppUser,
   Location,
+  VenueAddress,
   CommentData,
   EvtComment,
   EventData,

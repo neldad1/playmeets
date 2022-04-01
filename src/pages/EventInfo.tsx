@@ -58,8 +58,11 @@ const EventInfo = () => {
         </FlexBlock>
         <FlexBlock>
           <DateAndTime timestamp={data.timestamp} />
-          <Address location={data.location} />
-          <LocationMap location={data.location} />
+          <Address fullAddr={data.location.fullAddr} />
+          <LocationMap
+            name={data.location.name}
+            place_id={data.location.place_id}
+          />
         </FlexBlock>
       </FlexSpaceBetween>
     </PagesContainer>

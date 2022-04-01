@@ -9,6 +9,12 @@ import { EventData, Location } from '../common/Interfaces';
 import LocationStates from '../components/LocationState';
 import UploadPhoto from '../components/UploadPhoto';
 import { PagesContainer } from './Pages.styled';
+import GooglePlacesAutocomplete, {
+  geocodeByPlaceId,
+} from 'react-google-places-autocomplete';
+import { getVenueAddress } from '../common/getVenueAddress';
+import FormItem from 'antd/lib/form/FormItem';
+import { Label } from '../components/Components.styled';
 
 const CreateEvent = () => {
   const [user] = useAuthState(auth);
@@ -17,6 +23,8 @@ const CreateEvent = () => {
   const [imgUrl, setImgUrl] = useState(
     'https://res.cloudinary.com/playmeets/image/upload/v1647919105/playmeets/pm-event-defaultPhoto_ez2rxu.png'
   );
+  const [autoValue, setAutoValue] = useState('');
+  const [venueAddr, setVenueAddr] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,16 +35,23 @@ const CreateEvent = () => {
     });
   };
 
-  const setLocValue = (attr: Object) => {
-    setLocation({ ...location, ...attr });
-  };
-
-  const onLocationStateChange = (locationState: string) => {
-    setLocValue({ state: locationState });
+  const onVenueChange = (venue: any) => {
+    setAutoValue(venue.label);
+    geocodeByPlaceId(venue.value.place_id).then((result) => {
+      setVenueAddr(result[0].formatted_address);
+      const addr = getVenueAddress(result[0].address_components);
+      const venueLocation = {
+        name: venue.value.structured_formatting.main_text,
+        place_id: venue.value.place_id,
+        fullAddr: result[0].formatted_address,
+        addrObject: addr,
+      };
+      setLocation(venueLocation);
+    });
   };
 
   const onDatePickerChange = (value: any, dateString: string) => {
-    setAppEvtValue({ timestamp: new Date(dateString).getTime() });
+    setAppEvtValue({ timestamp: new Date(dateString).getTime() / 1000 });
   };
 
   const onCreateEventButtonClick = () => {
@@ -47,13 +62,15 @@ const CreateEvent = () => {
   };
 
   useEffect(() => {
-    if (location.zipcode) {
-      setAppEvtValue({ location: location });
+    if (location) {
+      console.log(location.name);
+      setAppEvtValue({ location });
     }
-  }, [location.zipcode]);
+  }, [location]);
 
   useEffect(() => {
-    setAppEvtValue({ photo: imgUrl, createdBy: user?.uid });
+    const attendees = [user?.uid];
+    setAppEvtValue({ photo: imgUrl, createdBy: user?.uid, attendees });
   }, [imgUrl]);
 
   return (
@@ -70,53 +87,6 @@ const CreateEvent = () => {
         <Form.Item label="Date and Time" required>
           <DatePicker showTime onChange={onDatePickerChange} />
         </Form.Item>
-        <Form.Item label="Venue" required>
-          <Input
-            placeholder="Where will the event take place?"
-            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-              setLocValue({ name: target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item label="Street number and name" required>
-          <Input
-            placeholder="Enter the venue's street number and name"
-            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-              setLocValue({ street: target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item label="Suburb" required>
-          <Input
-            placeholder="Enter the suburb"
-            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-              setLocValue({ suburb: target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item label="City" required>
-          <Input
-            placeholder="Enter the city near the venue"
-            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-              setLocValue({ city: target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item label="State" required>
-          <LocationStates
-            size="middle"
-            onLocationStateChange={onLocationStateChange}
-          />
-        </Form.Item>
-        <Form.Item label="Zipcode" required>
-          <Input
-            type="number"
-            placeholder="Enter the zipcode"
-            onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-              setLocValue({ zipcode: target.value })
-            }
-          />
-        </Form.Item>
         <Form.Item label="Maximum Number of Attendees" required>
           <Input
             type="number"
@@ -126,6 +96,24 @@ const CreateEvent = () => {
             }
           />
         </Form.Item>
+        <Form.Item label="Venue" required>
+          <GooglePlacesAutocomplete
+            apiKey={process.env.REACT_APP_FIREBASE_API_KEY}
+            minLengthAutocomplete={5}
+            selectProps={{
+              value: autoValue,
+              onChange: onVenueChange,
+            }}
+            autocompletionRequest={{
+              componentRestrictions: {
+                country: ['au'],
+              },
+              types: ['establishment'],
+            }}
+          />
+          <p>{location.name}</p>
+          <p>{venueAddr}</p>
+        </Form.Item>
         <Form.Item label="Details" required>
           <TextArea
             placeholder="Additional information"
@@ -134,7 +122,7 @@ const CreateEvent = () => {
             }
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item label="Upload image.">
           <UploadPhoto setImgUrl={setImgUrl} />
         </Form.Item>
         <Form.Item>

@@ -30,14 +30,7 @@ const toFirestoreEvt = (data: EventData): EventData => {
     timestamp: data.timestamp,
     photo: data.photo ?? '',
     slots: data.slots,
-    location: {
-      name: data.location.name,
-      street: data.location.street,
-      suburb: data.location.suburb,
-      city: data.location.city,
-      state: data.location.state,
-      zipcode: data.location.zipcode,
-    },
+    location: data.location,
     attendees: data.attendees ?? [],
     details: data.details,
   };
