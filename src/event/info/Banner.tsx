@@ -1,3 +1,4 @@
+import { getEvtPhotoUrlWithTransform } from '../../common/Helpers';
 import { AppUser, Location } from '../../common/Interfaces';
 import Avatar from '../../components/Avatar';
 import {
@@ -12,6 +13,7 @@ interface BannerProps {
   timestamp: number;
   location: Location;
   eid: string;
+  eventPhoto: string;
   eventTitle: string;
   host: AppUser;
 }
@@ -19,6 +21,7 @@ interface BannerProps {
 const Banner = ({
   timestamp,
   location,
+  eventPhoto,
   eid,
   eventTitle,
   host,
@@ -26,14 +29,18 @@ const Banner = ({
   let hostName = 'unknown';
   if (host) hostName = host.data.displayName;
   return (
-    <BannerContainer>
+    <BannerContainer
+      photoUrl={getEvtPhotoUrlWithTransform(
+        eventPhoto,
+        '/c_fit,e_brightness:-25'
+      )}
+    >
       <FlexBlock>
         <EvtTitle>{eventTitle}</EvtTitle>
         <FlexRowLeft>
-          <Avatar imgSrc={host.data.photoUrl} />
+          <Avatar size={50} imgSrc={host.data.photoUrl} />
           <FlexBlock>
-            <Label>created by</Label>
-            <Label>{hostName}</Label>
+            <Label>created by {hostName}</Label>
           </FlexBlock>
         </FlexRowLeft>
       </FlexBlock>

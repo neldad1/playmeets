@@ -43,6 +43,7 @@ const EventInfo = () => {
         timestamp={data.timestamp}
         location={data.location}
         eventTitle={data.title}
+        eventPhoto={data.photo}
         host={host}
         eid={appEvent.id}
       />

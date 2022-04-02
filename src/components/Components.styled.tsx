@@ -33,9 +33,9 @@ const FlexBlock = styled.div`
   padding-bottom: 0.75em;
 `;
 
-const AvatarIcon = styled.img`
-  width: 30px;
-  height: 30px;
+const AvatarIcon = styled.img<{ size?: number }>`
+  width: ${({ size = 30 }) => `${size}px`};
+  height: ${({ size = 30 }) => `${size}px`};
   border-radius: 2em;
 `;
 
