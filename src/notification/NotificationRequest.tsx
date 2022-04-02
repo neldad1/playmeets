@@ -7,18 +7,14 @@ import {
   NotificationType,
   UserEventResponse,
   UserEventStatus,
-} from '../../common/Enums';
-import { addDocument, getDocument, setDocument } from '../../common/Firebase';
-import { getSubstring, isObjectEmpty } from '../../common/Helpers';
-import {
-  EventData,
-  NotificationData,
-  UserEvent,
-} from '../../common/Interfaces';
-import { FlexRowCenter, Label } from '../../components/Components.styled';
-import { CurrentUserContext } from '../../context/CurrentUser';
-import { UsersWithinStateContext } from '../../context/UsersWithinState';
-import { FlexColumn } from '../../pages/Pages.styled';
+} from '../common/Enums';
+import { addDocument, getDocument, setDocument } from '../common/Firebase';
+import { getSubstring } from '../common/Helpers';
+import { EventData, UserEvent } from '../common/Interfaces';
+import { FlexRowCenter, Label } from '../components/Components.styled';
+import { CurrentUserContext } from '../context/CurrentUser';
+import { UsersWithinStateContext } from '../context/UsersWithinState';
+import { FlexColumn } from '../pages/Pages.styled';
 
 interface NotificationRequestProps {
   message: string;
@@ -51,34 +47,19 @@ const NotificationRequest = ({
       message: `${currentUser.data.displayName} has ${result} your request to join ${eventTitle}`,
     };
     addDocument('notifications', newNotification).then((notifDoc) => {
-      console.log('new notif: ', notifDoc?.id);
-      if (notifDoc) updateFromUser(notifDoc.id, result);
+      if (notifDoc) updateFromUser(result);
     });
   };
 
-  const updateNotification = () => {
-    getDocument('notifications', nid).then((notifDoc) => {
-      if (!notifDoc) return;
-      const notifData = notifDoc.data() as NotificationData;
-      notifData.status = NotificationStatus.READ;
-      setDocument('notifications', nid, notifData);
-    });
-  };
-
-  const updateFromUser = (
-    newNotificationId: string,
-    result: UserEventResponse
-  ) => {
+  const updateFromUser = (result: UserEventResponse) => {
     if (!fromUser) return;
 
-    const { notifications, events } = fromUser.data;
-
-    let userNotifications: string[] = [];
-    if (notifications) userNotifications = [...notifications];
-    userNotifications.push(newNotificationId);
+    const { events } = fromUser.data;
 
     let userEvents: UserEvent[] = [];
-    if (events) userEvents = [...events];
+    if (events) {
+      userEvents = [...events];
+    }
     const index = userEvents.findIndex((event) => event.eid === eid);
     if (index === -1) return;
 
@@ -90,9 +71,8 @@ const NotificationRequest = ({
 
     setDocument('users', fromUser.id, {
       ...fromUser.data,
-      notifications: userNotifications,
       events: userEvents,
-    });
+    }).then(() => navigate('/notifications'));
   };
 
   const updateEvent = () => {
@@ -102,42 +82,23 @@ const NotificationRequest = ({
       if (!eventDoc) return;
       const eventData = eventDoc.data() as EventData;
       let attendees: string[] = [];
-      if (eventData.attendees) attendees = [...eventData.attendees];
+      if (eventData.attendees) {
+        attendees = [...eventData.attendees];
+      }
       attendees.push(fromUser.id);
-      setDocument('events', eid, { ...eventData, attendeees: attendees });
+      setDocument('events', eid, { ...eventData, attendeees: attendees }).then(
+        () => navigate('/notifications')
+      );
     });
   };
 
-  const updateCurrentUser = () => {
-    const { data } = currentUser;
-
-    let tempNotifications: string[] = [];
-    if (!data.notifications) return;
-
-    console.log(nid);
-    tempNotifications = data.notifications.filter((notif) => notif !== nid);
-    console.log(tempNotifications);
-    setDocument('users', currentUser.id, {
-      ...data,
-      notifications: tempNotifications,
-    }).then(() => navigate('/notifications'));
-  };
-
-  const createResponse = (result: UserEventResponse) => {
-    if (!currentUser || !fromUser) return;
-
-    updateNotification();
-    addNotificationResponse(result);
-    if (result === UserEventResponse.APPROVED) updateEvent();
-    updateCurrentUser();
-  };
-
   const onApproveButtonClick = () => {
-    createResponse(UserEventResponse.APPROVED);
+    addNotificationResponse(UserEventResponse.APPROVED);
+    updateEvent();
   };
 
   const onRejectButtonClick = () => {
-    createResponse(UserEventResponse.REJECTED);
+    addNotificationResponse(UserEventResponse.REJECTED);
   };
 
   return (

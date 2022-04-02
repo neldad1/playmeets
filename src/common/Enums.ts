@@ -1,7 +1,7 @@
 enum NotificationType {
-  REQUEST = 'REQ',
-  RESPONSE = 'RESP',
-  COMMENT = 'COMMENT',
+  REQUEST = 'Request to Join',
+  RESPONSE = 'Response to Request',
+  COMMENT = 'Comment',
 }
 
 enum UserEventResponse {

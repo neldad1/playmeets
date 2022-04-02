@@ -2,8 +2,10 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 import { Badge, Menu } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../../common/Firebase';
+import { NotificationStatus, NotificationType } from '../../common/Enums';
+import { getDocuments, logout } from '../../common/Firebase';
 import { isObjectEmpty } from '../../common/Helpers';
+import { NotificationData } from '../../common/Interfaces';
 import { CurrentUserContext } from '../../context/CurrentUser';
 import Avatar from '../Avatar';
 import NotificationIcon from './NotificationIcon';
@@ -17,10 +19,17 @@ const AuthMenu = () => {
 
   useEffect(() => {
     if (!isObjectEmpty(currentUser)) {
-      const count = currentUser.data.notifications
-        ? currentUser.data.notifications.length
-        : 0;
-      setTotalNotifications(count);
+      let count = 0;
+      getDocuments('notifications', 'to', currentUser.id).then((notifDocs) => {
+        notifDocs.forEach((notifDoc) => {
+          const notifData = notifDoc.data() as NotificationData;
+          if (notifData.status === NotificationStatus.UNREAD) {
+            ++count;
+            console.log('Count: ', count);
+          }
+        });
+        setTotalNotifications(count);
+      });
     }
   }, [currentUser]);
 

@@ -15,14 +15,15 @@ const FlexColumn = styled.div`
   margin: 5% auto;
   justify-content: space-evenly;
   /* border: 1px solid; */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
   gap: 1em;
   padding: 1em;
   border-radius: 0.25rem;
   @media only screen and (max-width: 768px) {
     width: 100%;
     margin: 0;
-    padding: 1em;
+    height: 80vh;
+    box-shadow: none;
   }
 `;
 

@@ -2,19 +2,23 @@ import { Divider } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../common/Firebase';
-import { NotificationData } from '../common/Interfaces';
+import { AppUser, NotificationData } from '../common/Interfaces';
 import { UsersWithinStateContext } from '../context/UsersWithinState';
-import { PagesContainer } from './Pages.styled';
+import { FlexColumn, PagesContainer } from './Pages.styled';
 import ProfileInfo from '../user/ProfileInfo';
-import NotificationRequest from '../notification/info/NotificationRequest';
+import NotificationRequest from '../notification/NotificationRequest';
+import { UserEventStatus } from '../common/Enums';
+import { isObjectEmpty } from '../common/Helpers';
 
 const NotificationInfo = () => {
   const { notificationId } = useParams();
+  const { getAppUserById } = useContext(UsersWithinStateContext);
+
   const [notificationData, setNotificationData] = useState<NotificationData>(
     {} as NotificationData
   );
-
-  const { getAppUserById } = useContext(UsersWithinStateContext);
+  const [isResponded, setIsResponded] = useState(false);
+  const [fromUser, setFromUser] = useState<AppUser>({} as AppUser);
 
   useEffect(() => {
     getDocument('notifications', notificationId).then((notifDoc) => {
@@ -23,19 +27,42 @@ const NotificationInfo = () => {
     });
   }, [notificationId]);
 
-  const fromUser = getAppUserById(notificationData.from);
+  useEffect(() => {
+    if (!notificationData) return;
 
-  console.log(notificationData);
+    const user = getAppUserById(notificationData.from);
+    if (!user || !user.data.events) return;
+
+    setFromUser(user);
+
+    const userEvent = user.data.events.find(
+      (event) => event.eid === notificationData.eid
+    );
+    console.log(user);
+    if (!userEvent) {
+      setIsResponded(true); //the host rejected the request to join
+    } else {
+      setIsResponded(userEvent?.status === UserEventStatus.JOINED);
+    }
+  }, [notificationData]);
+
+  if (isObjectEmpty(fromUser))
+    return <PagesContainer>The user is not existing.</PagesContainer>;
+
   return (
     <PagesContainer offset="1em">
-      {fromUser && <ProfileInfo appUser={fromUser} />}
+      {<ProfileInfo appUser={fromUser} />}
       <Divider />
-      <NotificationRequest
-        message={notificationData.message}
-        from={notificationData.from}
-        nid={notificationId as string}
-        eid={notificationData.eid}
-      />
+      {isResponded ? (
+        <FlexColumn>You have already responded to this request.</FlexColumn>
+      ) : (
+        <NotificationRequest
+          message={notificationData.message}
+          from={notificationData.from}
+          nid={notificationId as string}
+          eid={notificationData.eid}
+        />
+      )}
     </PagesContainer>
   );
 };

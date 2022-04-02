@@ -32,8 +32,6 @@ const Events = () => {
     }
   }, [currentUser]);
 
-  console.log(events);
-
   return (
     <PagesContainer>
       <EventList list={events} />

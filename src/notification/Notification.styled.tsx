@@ -12,12 +12,20 @@ const NotificationRectangle = styled.p`
   line-height: 2.5em;
 `;
 
-const NotificationContainer = styled.div`
+const NotificationListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  background-color: whitesmoke;
-  padding: 1em;
+  width: 50%;
+  margin: 0 auto;
+
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    margin: 0;
+  }
 `;
 
-export { NotificationRectangle, NotificationContainer };
+const UnreadIndicator = styled.img`
+  width: 2em;
+`;
+
+export { NotificationRectangle, NotificationListContainer, UnreadIndicator };

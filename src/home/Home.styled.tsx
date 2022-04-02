@@ -10,6 +10,8 @@ const HowItWorksContainer = styled.div`
   align-items: center;
   gap: 2em;
   overflow: hidden;
+  margin-top: 2em;
+  margin-bottom: 2em;
 `;
 
 const Title = styled.h2`
@@ -51,8 +53,14 @@ const StepContainer = styled.div`
 const StepBox = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: flex-start;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const LandingContainer = styled.div<{ url: string }>`
@@ -65,9 +73,11 @@ const LandingContainer = styled.div<{ url: string }>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 2em;
 
   @media only screen and (max-width: 768px) {
     flex-direction: column-reverse;
+    gap: 1em;
   }
 `;
 
@@ -100,6 +110,10 @@ const LandingTitle = styled.h1`
   line-height: 1.15em;
   font-size: 4em;
   color: white;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 3em;
+  }
 `;
 
 const LandingAuthor = styled.span`
@@ -120,9 +134,9 @@ const LandingImageContainer = styled.div`
 
 const LandingImage = styled.img`
   width: 30em;
-  /* @media only screen and (max-width: 768px) {
-    width: 300px;
-  } */
+  @media only screen and (max-width: 768px) {
+    width: 25em;
+  }
 `;
 
 export {

@@ -11,8 +11,10 @@ import {
   LandingInfo,
   LandingTitle,
 } from './Home.styled';
+import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
+  const navigate = useNavigate();
   return (
     <>
       <LandingContainer url={BackgroundImg}>
@@ -25,7 +27,9 @@ const Landing = () => {
           </LandingTitle>
           <LandingAuthor>- Ralph Waldo Emerson</LandingAuthor>
           <ButtonContainer>
-            <Button type="primary">Sign up for more details</Button>
+            <Button type="primary" onClick={() => navigate('/signup')}>
+              Sign up for more details
+            </Button>
           </ButtonContainer>
         </LandingInfo>
       </LandingContainer>
