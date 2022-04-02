@@ -7,6 +7,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  getAdditionalUserInfo,
+  AdditionalUserInfo,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -34,10 +36,11 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = async (isSignUp: boolean) => {
+const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
-    if (isSignUp) {
+    const info = getAdditionalUserInfo(res)
+    if (info?.isNewUser) {
       const user = res.user;
       setDocument('users', user.uid, {
         name: user.displayName,

@@ -2,7 +2,7 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 import { Badge, Menu } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { NotificationStatus, NotificationType } from '../../common/Enums';
+import { NotificationStatus } from '../../common/Enums';
 import { getDocuments, logout } from '../../common/Firebase';
 import { isObjectEmpty } from '../../common/Helpers';
 import { NotificationData } from '../../common/Interfaces';
@@ -25,7 +25,6 @@ const AuthMenu = () => {
           const notifData = notifDoc.data() as NotificationData;
           if (notifData.status === NotificationStatus.UNREAD) {
             ++count;
-            console.log('Count: ', count);
           }
         });
         setTotalNotifications(count);
@@ -35,7 +34,7 @@ const AuthMenu = () => {
 
   if (isObjectEmpty(currentUser)) return <></>;
 
-  const imgSrc = currentUser.data.photoUrl ?? '';
+  const imgSrc = currentUser.data?.photoUrl ?? '';
 
   return (
     <Menu

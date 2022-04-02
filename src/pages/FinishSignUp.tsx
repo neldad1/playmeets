@@ -1,6 +1,5 @@
-import { useState, ChangeEvent, useContext, useEffect } from 'react';
+import { useState, ChangeEvent, useContext } from 'react';
 import { Form, Input, Button, Checkbox, Select } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 import { FlexColumn } from './Pages.styled';
 import { displayError } from '../common/AlertMessage';
@@ -8,6 +7,8 @@ import { AuStates } from '../common/DataObjects';
 import { setDocument } from '../common/Firebase';
 import { CurrentUserContext } from '../context/CurrentUser';
 import { isObjectEmpty } from '../common/Helpers';
+import { useNavigate } from 'react-router-dom';
+import { FlexBlock } from '../components/Components.styled';
 
 const { Option } = Select;
 
@@ -22,20 +23,12 @@ const FinishSignUp = () => {
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isObjectEmpty(currentUser)) return;
-    if (currentUser.data.state) {
-      console.log('User exists. Navigate to Events.');
-      if (currentUser.data.state.length > 0) navigate('/events');
-    }
-  }, [currentUser]);
-
   const onCheckboxGrpChange = (checkedValues: CheckboxValueType[]) => {
     setAgeGroup(checkedValues as string[]);
   };
 
   const onFinish = async () => {
-    if (!currentUser) return;
+    if (isObjectEmpty(currentUser)) return;
     const userData = {
       ...currentUser.data,
       displayName,
@@ -44,7 +37,9 @@ const FinishSignUp = () => {
       ageGroup,
     };
     try {
-      setDocument('users', currentUser.id, userData);
+      setDocument('users', currentUser.id, userData).then(() =>
+        navigate('/events')
+      );
     } catch (err) {
       displayError(`An error occurred while adding the user: ${err}`);
     }
@@ -84,9 +79,11 @@ const FinishSignUp = () => {
         </Form.Item>
         <Checkbox.Group options={AGE_GROUP} onChange={onCheckboxGrpChange} />
         <Form.Item>
-          <Button type="primary" onClick={onFinish}>
-            Finish Signing Up
-          </Button>
+          <FlexBlock>
+            <Button type="primary" onClick={onFinish}>
+              Finish Signing Up
+            </Button>
+          </FlexBlock>
         </Form.Item>
       </Form>
     </FlexColumn>

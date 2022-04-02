@@ -63,7 +63,7 @@ const LogIn = () => {
             <Button
               type="primary"
               danger
-              onClick={() => signInWithGoogle(false)}
+              onClick={() => signInWithGoogle()}
               icon={<GoogleOutlined />}
             >
               Login with Google

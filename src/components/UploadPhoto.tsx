@@ -15,6 +15,7 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
   useEffect(() => {
     if (!file) return;
     uploadFileInCloudinary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   const uploadFileInCloudinary = () => {
@@ -32,17 +33,6 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
         setUploadStatus('Uploaded');
       });
   };
-
-  // onChange(info: any) {
-  //   if (info.file.status !== 'uploading') {
-  //     console.log(info.file, info.fileList);
-  //   }
-  //   if (info.file.status === 'done') {
-  //     displayMessage(`${info.file.name} file uploaded successfully`);
-  //   } else if (info.file.status === 'error') {
-  //     displayError(`${info.file.name} file upload failed.`);
-  //   }
-  // }
 
   return (
     <FlexRowLeft>

@@ -1,23 +1,21 @@
 import { Button, DatePicker, Form, Input } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, addDocument } from '../common/Firebase';
+import { addDocument, setDocument } from '../common/Firebase';
 import { toFirestoreEvt } from '../common/Helpers';
-import { EventData, Location } from '../common/Interfaces';
-import LocationStates from '../components/LocationState';
+import { EventData, Location, UserEvent } from '../common/Interfaces';
 import UploadPhoto from '../components/UploadPhoto';
 import { PagesContainer } from './Pages.styled';
 import GooglePlacesAutocomplete, {
   geocodeByPlaceId,
 } from 'react-google-places-autocomplete';
 import { getVenueAddress } from '../common/getVenueAddress';
-import FormItem from 'antd/lib/form/FormItem';
-import { Label } from '../components/Components.styled';
+import { CurrentUserContext } from '../context/CurrentUser';
+import { UserEventStatus } from '../common/Enums';
 
 const CreateEvent = () => {
-  const [user] = useAuthState(auth);
+  //const [user] = useAuthState(auth);
   const [eventData, setEventData] = useState<EventData>({} as EventData);
   const [location, setLocation] = useState<Location>({} as Location);
   const [imgUrl, setImgUrl] = useState(
@@ -26,6 +24,7 @@ const CreateEvent = () => {
   const [autoValue, setAutoValue] = useState('');
   const [venueAddr, setVenueAddr] = useState('');
 
+  const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   const setAppEvtValue = (attr: Object) => {
@@ -57,20 +56,33 @@ const CreateEvent = () => {
   const onCreateEventButtonClick = () => {
     const data = toFirestoreEvt(eventData);
     addDocument('events', data).then((result) => {
-      if (result) navigate('/events');
+      if (result) {
+        let userEvents: UserEvent[] = [];
+        const hostedEvent = { eid: result.id, status: UserEventStatus.HOSTING };
+        if (currentUser.data.events) {
+          userEvents = [...currentUser.data.events, hostedEvent];
+        } else {
+          userEvents.push(hostedEvent);
+        }
+        setDocument('users', currentUser.id, {
+          ...currentUser.data,
+          events: userEvents,
+        }).then(() => navigate('/events'));
+      }
     });
   };
 
   useEffect(() => {
     if (location) {
-      console.log(location.name);
       setAppEvtValue({ location });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   useEffect(() => {
-    const attendees = [user?.uid];
-    setAppEvtValue({ photo: imgUrl, createdBy: user?.uid, attendees });
+    const attendees = [currentUser?.id];
+    setAppEvtValue({ photo: imgUrl, createdBy: currentUser?.id, attendees });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgUrl]);
 
   return (

@@ -21,6 +21,8 @@ const UsersWithinStateProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (isObjectEmpty(currentUser)) return;
+    if (!currentUser.data.state) return;
+
     const appUsers: AppUser[] = [];
     getDocuments('users', 'state', currentUser.data.state).then((userDocs) => {
       userDocs.forEach((userDoc) => {

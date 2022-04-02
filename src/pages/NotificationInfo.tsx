@@ -38,12 +38,13 @@ const NotificationInfo = () => {
     const userEvent = user.data.events.find(
       (event) => event.eid === notificationData.eid
     );
-    console.log(user);
+
     if (!userEvent) {
       setIsResponded(true); //the host rejected the request to join
     } else {
       setIsResponded(userEvent?.status === UserEventStatus.JOINED);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notificationData]);
 
   if (isObjectEmpty(fromUser))

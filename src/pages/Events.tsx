@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getDocuments } from '../common/Firebase';
 import { isObjectEmpty } from '../common/Helpers';
 import { AppEvent, EventData } from '../common/Interfaces';
@@ -10,9 +11,12 @@ const Events = () => {
   const [events, setEvents] = useState<AppEvent[]>([]);
 
   const currentUser = useContext(CurrentUserContext);
+  const navigate = useNavigate();
 
   const getEventsInCurrentLocState = async (state: string = '') => {
-    if (!Boolean(state.length)) return;
+    if (!Boolean(state.length)) {
+      navigate('/finish-signup');
+    }
 
     const appEvents: AppEvent[] = [];
     const eventDocs = await getDocuments(

@@ -47,11 +47,11 @@ const NotificationRequest = ({
       message: `${currentUser.data.displayName} has ${result} your request to join ${eventTitle}`,
     };
     addDocument('notifications', newNotification).then((notifDoc) => {
-      if (notifDoc) updateFromUser(result);
+      if (notifDoc) updateFromUser(result, notifDoc.id);
     });
   };
 
-  const updateFromUser = (result: UserEventResponse) => {
+  const updateFromUser = (result: UserEventResponse, newNotifId: string) => {
     if (!fromUser) return;
 
     const { events } = fromUser.data;

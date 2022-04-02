@@ -1,12 +1,11 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { Button, Form, Input } from 'antd';
 import { FlexColumn, Logo } from './Pages.styled';
 import {
-  auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from '../common/Firebase';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GoogleOutlined } from '@ant-design/icons';
 import { displayError } from '../common/AlertMessage';
 import { FlexBlock, FlexRowLeft, Label } from '../components/Components.styled';
@@ -20,15 +19,6 @@ const SignUp = () => {
     if (!name) displayError('Please enter name');
     registerWithEmailAndPassword(name, email, password);
   };
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const subscriber = auth.onAuthStateChanged(
-      (user) => Boolean(user) && navigate('/finish-signup')
-    );
-    return subscriber; // unsubscribe on unmount
-  }, [navigate]);
 
   return (
     <FlexColumn>
@@ -77,7 +67,7 @@ const SignUp = () => {
             <Button
               type="primary"
               danger
-              onClick={() => signInWithGoogle(true)}
+              onClick={() => signInWithGoogle()}
               icon={<GoogleOutlined />}
             >
               Continue with Google

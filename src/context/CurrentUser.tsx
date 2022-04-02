@@ -14,7 +14,7 @@ const CurrentUserProvider: React.FC = ({ children }) => {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const unAuthPath = ['/login', '/signup', '/finishsignup'];
+  const unAuthPath = ['/login', '/signup'];
   const shouldRedirect = !unAuthPath.includes(pathname);
 
   useEffect(() => {
@@ -33,12 +33,15 @@ const CurrentUserProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (isObjectEmpty(authUser)) return;
+
     const unsub = onSnapshot(doc(db, 'users', authUser.uid), (doc) => {
       if (doc) {
+        const userData = doc.data() as UserData;
         setCurrentUser({
           id: authUser.uid,
-          data: doc.data() as UserData,
+          data: userData,
         });
+        if (!userData.state) navigate('/finish-signup');
       }
     });
     return unsub;
@@ -46,7 +49,7 @@ const CurrentUserProvider: React.FC = ({ children }) => {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {currentUser && children}
+      {children}
     </CurrentUserContext.Provider>
   );
 };

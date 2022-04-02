@@ -15,23 +15,27 @@ const CurrentUserEvents = () => {
   );
   const [createdEvents, setCreatedEvents] = useState<AppEvent[]>([]);
   const [faveEvents, setFaveEvents] = useState<AppEvent[]>([]);
-  const [allUserEvents, setAllsUserEvents] = useState<AppEvent[]>([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<AppEvent[]>([]);
 
   const currentUser = useContext(CurrentUserContext);
   const { data } = currentUser;
 
   useEffect(() => {
     if (isObjectEmpty(currentUser)) return;
+
     let appEvents: AppEvent[] = [];
-    getDocuments('events', 'location.state', data.state).then((eventDocs) => {
-      eventDocs.forEach((eventDoc) => {
-        appEvents.push({
-          id: eventDoc.id,
-          data: eventDoc.data() as EventData,
+    getDocuments('events', 'location.addrObject.state', data.state).then(
+      (eventDocs) => {
+        eventDocs.forEach((eventDoc) => {
+          appEvents.push({
+            id: eventDoc.id,
+            data: eventDoc.data() as EventData,
+          });
         });
-      });
-      setAllEventsWithinState(appEvents);
-    });
+        setAllEventsWithinState(appEvents);
+      }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   useEffect(() => {
@@ -39,6 +43,7 @@ const CurrentUserEvents = () => {
     getHostingEvents();
     getFaveEvents();
     getUserEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allEventsWithinState]);
 
   const getHostingEvents = () => {
@@ -64,12 +69,10 @@ const CurrentUserEvents = () => {
   const getUserEvents = () => {
     if (!data.events) return;
 
-    const userEvents: AppEvent[] = [];
-    data.events.forEach((fave) => {
-      const userEvent = allEventsWithinState.find((evt) => evt.id === fave.eid);
-      if (userEvent) userEvents.push(userEvent);
-    });
-    setAllsUserEvents(userEvents);
+    const upcomingEvents = allEventsWithinState.filter(
+      (evt) => evt.data.timestamp > Date.now() / 1000
+    );
+    setUpcomingEvents(upcomingEvents);
   };
 
   if (!Boolean(allEventsWithinState.length))
@@ -78,9 +81,9 @@ const CurrentUserEvents = () => {
   return (
     <PagesContainer>
       <Tabs defaultActiveKey="1" centered={true}>
-        <TabPane tab="All" key="1">
+        <TabPane tab="Upcoming" key="1">
           <FlexRowLeft>
-            {allUserEvents.map((event) => (
+            {upcomingEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
           </FlexRowLeft>
