@@ -44,15 +44,13 @@
   font-size: 1.5em;
 }
 
-.antd-icon-action {
-  font-size: 2em;
-  color: midnightblue;
+.antd-icon-action svg {
+  font-size: 3.5em;
   cursor: pointer;
 }
 
-.antd-icon-action:hover {
-  color:aliceblue;
-  font-size: 2.5em;
+.antd-icon-action:hover svg{
+  color:#1890ff;
 }
 
 .antd-select {

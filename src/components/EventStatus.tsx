@@ -19,8 +19,14 @@ interface EventStatusProps {
   host: AppUser;
   eid: string;
   eventTitle: string;
+  isBigger?: boolean;
 }
-const EventStatus = ({ host, eid, eventTitle }: EventStatusProps) => {
+const EventStatus = ({
+  host,
+  eid,
+  eventTitle,
+  isBigger = false,
+}: EventStatusProps) => {
   const currentUser = useContext(CurrentUserContext);
 
   const updateHostNotifications = (nid: string) => {
@@ -60,12 +66,9 @@ const EventStatus = ({ host, eid, eventTitle }: EventStatusProps) => {
   };
 
   let toolTip = 'Request to Join';
+  const makeBigger = isBigger ? 'antd-icon-action' : '';
   let element = (
-    <UserAddOutlined
-      key="join"
-      onClick={onPlusClick}
-      className="antd-icon-action"
-    />
+    <UserAddOutlined key="join" onClick={onPlusClick} className={makeBigger} />
   );
 
   if (currentUser.data.events) {
@@ -73,19 +76,15 @@ const EventStatus = ({ host, eid, eventTitle }: EventStatusProps) => {
     if (userEvent) {
       switch (userEvent.status) {
         case UserEventStatus.PENDING:
-          element = (
-            <HourglassFilled key="pending" className="antd-icon-action" />
-          );
+          element = <HourglassFilled key="pending" className={makeBigger} />;
           toolTip = 'Request is pending';
           break;
         case UserEventStatus.JOINED:
-          element = <CheckOutlined key="joined" className="antd-icon-action" />;
+          element = <CheckOutlined key="joined" className={makeBigger} />;
           toolTip = 'You have joined this event.';
           break;
         case UserEventStatus.HOSTING:
-          element = (
-            <CarryOutOutlined key="hosting" className="antd-icon-action" />
-          );
+          element = <CarryOutOutlined key="hosting" className={makeBigger} />;
           toolTip = 'You are hosting this event.';
           break;
       }

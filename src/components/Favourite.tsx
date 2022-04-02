@@ -6,8 +6,9 @@ import { CurrentUserContext } from '../context/CurrentUser';
 
 interface FavouriteProps {
   eid: string;
+  isBigger?: boolean;
 }
-const Favourite = ({ eid }: FavouriteProps) => {
+const Favourite = ({ eid, isBigger = false }: FavouriteProps) => {
   const currentUser = useContext(CurrentUserContext);
   const isFavourite = currentUser.data?.favourites?.includes(eid);
 
@@ -31,19 +32,22 @@ const Favourite = ({ eid }: FavouriteProps) => {
     });
   };
 
+  const makeBigger = isBigger ? 'antd-icon-action' : '';
+  const tooltipTitle = isFavourite ? 'Remove from Faves' : 'Add to Faves';
+
   return (
-    <Tooltip title="Add to Fave" color="blue" placement="bottom">
+    <Tooltip title={tooltipTitle} color="blue" placement="bottom">
       {isFavourite ? (
         <HeartFilled
           key="fave-filled"
-          className="antd-icon-action"
           onClick={onUnFaveClick}
+          className={makeBigger}
         />
       ) : (
         <HeartOutlined
           key="fave-outlined"
-          className="antd-icon-action"
           onClick={onFaveClick}
+          className={makeBigger}
         />
       )}
     </Tooltip>

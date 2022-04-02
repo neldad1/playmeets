@@ -25,7 +25,7 @@ const BannerContainer = styled.div<{ photoUrl: string }>`
   flex-direction: row;
   justify-content: space-between;
   background-color: lightgrey;
-  padding: 1em;
+  padding: 1em 3em 1em 1em;
   background-image: url(${({ photoUrl }) => photoUrl});
   background-repeat: no-repeat;
   background-size: cover;

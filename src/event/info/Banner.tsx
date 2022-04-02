@@ -32,7 +32,7 @@ const Banner = ({
     <BannerContainer
       photoUrl={getEvtPhotoUrlWithTransform(
         eventPhoto,
-        '/c_fit,e_brightness:-25'
+        '/c_fill,e_brightness:-25'
       )}
     >
       <FlexBlock>

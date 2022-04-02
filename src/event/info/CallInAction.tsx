@@ -11,8 +11,13 @@ interface CallInActionProps {
 const CallInAction = ({ host, eid, eventTitle }: CallInActionProps) => {
   return (
     <FlexRowCenter>
-      <Favourite eid={eid} />
-      <EventStatus host={host} eid={eid} eventTitle={eventTitle} />
+      <Favourite eid={eid} isBigger={true} />
+      <EventStatus
+        host={host}
+        eid={eid}
+        eventTitle={eventTitle}
+        isBigger={true}
+      />
     </FlexRowCenter>
   );
 };
