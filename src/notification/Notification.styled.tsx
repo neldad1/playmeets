@@ -24,8 +24,4 @@ const NotificationListContainer = styled.div`
   }
 `;
 
-const UnreadIndicator = styled.img`
-  width: 2em;
-`;
-
-export { NotificationRectangle, NotificationListContainer, UnreadIndicator };
+export { NotificationRectangle, NotificationListContainer };

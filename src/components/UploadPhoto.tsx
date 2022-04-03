@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { FileUpload, FlexRowLeft } from './Components.styled';
+import { FileUpload, FlexBlock, Label } from './Components.styled';
 
 interface UploadPhotoProps {
   setImgUrl(url: string): void;
 }
 const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
   const [file, setFile] = useState<File>();
-  const [uploadStatus, setUploadStatus] = useState('Start Upload');
+  const [uploadStatus, setUploadStatus] = useState('');
 
   const onInputFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFile((event.target as HTMLInputElement).files?.[0]);
@@ -35,13 +35,14 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
   };
 
   return (
-    <FlexRowLeft>
+    <FlexBlock>
       <FileUpload
         type="file"
         onChange={onInputFileChange}
         title="Upload a photo"
         disabled={Boolean(file) || uploadStatus === 'Uploading'}
       />
+      <Label>{uploadStatus}</Label>
       {/* {<Button
         type="default"
         disabled={!Boolean(file) || uploadStatus === 'Uploaded'}
@@ -51,7 +52,7 @@ const UploadPhoto = ({ setImgUrl }: UploadPhotoProps) => {
         {uploadStatus}
       </Button> */}
       {/* <Upload name="file" customRequest={uploadFileInCloudinary} /> */}
-    </FlexRowLeft>
+    </FlexBlock>
   );
 };
 

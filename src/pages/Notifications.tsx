@@ -23,6 +23,14 @@ const Notifications = () => {
         };
         userNotifs.push(notif);
       });
+      if (userNotifs.length > 1) {
+        userNotifs.sort((notif1, notif2) => {
+          const ts1 = notif1.data.timestamp;
+          const ts2 = notif2.data.timestamp;
+          if (ts1 > ts2) return -1;
+          else return 1;
+        });
+      }
       setAppNotifications(userNotifs);
     });
   }, [currentUser]);

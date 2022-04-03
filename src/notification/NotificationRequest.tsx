@@ -86,8 +86,8 @@ const NotificationRequest = ({
         attendees = [...eventData.attendees];
       }
       attendees.push(fromUser.id);
-      setDocument('events', eid, { ...eventData, attendeees: attendees }).then(
-        () => navigate('/notifications')
+      setDocument('events', eid, { ...eventData, attendees }).then(() =>
+        navigate('/notifications')
       );
     });
   };

@@ -1,15 +1,11 @@
 import { List } from 'antd';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NotificationStatus, NotificationType } from '../common/Enums';
 import { setDocument } from '../common/Firebase';
 import { AppNotification } from '../common/Interfaces';
 import Avatar from '../components/Avatar';
-import {
-  NotificationListContainer,
-  UnreadIndicator,
-} from './Notification.styled';
-import NewNotification from '../assets/notificationSymbol.svg';
+import { NotificationListContainer } from './Notification.styled';
 import { UsersWithinStateContext } from '../context/UsersWithinState';
 
 interface NotificationListProps {
@@ -55,9 +51,6 @@ const NotificationList = ({ appNotifications }: NotificationListProps) => {
               title={<span>{item.data.type}</span>}
               description={item.data.message}
             />
-            {item.data.status === NotificationStatus.UNREAD && (
-              <UnreadIndicator src={NewNotification} alt="new" />
-            )}
           </List.Item>
         )}
       />

@@ -36,6 +36,15 @@ const Events = () => {
     }
   }, [currentUser]);
 
+  if (events.length > 1) {
+    events.sort((event1, event2) => {
+      const ts1 = event1.data.timestamp;
+      const ts2 = event2.data.timestamp;
+      if (ts1 < ts2) return -1;
+      else return 1;
+    });
+  }
+
   return (
     <PagesContainer>
       <EventList list={events} />

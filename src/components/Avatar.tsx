@@ -5,16 +5,22 @@ import { AvatarIcon } from './Components.styled';
 interface AvatarProps {
   size?: number;
   imgSrc?: string;
+  bordered?: boolean;
 }
 
-const Avatar = ({ imgSrc, size }: AvatarProps) => {
+const Avatar = ({ imgSrc, size, bordered }: AvatarProps) => {
   const [url, setUrl] = useState(imgSrc || defaultAvatar);
 
   useEffect(() => {
     setUrl(imgSrc || defaultAvatar);
   }, [imgSrc]);
   return (
-    <AvatarIcon size={size} src={url} onError={() => setUrl(defaultAvatar)} />
+    <AvatarIcon
+      size={size}
+      src={url}
+      bordered={bordered}
+      onError={() => setUrl(defaultAvatar)}
+    />
   );
 };
 

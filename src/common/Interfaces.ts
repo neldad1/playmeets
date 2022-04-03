@@ -72,6 +72,7 @@ interface NotificationData {
   eid: string;
   message: string;
   status: number;
+  timestamp: number;
 }
 
 interface AppNotification {

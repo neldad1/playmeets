@@ -84,6 +84,7 @@ const LandingContainer = styled.div<{ url: string }>`
 const LandingInfo = styled.div`
   flex: 1;
   text-align: left;
+  animation: 3s fade-in;
 
   .ant-btn {
     height: 50px;
@@ -134,6 +135,8 @@ const LandingImageContainer = styled.div`
 
 const LandingImage = styled.img`
   width: 30em;
+  animation: 2s slide-left;
+
   @media only screen and (max-width: 768px) {
     width: 25em;
   }

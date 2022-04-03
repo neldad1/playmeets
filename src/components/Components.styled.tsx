@@ -33,10 +33,11 @@ const FlexBlock = styled.div`
   padding-bottom: 0.75em;
 `;
 
-const AvatarIcon = styled.img<{ size?: number }>`
+const AvatarIcon = styled.img<{ size?: number; bordered?: boolean }>`
   width: ${({ size = 30 }) => `${size}px`};
   height: ${({ size = 30 }) => `${size}px`};
-  border-radius: 2em;
+  border: ${({ bordered }) => bordered && `2px white solid`};
+  border-radius: 50%;
 `;
 
 export { FlexRowLeft, FlexRowCenter, Label, FileUpload, FlexBlock, AvatarIcon };
