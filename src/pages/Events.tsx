@@ -41,7 +41,8 @@ const Events = () => {
       const ts1 = event1.data.timestamp;
       const ts2 = event2.data.timestamp;
       if (ts1 < ts2) return -1;
-      else return 1;
+      if (ts1 > ts2) return 1;
+      return 0;
     });
   }
 

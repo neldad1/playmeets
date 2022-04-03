@@ -1,4 +1,4 @@
-import { PagesContainer } from '../pages/Pages.styled';
+import { PagesContainer } from './Pages.styled';
 import { Tabs } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../context/CurrentUser';
@@ -32,6 +32,17 @@ const CurrentUserEvents = () => {
             data: eventDoc.data() as EventData,
           });
         });
+
+        if (appEvents.length > 1) {
+          appEvents.sort((event1, event2) => {
+            const ts1 = event1.data.timestamp;
+            const ts2 = event2.data.timestamp;
+            if (ts1 < ts2) return -1;
+            if (ts1 > ts2) return 1;
+            return 0;
+          });
+        }
+
         setAllEventsWithinState(appEvents);
       }
     );
@@ -69,9 +80,15 @@ const CurrentUserEvents = () => {
   const getUserEvents = () => {
     if (!data.events) return;
 
-    const upcomingEvents = allEventsWithinState.filter(
-      (evt) => evt.data.timestamp > Date.now() / 1000
-    );
+    const upcomingEvents: AppEvent[] = [];
+
+    data.events.forEach((userEvt) => {
+      const userEvent = allEventsWithinState.find(
+        (evt) => userEvt.eid === evt.id
+      );
+      if (userEvent && userEvent.data.timestamp > Date.now() / 1000)
+        upcomingEvents.push(userEvent);
+    });
     setUpcomingEvents(upcomingEvents);
   };
 

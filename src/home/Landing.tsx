@@ -26,7 +26,6 @@ const Landing = () => {
 
   let buttonCaption = 'Sign up for more details';
   if (currentUser) {
-    console.log(currentUser);
     if (currentUser?.data?.state) buttonCaption = 'View the events';
   }
 

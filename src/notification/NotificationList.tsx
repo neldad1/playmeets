@@ -7,28 +7,43 @@ import { AppNotification } from '../common/Interfaces';
 import Avatar from '../components/Avatar';
 import { NotificationListContainer } from './Notification.styled';
 import { UsersWithinStateContext } from '../context/UsersWithinState';
+import { CurrentUserContext } from '../context/CurrentUser';
 
 interface NotificationListProps {
   appNotifications: AppNotification[];
 }
 const NotificationList = ({ appNotifications }: NotificationListProps) => {
   const { getAppUserById } = useContext(UsersWithinStateContext);
+  const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   const onListItemClick = (appNotification: AppNotification) => {
     const { type, eid } = appNotification.data;
-
+    //change the notification status
     setDocument('notifications', appNotification.id, {
       ...appNotification.data,
       status: NotificationStatus.READ,
-    }).then(() => {
-      const link =
-        type === NotificationType.REQUEST
-          ? `/notifications/${appNotification.id}`
-          : `/events/${eid}`;
+    })
+      .then(() => {
+        //remove notification from the current user
+        const { data } = currentUser;
+        const userNotifs = data.notifications?.filter(
+          (notif) => notif !== appNotification.id
+        );
+        setDocument('users', appNotification.data.to, {
+          ...data,
+          notifications: userNotifs,
+        });
+      })
+      .then(() => {
+        //navigate to next route
+        const link =
+          type === NotificationType.REQUEST
+            ? `/notifications/${appNotification.id}`
+            : `/events/${eid}`;
 
-      navigate(link);
-    });
+        navigate(link);
+      });
   };
 
   const getUrl = (uid: string): string => {

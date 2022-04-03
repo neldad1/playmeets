@@ -28,7 +28,8 @@ const Notifications = () => {
           const ts1 = notif1.data.timestamp;
           const ts2 = notif2.data.timestamp;
           if (ts1 > ts2) return -1;
-          else return 1;
+          if (ts1 < ts2) return 1;
+          return 0;
         });
       }
       setAppNotifications(userNotifs);

@@ -51,11 +51,15 @@ const NotificationRequest = ({
     });
   };
 
-  const updateFromUser = (result: UserEventResponse, newNotifId: string) => {
+  const updateFromUser = (
+    result: UserEventResponse,
+    responseNotifId: string
+  ) => {
     if (!fromUser) return;
 
-    const { events } = fromUser.data;
+    const { events, notifications } = fromUser.data;
 
+    //update or remove the event
     let userEvents: UserEvent[] = [];
     if (events) {
       userEvents = [...events];
@@ -69,9 +73,18 @@ const NotificationRequest = ({
       userEvents.splice(index, 1);
     }
 
+    //add the response notification
+    let userNotifs: string[] = [];
+    if (notifications) {
+      userNotifs = [...notifications];
+    }
+    userNotifs.push(responseNotifId);
+
+    //set the new user data in firestore
     setDocument('users', fromUser.id, {
       ...fromUser.data,
       events: userEvents,
+      notifications: userNotifs,
     }).then(() => navigate('/notifications'));
   };
 

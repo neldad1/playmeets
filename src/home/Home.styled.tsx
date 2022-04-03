@@ -138,7 +138,7 @@ const LandingImage = styled.img`
   animation: 2s slide-left;
 
   @media only screen and (max-width: 768px) {
-    width: 25em;
+    width: 20em;
   }
 `;
 

@@ -50,7 +50,7 @@ const EventInfo = () => {
       <FlexSpaceBetween>
         <FlexBlock>
           <Details details={data.details} />
-          <Attendees attendees={data.attendees} />
+          <Attendees attendees={data.attendees} slots={data.slots} />
           <Comments
             eid={eventId as string}
             eventTitle={data.title}

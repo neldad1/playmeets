@@ -7,7 +7,7 @@ import { UsersWithinStateContext } from '../context/UsersWithinState';
 import { FlexColumn, PagesContainer } from './Pages.styled';
 import ProfileInfo from '../user/ProfileInfo';
 import NotificationRequest from '../notification/NotificationRequest';
-import { UserEventStatus } from '../common/Enums';
+import { NotificationStatus, UserEventStatus } from '../common/Enums';
 import { isObjectEmpty } from '../common/Helpers';
 
 const NotificationInfo = () => {
@@ -31,18 +31,20 @@ const NotificationInfo = () => {
     if (!notificationData) return;
 
     const user = getAppUserById(notificationData.from);
-    if (!user || !user.data.events) return;
+    if (!user) return;
 
     setFromUser(user);
 
-    const userEvent = user.data.events.find(
-      (event) => event.eid === notificationData.eid
-    );
-
-    if (!userEvent) {
-      setIsResponded(true); //the host rejected the request to join
-    } else {
-      setIsResponded(userEvent?.status === UserEventStatus.JOINED);
+    console.log(user);
+    if (user.data.events) {
+      const userEvent = user.data.events.find(
+        (event) => event.eid === notificationData.eid
+      );
+      console.log(userEvent);
+      setIsResponded(
+        userEvent?.status === UserEventStatus.JOINED &&
+          notificationData.status === NotificationStatus.READ
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notificationData]);

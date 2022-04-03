@@ -6,8 +6,9 @@ import { Subtitle } from './EventDetails.styled';
 
 interface AttendeesProps {
   attendees: string[];
+  slots: number;
 }
-const Attendees = ({ attendees }: AttendeesProps) => {
+const Attendees = ({ attendees, slots }: AttendeesProps) => {
   const { getAppUserById } = useContext(UsersWithinStateContext);
 
   const avatars = attendees.map((attendee) => {
@@ -17,7 +18,7 @@ const Attendees = ({ attendees }: AttendeesProps) => {
 
   return (
     <FlexBlock>
-      <Subtitle>Attendees</Subtitle>
+      <Subtitle>Attendees (maximum of {slots})</Subtitle>
       <FlexRowLeft>{avatars}</FlexRowLeft>
     </FlexBlock>
   );
