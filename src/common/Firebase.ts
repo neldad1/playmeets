@@ -8,7 +8,6 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   getAdditionalUserInfo,
-  AdditionalUserInfo,
 } from 'firebase/auth';
 import {
   getFirestore,

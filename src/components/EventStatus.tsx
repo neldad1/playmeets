@@ -12,7 +12,7 @@ import {
   UserEventStatus,
 } from '../common/Enums';
 import { addDocument, setDocument } from '../common/Firebase';
-import { AppUser } from '../common/Interfaces';
+import { AppUser, UserEvent } from '../common/Interfaces';
 import { CurrentUserContext } from '../context/CurrentUser';
 
 interface EventStatusProps {
@@ -38,14 +38,15 @@ const EventStatus = ({
   };
 
   const updateCurrentUserEvents = () => {
+    let userEvents: UserEvent[] = [];
     if (currentUser.data.events) {
-      const userEvents = currentUser.data.events;
-      userEvents.push({ eid, status: UserEventStatus.PENDING });
-      setDocument('users', currentUser.id, {
-        ...currentUser.data,
-        events: userEvents,
-      });
+      userEvents = [...currentUser.data.events];
     }
+    userEvents.push({ eid, status: UserEventStatus.PENDING });
+    setDocument('users', currentUser.id, {
+      ...currentUser.data,
+      events: userEvents,
+    });
   };
 
   const onPlusClick = (event: SyntheticEvent) => {
