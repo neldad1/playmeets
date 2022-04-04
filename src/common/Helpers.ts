@@ -56,6 +56,8 @@ const isObjectEmpty = (obj: Object) => !Object.keys(obj).length;
 const UPLOAD_STR = 'upload';
 const IMG_TRANSFORM = '/c_fill,h_150,w_300';
 const getEvtPhotoUrlWithTransform = (photoUrl: string, transform = IMG_TRANSFORM) => {
+  if(!Boolean(photoUrl.length)) return photoUrl;
+
   const uploadIndex = photoUrl.indexOf(UPLOAD_STR);
   const newPhotoUrl =
     photoUrl.slice(0, uploadIndex + UPLOAD_STR.length) +

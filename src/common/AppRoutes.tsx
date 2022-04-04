@@ -13,6 +13,8 @@ import Profile from '../pages/Profile';
 import SignUp from '../pages/SignUp';
 import Terms from '../pages/Terms';
 import CurrentUserEvents from '../pages/CurrentUserEvents';
+import EventForm from '../event/EventForm';
+import EditEvent from '../event/EditEvent';
 
 const PrivateRoute = () => {
   return (
@@ -54,6 +56,9 @@ const AppRoutes = () => {
       </Route>
       <Route path="/yourevents" element={<PrivateRoute />}>
         <Route path="/yourevents" element={<CurrentUserEvents />} />
+      </Route>
+      <Route path="/events/:eventId/edit" element={<PrivateRoute />}>
+        <Route path="/events/:eventId/edit" element={<EditEvent />} />
       </Route>
     </Routes>
   );

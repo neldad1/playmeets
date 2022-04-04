@@ -15,7 +15,6 @@ import { CurrentUserContext } from '../context/CurrentUser';
 import { UserEventStatus } from '../common/Enums';
 
 const CreateEvent = () => {
-  //const [user] = useAuthState(auth);
   const [eventData, setEventData] = useState<EventData>({} as EventData);
   const [location, setLocation] = useState<Location>({} as Location);
   const [imgUrl, setImgUrl] = useState(

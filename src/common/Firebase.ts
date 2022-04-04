@@ -19,6 +19,7 @@ import {
   where,
   getDocs,
   getDoc,
+  deleteDoc,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -97,9 +98,8 @@ const setDocument = async (path: string, pathId: string, data: Object) => {
   }
 };
 
-const getDocument = async (path: string, value: any) => {
-  const docRef = doc(db, path, value);
-  const docSnap = await getDoc(docRef);
+const getDocument = async (path: string, id: string | undefined) => {
+  const docSnap = await getDoc(doc(db, path, id as string));
   return docSnap.exists() ? docSnap : undefined;
 };
 
@@ -107,6 +107,10 @@ const getDocuments = async (path: string, field: string, value: string) => {
   const q = query(collection(db, path), where(field, '==', value));
   return await getDocs(q);
 };
+
+const deleteDocument = async (path: string, id: string | undefined) => {
+  return await deleteDoc(doc(db, path, id as string));
+}
 
 export {
   auth,
@@ -119,4 +123,5 @@ export {
   setDocument,
   getDocument,
   getDocuments,
+  deleteDocument,
 };

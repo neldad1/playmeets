@@ -35,12 +35,10 @@ const NotificationInfo = () => {
 
     setFromUser(user);
 
-    console.log(user);
     if (user.data.events) {
       const userEvent = user.data.events.find(
         (event) => event.eid === notificationData.eid
       );
-      console.log(userEvent);
       setIsResponded(
         userEvent?.status === UserEventStatus.JOINED &&
           notificationData.status === NotificationStatus.READ
