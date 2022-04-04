@@ -47,7 +47,7 @@ const Events = () => {
   }
 
   return (
-    <PagesContainer>
+    <PagesContainer offset="1em">
       <EventList list={events} />
     </PagesContainer>
   );

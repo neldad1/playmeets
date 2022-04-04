@@ -6,7 +6,7 @@ import { AppEvent, EventData } from '../common/Interfaces';
 import { isObjectEmpty } from '../common/Helpers';
 import EventCard from '../event/card/EventCard';
 import { getDocuments } from '../common/Firebase';
-import { FlexRowLeft } from '../components/Components.styled';
+import { FlexRowCenter, FlexRowLeft } from '../components/Components.styled';
 const { TabPane } = Tabs;
 
 const CurrentUserEvents = () => {
@@ -99,25 +99,25 @@ const CurrentUserEvents = () => {
     <PagesContainer>
       <Tabs defaultActiveKey="1" centered={true}>
         <TabPane tab="Upcoming" key="1">
-          <FlexRowLeft>
+          <FlexRowCenter>
             {upcomingEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
-          </FlexRowLeft>
+          </FlexRowCenter>
         </TabPane>
         <TabPane tab="Created" key="2">
-          <FlexRowLeft>
+          <FlexRowCenter>
             {createdEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
-          </FlexRowLeft>
+          </FlexRowCenter>
         </TabPane>
         <TabPane tab="Favourites" key="3">
-          <FlexRowLeft>
+          <FlexRowCenter>
             {faveEvents.map((event) => (
               <EventCard key={event.id} appEvt={event} />
             ))}
-          </FlexRowLeft>
+          </FlexRowCenter>
         </TabPane>
       </Tabs>
     </PagesContainer>

@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { AppUser } from '../common/Interfaces';
-import { FlexBlock, FlexRowLeft, Label } from '../components/Components.styled';
+import {
+  FlexBlock,
+  FlexRowCenter,
+  FlexRowLeft,
+  Label,
+} from '../components/Components.styled';
 import AgeGroup from './AgeGroup';
 import EventsCount from './EventsCount';
 import Location from './Location';
@@ -26,7 +31,7 @@ const ProfileInfo = ({ appUser }: ProfileInfoProps) => {
   if (!avatarUrl) setAvatarUrl(defaultAvatar);
 
   return (
-    <FlexRowLeft>
+    <FlexRowCenter>
       <FlexBlock>
         <ProfileAvatar
           src={avatarUrl}
@@ -41,7 +46,7 @@ const ProfileInfo = ({ appUser }: ProfileInfoProps) => {
         <AgeGroup ageGroups={ageGroup} />
         <EventsCount events={events || []} />
       </FlexBlock>
-    </FlexRowLeft>
+    </FlexRowCenter>
   );
 };
 

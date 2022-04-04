@@ -15,9 +15,29 @@ const FullLogo = styled.img`
   padding-left: 2em;
 `;
 
-const Bell = styled.img`
-  width: 30px;
-  height: 30px;
+const MenuItemIcon = styled.img`
+  width: 40px;
+  height: 40px;
+  @media only screen and (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
-export { HeaderCont, FullLogo, Bell };
+const MenuItemText = styled.label`
+  font-size: 14px;
+`;
+
+const MenuItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  @media only screen and (max-width: 768px) {
+    flex-direction: row;
+    justify-content: left;
+    gap: 0.25em;
+  }
+`;
+
+export { HeaderCont, FullLogo, MenuItemIcon, MenuItemText, MenuItemContainer };
