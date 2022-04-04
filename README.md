@@ -26,3 +26,4 @@ This application is written in React Typescript and is the final project for Gen
 - react-google-places-autocomplete
 - react-firebase-hooks
 
+[View latest deployed version.](https://link-url-here.org)
