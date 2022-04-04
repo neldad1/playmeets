@@ -54,6 +54,7 @@ const EmptyComment = ({
       eid,
       status: NotificationStatus.UNREAD,
       message,
+      timestamp: Math.round(Date.now() / 1000),
     };
     addDocument('notifications', notifData).then((notifDoc) => {
       if (notifDoc && toUser) {

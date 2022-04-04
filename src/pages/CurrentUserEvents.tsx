@@ -86,7 +86,7 @@ const CurrentUserEvents = () => {
       const userEvent = allEventsWithinState.find(
         (evt) => userEvt.eid === evt.id
       );
-      if (userEvent && userEvent.data.timestamp > Date.now() / 1000)
+      if (userEvent && userEvent.data.timestamp > Math.round(Date.now() / 1000))
         upcomingEvents.push(userEvent);
     });
     setUpcomingEvents(upcomingEvents);

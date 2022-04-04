@@ -58,6 +58,7 @@ const EventStatus = ({
       eid: eid,
       status: NotificationStatus.UNREAD,
       message: `${currentUser.data.displayName} has requested to join ${eventTitle}`,
+      timestamp: Math.round(Date.now() / 1000),
     };
     addDocument('notifications', newNotification).then((notifDoc) => {
       if (notifDoc) updateHostNotifications(notifDoc.id);

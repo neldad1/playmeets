@@ -1,38 +1,20 @@
 import { MenuFoldOutlined } from '@ant-design/icons';
-import { Badge, Menu } from 'antd';
+import { Menu } from 'antd';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { NotificationStatus } from '../../common/Enums';
 import { getDocuments, logout } from '../../common/Firebase';
 import { isObjectEmpty } from '../../common/Helpers';
 import { NotificationData } from '../../common/Interfaces';
 import { CurrentUserContext } from '../../context/CurrentUser';
-import Avatar from '../Avatar';
-import { FlexBlock } from '../Components.styled';
-import { MenuItemContainer, MenuItemText } from './Header.styled';
 import HeaderIcon from './HeaderIcon';
-import NotificationIcon from './HeaderIcon';
+import CreateEventSolid from '../../assets/headerIcons/createEvent.png';
+import NotificationSolid from '../../assets/headerIcons/notification.png';
+import UserEventsSolid from '../../assets/headerIcons/userEvents.png';
+import LogoutSolid from '../../assets/headerIcons/logout.png';
+import ProfileSolid from '../../assets/headerIcons/profile.png';
+import IconWithLabel from './IconWithLabel';
 
 const { SubMenu } = Menu;
-
-interface MenuIconProps {
-  title: string;
-  link: string;
-  icon: JSX.Element;
-}
-const MenuIcon = ({ title, link, icon }: MenuIconProps) => {
-  const navigate = useNavigate();
-
-  const onItemClick = () => {
-    if (Boolean(link.length)) navigate(link);
-  };
-  return (
-    <MenuItemContainer onClick={onItemClick}>
-      {icon}
-      <MenuItemText>{title}</MenuItemText>
-    </MenuItemContainer>
-  );
-};
 
 const AuthMenu = () => {
   const [totalNotifications, setTotalNotifications] = useState(0);
@@ -67,12 +49,11 @@ const AuthMenu = () => {
       <Menu.Item
         key="createevent"
         icon={
-          <MenuIcon
+          <IconWithLabel
             title="Create an Event"
             link="/create-event"
-            icon={
-              <HeaderIcon imgSrc={require('../../assets/createevent.png')} />
-            }
+            direction="column"
+            icon={<HeaderIcon imgSrc={CreateEventSolid} />}
           />
         }
       />
@@ -80,10 +61,12 @@ const AuthMenu = () => {
       <Menu.Item
         key="notification"
         icon={
-          <MenuIcon
+          <IconWithLabel
             title="Notifications"
             link="/notifications"
-            icon={<HeaderIcon imgSrc={require('../../assets/bellIcon.png')} />}
+            direction="column"
+            badgeCount={totalNotifications}
+            icon={<HeaderIcon imgSrc={NotificationSolid} />}
           />
         }
       />
@@ -91,22 +74,45 @@ const AuthMenu = () => {
       <SubMenu
         key="subMenu"
         icon={
-          <MenuIcon
+          <IconWithLabel
             title="Profile"
-            link=""
+            direction="column"
             icon={<HeaderIcon imgSrc={imgSrc} />}
           />
         }
       >
-        <Menu.Item key="yourevents">
-          <Link to="/yourevents"> Your Events</Link>
-        </Menu.Item>
-        <Menu.Item key="profile">
-          <Link to="/profile"> Profile</Link>
-        </Menu.Item>
-        <Menu.Item key="logout" onClick={logout}>
-          Logout
-        </Menu.Item>
+        <Menu.Item
+          key="yourevents"
+          icon={
+            <IconWithLabel
+              title="Your Events"
+              link="/yourevents"
+              icon={<HeaderIcon imgSrc={UserEventsSolid} />}
+            />
+          }
+        />
+
+        <Menu.Item
+          key="profile"
+          icon={
+            <IconWithLabel
+              title="Profile"
+              link="/yourevents"
+              icon={<HeaderIcon imgSrc={ProfileSolid} />}
+            />
+          }
+        />
+
+        <Menu.Item
+          key="logout"
+          onClick={logout}
+          icon={
+            <IconWithLabel
+              title="Logout"
+              icon={<HeaderIcon imgSrc={LogoutSolid} />}
+            />
+          }
+        />
       </SubMenu>
     </Menu>
   );

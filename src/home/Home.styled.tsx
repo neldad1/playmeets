@@ -135,7 +135,7 @@ const LandingImageContainer = styled.div`
 
 const LandingImage = styled.img`
   width: 30em;
-  animation: 2s slide-left;
+  animation: 3s slide-left;
 
   @media only screen and (max-width: 768px) {
     width: 20em;

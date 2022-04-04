@@ -18,6 +18,7 @@ const FullLogo = styled.img`
 const MenuItemIcon = styled.img`
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   @media only screen and (max-width: 768px) {
     width: 30px;
     height: 30px;
@@ -26,12 +27,16 @@ const MenuItemIcon = styled.img`
 
 const MenuItemText = styled.label`
   font-size: 14px;
+  line-height: 1.5;
+  color: #004aad;
 `;
 
-const MenuItemContainer = styled.div`
+const MenuItemContainer = styled.div<{ direction: string }>`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: ${({ direction }) => direction};
+  justify-content: ${({ direction }) =>
+    direction === `column` ? `flex-end` : `left`};
+  gap: ${({ direction }) => (direction === `column` ? `0` : `0.25em`)};
   align-items: center;
   @media only screen and (max-width: 768px) {
     flex-direction: row;
