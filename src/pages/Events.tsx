@@ -4,7 +4,7 @@ import { getDocuments } from '../common/Firebase';
 import { isObjectEmpty } from '../common/Helpers';
 import { AppEvent, EventData } from '../common/Interfaces';
 import { CurrentUserContext } from '../context/CurrentUser';
-import EventList from '../event/list/EventList';
+import EventList from '../event/EventList';
 import { PagesContainer } from './Pages.styled';
 
 const Events = () => {

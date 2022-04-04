@@ -38,7 +38,12 @@ const Banner = ({
       <FlexBlock>
         <EvtTitle>{eventTitle}</EvtTitle>
         <FlexRowLeft>
-          <Avatar size={60} bordered imgSrc={host.data.photoUrl} />
+          <Avatar
+            size={60}
+            bordered
+            imgSrc={host.data.photoUrl}
+            displayName={host.data.displayName}
+          />
           <FlexBlock>
             <Label>created by {hostName}</Label>
           </FlexBlock>

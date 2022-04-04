@@ -16,7 +16,10 @@ const CommentItem = ({ commentData }: CommentItemProps) => {
   const user = getAppUserById(commentData.uid);
   return (
     <FlexStart>
-      <Avatar imgSrc={user?.data.photoUrl} />
+      <Avatar
+        imgSrc={user?.data.photoUrl}
+        displayName={user?.data.displayName}
+      />
       <FlexBlock>
         <InfoDisplay>{commentData.comment}</InfoDisplay>
         <CommentTime>{toDaysAgo(commentData.timestamp)}</CommentTime>

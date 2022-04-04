@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDocument } from '../common/Firebase';
-import { AppEvent, EventData } from '../common/Interfaces';
-import { PagesContainer } from '../pages/Pages.styled';
+import { getDocument } from '../../common/Firebase';
+import { AppEvent, EventData } from '../../common/Interfaces';
+import { PagesContainer } from '../../pages/Pages.styled';
 import EventForm from './EventForm';
 
 const EditEvent = () => {

@@ -13,7 +13,13 @@ const Attendees = ({ attendees, slots }: AttendeesProps) => {
 
   const avatars = attendees.map((attendee) => {
     const user = getAppUserById(attendee);
-    return <Avatar key={user?.id} imgSrc={user?.data.photoUrl} />;
+    return (
+      <Avatar
+        key={user?.id}
+        imgSrc={user?.data.photoUrl}
+        displayName={user?.data.displayName}
+      />
+    );
   });
 
   return (

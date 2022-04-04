@@ -13,8 +13,7 @@ import Profile from '../pages/Profile';
 import SignUp from '../pages/SignUp';
 import Terms from '../pages/Terms';
 import CurrentUserEvents from '../pages/CurrentUserEvents';
-import EventForm from '../event/EventForm';
-import EditEvent from '../event/EditEvent';
+import EditEvent from '../event/edit/EditEvent';
 
 const PrivateRoute = () => {
   return (

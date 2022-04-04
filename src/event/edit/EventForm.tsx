@@ -6,18 +6,23 @@ import GooglePlacesAutocomplete, {
   geocodeByPlaceId,
 } from 'react-google-places-autocomplete';
 import { useNavigate } from 'react-router-dom';
-import { UserEventStatus } from '../common/Enums';
-import { addDocument, deleteDocument, setDocument } from '../common/Firebase';
-import { getVenueAddress } from '../common/getVenueAddress';
+import { deleteDocument, setDocument } from '../../common/Firebase';
+import { getVenueAddress } from '../../common/getVenueAddress';
 import {
   getEvtPhotoUrlWithTransform,
   isObjectEmpty,
   toFirestoreEvt,
-} from '../common/Helpers';
-import { AppEvent, EventData, Location, UserEvent } from '../common/Interfaces';
-import UploadPhoto from '../components/UploadPhoto';
-import { CurrentUserContext } from '../context/CurrentUser';
-import { EventPhoto } from './card/Card.styled';
+} from '../../common/Helpers';
+import {
+  AppEvent,
+  EventData,
+  Location,
+  UserEvent,
+} from '../../common/Interfaces';
+import { FlexRowLeft } from '../../components/Components.styled';
+import UploadPhoto from '../../components/UploadPhoto';
+import { CurrentUserContext } from '../../context/CurrentUser';
+import { EventPhoto } from '../card/Card.styled';
 
 interface EventFormProps {
   appEvent?: AppEvent;
@@ -183,12 +188,14 @@ const EventForm = ({
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" onClick={onSaveEventButtonClick}>
-          Save Event
-        </Button>
-        <Button type="primary" onClick={onDeleteEventButtonClick}>
-          Delete Event
-        </Button>
+        <FlexRowLeft>
+          <Button type="primary" onClick={onSaveEventButtonClick}>
+            Save Event
+          </Button>
+          <Button type="primary" onClick={onDeleteEventButtonClick}>
+            Delete Event
+          </Button>
+        </FlexRowLeft>
       </Form.Item>
     </Form>
   );

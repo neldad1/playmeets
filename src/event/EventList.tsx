@@ -1,6 +1,6 @@
-import { AppEvent } from '../../common/Interfaces';
-import { FlexRowCenter } from '../../components/Components.styled';
-import EventCard from '../card/EventCard';
+import { AppEvent } from '../common/Interfaces';
+import { FlexRowCenter } from '../components/Components.styled';
+import EventCard from './card/EventCard';
 
 interface EventListProps {
   list: AppEvent[];
