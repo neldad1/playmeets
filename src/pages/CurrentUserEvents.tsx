@@ -6,7 +6,8 @@ import { AppEvent, EventData } from '../common/Interfaces';
 import { isObjectEmpty } from '../common/Helpers';
 import EventCard from '../event/card/EventCard';
 import { getDocuments } from '../common/Firebase';
-import { FlexRowCenter, FlexRowLeft } from '../components/Components.styled';
+import { FlexRowCenter } from '../components/Components.styled';
+import EmptyList from '../components/EmptyList';
 const { TabPane } = Tabs;
 
 const CurrentUserEvents = () => {
@@ -93,30 +94,54 @@ const CurrentUserEvents = () => {
   };
 
   if (!Boolean(allEventsWithinState.length))
-    return <PagesContainer offset="1em">No Events</PagesContainer>;
+    return (
+      <PagesContainer offset="1em">
+        <EmptyList />
+      </PagesContainer>
+    );
 
   return (
     <PagesContainer>
       <Tabs defaultActiveKey="1" centered={true}>
         <TabPane tab="Upcoming" key="1">
           <FlexRowCenter>
-            {upcomingEvents.map((event) => (
-              <EventCard key={event.id} appEvt={event} />
-            ))}
+            {Boolean() ? (
+              upcomingEvents.map((event) => (
+                <EventCard key={event.id} appEvt={event} />
+              ))
+            ) : (
+              <EmptyList
+                message="You don't have any upcoming events."
+                link="/events"
+                actionTitle="Browse Events"
+              />
+            )}
           </FlexRowCenter>
         </TabPane>
         <TabPane tab="Created" key="2">
           <FlexRowCenter>
-            {createdEvents.map((event) => (
-              <EventCard key={event.id} appEvt={event} />
-            ))}
+            {Boolean(createdEvents.length) ? (
+              createdEvents.map((event) => (
+                <EventCard key={event.id} appEvt={event} />
+              ))
+            ) : (
+              <EmptyList message="You haven't created an event." />
+            )}
           </FlexRowCenter>
         </TabPane>
         <TabPane tab="Favourites" key="3">
           <FlexRowCenter>
-            {faveEvents.map((event) => (
-              <EventCard key={event.id} appEvt={event} />
-            ))}
+            {Boolean(faveEvents.length) ? (
+              faveEvents.map((event) => (
+                <EventCard key={event.id} appEvt={event} />
+              ))
+            ) : (
+              <EmptyList
+                message="You haven't favourited any event."
+                link="/events"
+                actionTitle="Browse Events"
+              />
+            )}
           </FlexRowCenter>
         </TabPane>
       </Tabs>

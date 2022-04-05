@@ -13,6 +13,8 @@ import UserEventsSolid from '../../assets/headerIcons/userEvents.png';
 import LogoutSolid from '../../assets/headerIcons/logout.png';
 import ProfileSolid from '../../assets/headerIcons/profile.png';
 import IconWithLabel from './IconWithLabel';
+import DefaultAvatar from '../../assets/defaultAvatar.png';
+import { useLocation } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
@@ -20,6 +22,8 @@ const AuthMenu = () => {
   const [totalNotifications, setTotalNotifications] = useState(0);
 
   const currentUser = useContext(CurrentUserContext);
+
+  const location = useLocation();
 
   useEffect(() => {
     if (!isObjectEmpty(currentUser)) {
@@ -38,16 +42,17 @@ const AuthMenu = () => {
 
   if (isObjectEmpty(currentUser)) return <></>;
 
-  const imgSrc = currentUser.data?.photoUrl ?? '';
+  const imgSrc = currentUser.data?.photoUrl ?? DefaultAvatar;
 
   return (
     <Menu
       className="menu"
       mode="horizontal"
       overflowedIndicator={<MenuFoldOutlined className="antd-icon-action" />}
+      selectedKeys={[location.pathname]}
     >
       <Menu.Item
-        key="createevent"
+        key="/create-event"
         icon={
           <IconWithLabel
             title="Create an Event"
@@ -59,7 +64,7 @@ const AuthMenu = () => {
       />
 
       <Menu.Item
-        key="notification"
+        key="/notifications"
         icon={
           <IconWithLabel
             title="Notifications"
@@ -72,7 +77,7 @@ const AuthMenu = () => {
       />
 
       <SubMenu
-        key="subMenu"
+        key="/profile"
         icon={
           <IconWithLabel
             title="Profile"
@@ -82,7 +87,7 @@ const AuthMenu = () => {
         }
       >
         <Menu.Item
-          key="yourevents"
+          key="/yourevents"
           icon={
             <IconWithLabel
               title="Your Events"
@@ -93,11 +98,11 @@ const AuthMenu = () => {
         />
 
         <Menu.Item
-          key="profile"
+          key="/profile"
           icon={
             <IconWithLabel
               title="Profile"
-              link="/yourevents"
+              link="/profile"
               icon={<HeaderIcon imgSrc={ProfileSolid} />}
             />
           }

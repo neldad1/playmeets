@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getDocuments } from '../common/Firebase';
 import { isObjectEmpty } from '../common/Helpers';
 import { AppEvent, EventData } from '../common/Interfaces';
+import EmptyList from '../components/EmptyList';
 import { CurrentUserContext } from '../context/CurrentUser';
 import EventList from '../event/EventList';
 import { PagesContainer } from './Pages.styled';
@@ -34,6 +35,7 @@ const Events = () => {
     if (!isObjectEmpty(currentUser)) {
       getEventsInCurrentLocState(currentUser.data.state);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   if (events.length > 1) {
@@ -48,7 +50,7 @@ const Events = () => {
 
   return (
     <PagesContainer offset="1em">
-      <EventList list={events} />
+      {Boolean(events.length) ? <EventList list={events} /> : <EmptyList />}
     </PagesContainer>
   );
 };

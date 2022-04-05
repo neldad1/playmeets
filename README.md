@@ -18,6 +18,10 @@ This application is written in React Typescript and is the final project for Gen
 ### Deliverables
 - [x] Host in Heroku 
 
+### Add-Ons
+- Cloudinary API
+- Unit Test
+
 ## Library Used
 - Styled Components
 - Antd Components and Icons

@@ -40,4 +40,34 @@ const AvatarIcon = styled.img<{ size?: number; bordered?: boolean }>`
   border-radius: 50%;
 `;
 
-export { FlexRowLeft, FlexRowCenter, Label, FileUpload, FlexBlock, AvatarIcon };
+const EmptyListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  margin: 25% auto;
+  @media only screen and (max-width: 768px) {
+    width: 100vw;
+  }
+`;
+
+const EmptyListMessage = styled.p`
+  font-size: 1.25em;
+`;
+
+const EmptyListImage = styled.img`
+  width: 200px;
+  height: 200px;
+`;
+
+export {
+  FlexRowLeft,
+  FlexRowCenter,
+  Label,
+  FileUpload,
+  FlexBlock,
+  AvatarIcon,
+  EmptyListContainer,
+  EmptyListMessage,
+  EmptyListImage,
+};
