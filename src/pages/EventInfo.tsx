@@ -35,7 +35,7 @@ const EventInfo = () => {
   const { data } = appEvent;
 
   const host = getAppUserById(data.createdBy);
-  if (!host) return <>NO EVENT INFO</>;
+  if (!host) return <>NO HOST INFO</>;
 
   return (
     <PagesContainer offset="1em">

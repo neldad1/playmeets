@@ -77,7 +77,7 @@ const AuthMenu = () => {
       />
 
       <SubMenu
-        key="/profile"
+        key="submenu"
         icon={
           <IconWithLabel
             title="Profile"

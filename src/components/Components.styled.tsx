@@ -45,7 +45,8 @@ const EmptyListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 50vw;
-  margin: 25% auto;
+  padding-top: 10%;
+  margin: 0 auto;
   @media only screen and (max-width: 768px) {
     width: 100vw;
   }
