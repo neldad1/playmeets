@@ -14,20 +14,21 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../context/CurrentUser';
+import { isObjectEmpty } from '../common/Helpers';
 
 const Landing = () => {
   const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
 
-  const onButtonClick = () => {
-    if (!currentUser) navigate('/signup');
-    else navigate('/events');
-  };
-
   let buttonCaption = 'Sign up for more details';
-  if (currentUser) {
+  if (!isObjectEmpty(currentUser)) {
     if (currentUser?.data?.state) buttonCaption = 'View the events';
   }
+
+  const onButtonClick = () => {
+    if (buttonCaption.includes('Sign up')) navigate('/signup');
+    else navigate('/events');
+  };
 
   return (
     <>

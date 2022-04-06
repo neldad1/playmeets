@@ -92,7 +92,6 @@ const CurrentUserEvents = () => {
         userEvent &&
         userEvent.data.timestamp > Math.round(Date.now() / 1000)
       ) {
-        console.log('Adding...');
         upcomingEvents.push(userEvent);
       }
     });

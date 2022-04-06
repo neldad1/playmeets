@@ -24,6 +24,7 @@ const CurrentUserProvider: React.FC = ({ children }) => {
       } else {
         setAuthUser({} as User);
         if (shouldRedirect) {
+          setCurrentUser({} as AppUser);
           navigate('/');
         }
       }

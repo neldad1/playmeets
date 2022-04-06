@@ -4,6 +4,7 @@ import { AppNotification, NotificationData } from '../common/Interfaces';
 import { CurrentUserContext } from '../context/CurrentUser';
 import { PagesContainer } from './Pages.styled';
 import NotificationList from '../notification/NotificationList';
+import { isObjectEmpty } from '../common/Helpers';
 
 const Notifications = () => {
   const [appNotifications, setAppNotifications] = useState<AppNotification[]>(
@@ -12,7 +13,7 @@ const Notifications = () => {
   const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
-    if (!currentUser) return;
+    if (isObjectEmpty(currentUser)) return;
 
     getDocuments('notifications', 'to', currentUser.id).then((notifDocs) => {
       const userNotifs: AppNotification[] = [];

@@ -14,11 +14,15 @@ import SignUp from '../pages/SignUp';
 import Terms from '../pages/Terms';
 import CurrentUserEvents from '../pages/CurrentUserEvents';
 import EditEvent from '../event/edit/EditEvent';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../context/CurrentUser';
+import { isObjectEmpty } from './Helpers';
 
 const PrivateRoute = () => {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <UsersWithinStateProvider>
-      <Outlet />
+      {!isObjectEmpty(currentUser) ? <Outlet /> : <Home />}
     </UsersWithinStateProvider>
   );
 };
