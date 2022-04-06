@@ -1,10 +1,8 @@
 import { MenuFoldOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useContext, useEffect, useState } from 'react';
-import { NotificationStatus } from '../../common/Enums';
-import { getDocuments, logout } from '../../common/Firebase';
+import { logout } from '../../common/Firebase';
 import { isObjectEmpty } from '../../common/Helpers';
-import { NotificationData } from '../../common/Interfaces';
 import { CurrentUserContext } from '../../context/CurrentUser';
 import HeaderIcon from './HeaderIcon';
 import CreateEventSolid from '../../assets/headerIcons/createEvent.png';
@@ -28,15 +26,10 @@ const AuthMenu = () => {
   useEffect(() => {
     if (!isObjectEmpty(currentUser)) {
       let count = 0;
-      getDocuments('notifications', 'to', currentUser.id).then((notifDocs) => {
-        notifDocs.forEach((notifDoc) => {
-          const notifData = notifDoc.data() as NotificationData;
-          if (notifData.status === NotificationStatus.UNREAD) {
-            ++count;
-          }
-        });
-        setTotalNotifications(count);
-      });
+      if (currentUser.data.notifications) {
+        count = currentUser.data.notifications.length;
+      }
+      setTotalNotifications(count);
     }
   }, [currentUser]);
 
