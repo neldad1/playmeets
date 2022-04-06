@@ -87,8 +87,14 @@ const CurrentUserEvents = () => {
       const userEvent = allEventsWithinState.find(
         (evt) => userEvt.eid === evt.id
       );
-      if (userEvent && userEvent.data.timestamp > Math.round(Date.now() / 1000))
+
+      if (
+        userEvent &&
+        userEvent.data.timestamp > Math.round(Date.now() / 1000)
+      ) {
+        console.log('Adding...');
         upcomingEvents.push(userEvent);
+      }
     });
     setUpcomingEvents(upcomingEvents);
   };
@@ -105,7 +111,7 @@ const CurrentUserEvents = () => {
       <Tabs defaultActiveKey="1" centered={true}>
         <TabPane tab="Upcoming" key="1">
           <FlexRowCenter>
-            {Boolean() ? (
+            {Boolean(upcomingEvents.length) ? (
               upcomingEvents.map((event) => (
                 <EventCard key={event.id} appEvt={event} />
               ))
