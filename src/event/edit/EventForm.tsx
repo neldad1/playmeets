@@ -1,4 +1,4 @@
-import { Form, Input, DatePicker, Button } from 'antd';
+import { Form, Input, DatePicker, Button, Popconfirm } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import moment from 'moment';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
@@ -39,6 +39,7 @@ const EventForm = ({
   );
   const [autoValue, setAutoValue] = useState('');
   const [venueAddr, setVenueAddr] = useState('');
+  const [showPopconfirm, setShowPopconfirm] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
@@ -77,20 +78,9 @@ const EventForm = ({
   };
 
   const onDeleteEventButtonClick = () => {
-    deleteDocument('events', appEvent.id)
-      .then(() => {
-        let userEvents: UserEvent[] = [];
-        if (currentUser.data.events) {
-          userEvents = currentUser.data.events.filter(
-            (userEvt) => userEvt.eid !== appEvent.id
-          );
-        }
-        setDocument('users', currentUser.id, {
-          ...currentUser.data,
-          events: userEvents,
-        });
-      })
-      .then(() => navigate('/events'));
+    if (isEditEvent && !isObjectEmpty(appEvent)) {
+      setShowPopconfirm(true);
+    }
   };
 
   useEffect(() => {
@@ -123,6 +113,28 @@ const EventForm = ({
     setAppEvtValue({ photo: imgUrl, createdBy: currentUser?.id, attendees });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgUrl]);
+
+  const onPopupConfirm = () => {
+    if (!showPopconfirm) return;
+
+    /* User confirmed to delete the event */
+    new Promise((resolve) => {
+      deleteDocument('events', appEvent.id)
+        .then(() => {
+          let userEvents: UserEvent[] = [];
+          if (currentUser.data.events) {
+            userEvents = currentUser.data.events.filter(
+              (userEvt) => userEvt.eid !== appEvent.id
+            );
+          }
+          setDocument('users', currentUser.id, {
+            ...currentUser.data,
+            events: userEvents,
+          });
+        })
+        .then(() => navigate('/events'));
+    });
+  };
 
   if (isObjectEmpty(appEvent)) return <>Querying the event information.</>;
   return (
@@ -192,8 +204,20 @@ const EventForm = ({
           <Button type="primary" onClick={onSaveEventButtonClick}>
             Save Event
           </Button>
-          <Button type="primary" onClick={onDeleteEventButtonClick}>
-            Delete Event
+          <Popconfirm
+            title="Do you want to delete the event?"
+            cancelText="No"
+            okText="Yes"
+            visible={showPopconfirm}
+            onConfirm={onPopupConfirm}
+            onCancel={() => setShowPopconfirm(false)}
+          >
+            <Button type="primary" onClick={onDeleteEventButtonClick}>
+              Delete Event
+            </Button>
+          </Popconfirm>
+          <Button type="primary" onClick={() => navigate('/events')}>
+            Discard Changes
           </Button>
         </FlexRowLeft>
       </Form.Item>
