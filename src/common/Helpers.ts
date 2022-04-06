@@ -36,14 +36,6 @@ const toFirestoreEvt = (data: EventData): EventData => {
   };
 };
 
-const getUserData = (users: AppUser[], uid: string): UserData | undefined => {
-  let user;
-  if (users) {
-    user = users.find((user) => user.id === uid);
-  }
-  return user?.data;
-};
-
 const replaceSpaceWithCharacter = (
   inputStr: string,
   charReplacement: string
@@ -55,8 +47,11 @@ const isObjectEmpty = (obj: Object) => !Object.keys(obj).length;
 
 const UPLOAD_STR = 'upload';
 const IMG_TRANSFORM = '/c_fill,h_150,w_300';
-const getEvtPhotoUrlWithTransform = (photoUrl: string, transform = IMG_TRANSFORM) => {
-  if(!Boolean(photoUrl.length)) return photoUrl;
+const getEvtPhotoUrlWithTransform = (
+  photoUrl: string,
+  transform = IMG_TRANSFORM
+) => {
+  if (!Boolean(photoUrl.length)) return photoUrl;
 
   const uploadIndex = photoUrl.indexOf(UPLOAD_STR);
   const newPhotoUrl =
@@ -78,7 +73,6 @@ export {
   toFormattedDateTimeString,
   toDaysAgo,
   toFirestoreEvt,
-  getUserData,
   replaceSpaceWithCharacter,
   isObjectEmpty,
   getEvtPhotoUrlWithTransform,

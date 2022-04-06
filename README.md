@@ -31,3 +31,11 @@ This application is written in React Typescript and is the final project for Gen
 - react-firebase-hooks
 
 [View latest deployed version.](https://playmeets.herokuapp.com/)
+
+## Future Features Add-ons
+- [] Filter events by age-group, city or venue
+- [] Tabs for upcoming and past events
+- [] Edit user details
+- [] Navigate to user profile when the user's avatar is clicked.
+- [] Improve loading size
+- [] Improve accessibility

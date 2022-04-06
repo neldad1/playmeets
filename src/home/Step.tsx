@@ -13,7 +13,7 @@ const Step = ({ info }: StepProps) => {
   const url = require(`../${info.imgSrc}`);
   return (
     <StepContainer>
-      <StepImage src={url} alt="" />
+      <StepImage data-testid="step-image" src={url} alt="" />
       <StepTitle>{info.title}</StepTitle>
       <StepDescription>{info.description}</StepDescription>
     </StepContainer>

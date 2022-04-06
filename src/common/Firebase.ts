@@ -84,7 +84,6 @@ const addDocument = async (path: string, data: Object) => {
   try {
     return await addDoc(collection(db, path), data);
   } catch (err: unknown) {
-    console.log(err);
     displayError((err as Error).message);
   }
 };

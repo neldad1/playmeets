@@ -25,7 +25,7 @@ const LogIn = () => {
   return (
     <FlexColumn>
       <Link to="/">
-        <Logo src="/logo512.svg" alt="Playmeets" />
+        <Logo data-testid="logo" src="/logo512.svg" alt="Playmeets" />
       </Link>
 
       <FlexRowLeft>

@@ -19,6 +19,7 @@ const Avatar = ({ imgSrc, size, bordered, displayName = '' }: AvatarProps) => {
   return (
     <Tooltip title={displayName} color="blue" placement="bottom">
       <AvatarIcon
+        data-testid="avatar-icon"
         size={size}
         src={url}
         bordered={bordered}

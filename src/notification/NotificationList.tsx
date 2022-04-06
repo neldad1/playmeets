@@ -1,5 +1,5 @@
 import { List } from 'antd';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NotificationStatus, NotificationType } from '../common/Enums';
 import { setDocument } from '../common/Firebase';

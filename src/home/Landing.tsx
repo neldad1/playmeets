@@ -33,7 +33,11 @@ const Landing = () => {
     <>
       <LandingContainer url={BackgroundImg}>
         <LandingImageContainer>
-          <LandingImage className="slide-left" src={LandingImg} />
+          <LandingImage
+            data-testid="landing-img"
+            className="slide-left"
+            src={LandingImg}
+          />
         </LandingImageContainer>
         <LandingInfo className="fade-in">
           <LandingTitle>
