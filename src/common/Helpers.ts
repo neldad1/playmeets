@@ -1,4 +1,4 @@
-import { AppUser, EventData, UserData } from './Interfaces';
+import { EventData } from './Interfaces';
 
 const toFormattedDateTimeString = (
   timestamp: number,
@@ -11,7 +11,6 @@ const toFormattedDateTimeString = (
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
-    timeZone: 'UTC',
   }).format(timestamp * 1000);
 };
 

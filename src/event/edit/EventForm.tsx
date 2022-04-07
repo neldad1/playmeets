@@ -40,6 +40,9 @@ const EventForm = ({
   const [autoValue, setAutoValue] = useState('');
   const [venueAddr, setVenueAddr] = useState('');
   const [showPopconfirm, setShowPopconfirm] = useState(false);
+  const [dateTimePickerValue, setDateTimePickerValue] = useState(
+    moment(eventData.timestamp)
+  );
 
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
@@ -67,6 +70,7 @@ const EventForm = ({
   };
 
   const onDatePickerChange = (value: any, dateString: string) => {
+    setDateTimePickerValue(value);
     setAppEvtValue({ timestamp: new Date(dateString).getTime() / 1000 });
   };
 
@@ -151,7 +155,7 @@ const EventForm = ({
       <Form.Item label="Date and Time" required>
         <DatePicker
           showTime
-          value={moment(eventData.timestamp * 1000, 'x')}
+          value={dateTimePickerValue}
           onChange={onDatePickerChange}
         />
       </Form.Item>
@@ -212,11 +216,15 @@ const EventForm = ({
             onConfirm={onPopupConfirm}
             onCancel={() => setShowPopconfirm(false)}
           >
-            <Button type="primary" onClick={onDeleteEventButtonClick}>
+            <Button type="primary" onClick={onDeleteEventButtonClick} danger>
               Delete Event
             </Button>
           </Popconfirm>
-          <Button type="primary" onClick={() => navigate('/events')}>
+          <Button
+            type="primary"
+            onClick={() => navigate(`/events/${appEvent.id}`)}
+            ghost
+          >
             Discard Changes
           </Button>
         </FlexRowLeft>
