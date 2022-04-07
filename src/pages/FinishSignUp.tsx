@@ -61,8 +61,8 @@ const FinishSignUp = () => {
         </Form.Item>
         <Form.Item label="State" required>
           <Select onChange={(val: string) => setState(val)}>
-            {AuStates.map((state: string, index: number) => (
-              <Option key={index} value={state}>
+            {AuStates.map((state: string) => (
+              <Option key={state} value={state}>
                 {state}
               </Option>
             ))}
@@ -77,7 +77,9 @@ const FinishSignUp = () => {
             }
           />
         </Form.Item>
-        <Checkbox.Group options={AGE_GROUP} onChange={onCheckboxGrpChange} />
+        <Form.Item>
+          <Checkbox.Group options={AGE_GROUP} onChange={onCheckboxGrpChange} />
+        </Form.Item>
         <Form.Item>
           <FlexBlock>
             <Button type="primary" onClick={onFinish}>
