@@ -37,5 +37,7 @@ This application is written in React Typescript and is the final project for Gen
 - [] Tabs for upcoming and past events
 - [] Edit user details
 - [] Navigate to user profile when the user's avatar is clicked.
-- [] Improve loading size
+- [] Reply on comment
+- [] Messaging
 - [] Improve accessibility
+- [] Improve UI design
