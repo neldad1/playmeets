@@ -31,6 +31,9 @@ This application is written in React Typescript and is the final project for Gen
 - react-firebase-hooks
 
 [View latest deployed version.](https://playmeets.herokuapp.com/)
+username: tester5@playmeets.com
+password: tester5
+or you can signup using your Google account.
 
 ## Future Features Add-ons
 - [] Filter events by age-group, city or venue
