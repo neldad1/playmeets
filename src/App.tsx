@@ -9,7 +9,7 @@ import CurrentUserProvider from './context/CurrentUser';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/playmeets">
       <AppCont>
         <CurrentUserProvider>
           <Header />

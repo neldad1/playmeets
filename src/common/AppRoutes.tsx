@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import UsersWithinStateProvider from '../context/UsersWithinState';
 import EventInfo from '../pages/EventInfo';
 import NotificationInfo from '../pages/NotificationInfo';
@@ -63,6 +63,7 @@ const AppRoutes = () => {
       <Route path="/events/:eventId/edit" element={<PrivateRoute />}>
         <Route path="/events/:eventId/edit" element={<EditEvent />} />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

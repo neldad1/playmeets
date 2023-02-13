@@ -24,7 +24,7 @@ describe('Testing <Login /> component', () => {
     expect(screen.getByText('Log In')).toBeInTheDocument();
     expect(screen.getByText('Login with Google')).toBeInTheDocument();
     expect(screen.getByTestId('logo').getAttribute('src')).toEqual(
-      '/logo512.svg'
+      '/playmeets/logo512.svg'
     );
   });
 });

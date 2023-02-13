@@ -23,7 +23,7 @@ const SignUp = () => {
   return (
     <FlexColumn>
       <Link to="/">
-        <Logo src="/logo512.svg" alt="Playmeets" />
+        <Logo src="/playmeets/logo512.svg" alt="Playmeets" />
       </Link>
 
       <FlexRowLeft>
