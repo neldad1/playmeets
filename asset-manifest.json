@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/playmeets/static/css/main.d586b707.css",
+    "main.js": "/playmeets/static/js/main.b58e917b.js",
+    "static/js/787.70d7c3c0.chunk.js": "/playmeets/static/js/787.70d7c3c0.chunk.js",
+    "static/media/viewEvent.svg": "/playmeets/static/media/viewEvent.2ebdb2dffccbb145672f.svg",
+    "static/media/signup.svg": "/playmeets/static/media/signup.dadcb471eb815f86b184.svg",
+    "static/media/empty.svg": "/playmeets/static/media/empty.2dc94f5b327fbb14dd299b8aeb5b94d3.svg",
+    "static/media/landing.svg": "/playmeets/static/media/landing.dd0400f4291724da3697770dd16331ed.svg",
+    "static/media/carKids.svg": "/playmeets/static/media/carKids.edb3818edba3e6bb808d0028ec284436.svg",
+    "static/media/playmeets.png": "/playmeets/static/media/playmeets.79cfd6ba747bfd0299e6.png",
+    "static/media/defaultAvatar.png": "/playmeets/static/media/defaultAvatar.6e66a24990ee3f549506.png",
+    "static/media/createEvent.png": "/playmeets/static/media/createEvent.dc7cf37b55976d5e7d20.png",
+    "static/media/join.svg": "/playmeets/static/media/join.4f8360879991dde1ff1d.svg",
+    "static/media/signup.png": "/playmeets/static/media/signup.f9b47cb034484fb31382.png",
+    "static/media/profile.png": "/playmeets/static/media/profile.b5723aec2ef49ebb319f.png",
+    "static/media/notification.png": "/playmeets/static/media/notification.658f0eee235d98cfe44a.png",
+    "static/media/userEvents.png": "/playmeets/static/media/userEvents.86169ce161a0a441d26c.png",
+    "static/media/login.png": "/playmeets/static/media/login.852e4505d24c5109b072.png",
+    "static/media/logout.png": "/playmeets/static/media/logout.b72d2b3a58c2fdc0074a.png",
+    "static/media/Playmeets512.svg": "/playmeets/static/media/Playmeets512.72b22b7899e795608139.svg",
+    "index.html": "/playmeets/index.html",
+    "main.d586b707.css.map": "/playmeets/static/css/main.d586b707.css.map",
+    "main.b58e917b.js.map": "/playmeets/static/js/main.b58e917b.js.map",
+    "787.70d7c3c0.chunk.js.map": "/playmeets/static/js/787.70d7c3c0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d586b707.css",
+    "static/js/main.b58e917b.js"
+  ]
+}
