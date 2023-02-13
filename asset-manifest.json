@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/playmeets/static/css/main.d586b707.css",
-    "main.js": "/playmeets/static/js/main.b58e917b.js",
+    "main.js": "/playmeets/static/js/main.f7cca984.js",
     "static/js/787.70d7c3c0.chunk.js": "/playmeets/static/js/787.70d7c3c0.chunk.js",
     "static/media/viewEvent.svg": "/playmeets/static/media/viewEvent.2ebdb2dffccbb145672f.svg",
     "static/media/signup.svg": "/playmeets/static/media/signup.dadcb471eb815f86b184.svg",
@@ -21,11 +21,11 @@
     "static/media/Playmeets512.svg": "/playmeets/static/media/Playmeets512.72b22b7899e795608139.svg",
     "index.html": "/playmeets/index.html",
     "main.d586b707.css.map": "/playmeets/static/css/main.d586b707.css.map",
-    "main.b58e917b.js.map": "/playmeets/static/js/main.b58e917b.js.map",
+    "main.f7cca984.js.map": "/playmeets/static/js/main.f7cca984.js.map",
     "787.70d7c3c0.chunk.js.map": "/playmeets/static/js/787.70d7c3c0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d586b707.css",
-    "static/js/main.b58e917b.js"
+    "static/js/main.f7cca984.js"
   ]
 }
