@@ -3,7 +3,6 @@ import { AppUser } from '../common/Interfaces';
 import {
   FlexBlock,
   FlexRowCenter,
-  FlexRowLeft,
   Label,
 } from '../components/Components.styled';
 import AgeGroup from './AgeGroup';

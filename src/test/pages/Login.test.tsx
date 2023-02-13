@@ -1,7 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
 import { act, render, screen } from '@testing-library/react';
-import { unmountComponentAtNode } from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../../pages/Login';
 import { container } from '../../setupTests';

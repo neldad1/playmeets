@@ -1,5 +1,4 @@
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
 import SignupSolid from '../../assets/headerIcons/signup.png';
 import LoginSolid from '../../assets/headerIcons/login.png';
 import IconWithLabel from './IconWithLabel';

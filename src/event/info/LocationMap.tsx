@@ -1,5 +1,3 @@
-import { replaceSpaceWithCharacter } from '../../common/Helpers';
-import { Location } from '../../common/Interfaces';
 import { MapFrame } from './EventDetails.styled';
 
 interface LocationMapProps {
