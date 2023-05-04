@@ -30,10 +30,12 @@ This application is written in React Typescript and is the final project for Gen
 - react-google-places-autocomplete
 - react-firebase-hooks
 
-[View latest deployed version.](https://playmeets.herokuapp.com/)
+[View latest deployed version.](https://neldad1.github.io/playmeets/)
 username: tester5@playmeets.com
 password: tester5
 or you can signup using your Google account.
+
+Note: As of Feb 2023, this app is now deployed via GitHub Pages.
 
 ## Future Features Add-ons
 - [] Filter events by age-group, city or venue
